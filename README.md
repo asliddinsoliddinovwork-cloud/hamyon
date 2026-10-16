@@ -1,4 +1,11 @@
-# Hamyon — iPhone (veb-ilova)
+# Hamyon
+
+- **iPhone:** https://asliddinsoliddinovwork-cloud.github.io/hamyon/ — Safari'da oching → Ulashish → Bosh ekranga qo'shish
+- **Android (APK):** https://asliddinsoliddinovwork-cloud.github.io/hamyon/Hamyon-2.0.apk — Android 8.0 va undan yuqori, 87 KB
+
+---
+
+## iPhone (veb-ilova)
 
 Bu papka iPhone uchun Hamyon veb-ilovasi (PWA). Android versiyasi bilan bir xil imkoniyatlar, internetsiz ishlaydi.
 
@@ -26,3 +33,4 @@ Bu papka iPhone uchun Hamyon veb-ilovasi (PWA). Android versiyasi bilan bir xil 
 - `sw.js` — internetsiz ishlash (kesh)
 - `icons/` — bosh ekran ikonkalari (180, 192, 512 px)
 - `.nojekyll` — GitHub Pages fayllarni o'zgartirmasligi uchun
+- `Hamyon-2.0.apk` — Android ilovasi (v2 imzo bilan)
