@@ -1,0 +1,1783 @@
+<!doctype html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EBEBEB">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hamyon">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="format-detection" content="telephone=no">
+<title>Hamyon</title>
+<style>
+:root{
+  --bg:#EBEBEB; --card:#F4F4F4; --card2:#FAFAFA; --ink:#121212; --muted:#8C8C8C; --line:#E6E6E6;
+  --green:#22C55E; --green-ink:#16A34A; --red:#E5484D; --amber:#D97706;
+  --sh:0 1px 0 rgba(255,255,255,.9) inset, 0 6px 18px rgba(0,0,0,.045);
+  --t2:#555; --t3:#666; --t4:#444; --t5:#333;
+  --seg:#E0E0E0; --seg-on:#FFFFFF; --seg-on-ink:#000; --chip:#E4E4E4; --track:#E0E0E0; --donut-bg:#ECECEC;
+  --sheet:#F2F2F2; --grab:#CFCFCF; --input:#FFFFFF; --input-line:#E1E1E1; --input-focus:#B5B5B5;
+  --btn:#141414; --btn-ink:#FFFFFF; --tabbar:rgba(250,250,250,.92); --tab-on:#E6E6E6; --tab-on-ink:#000;
+  --ring:#FFFFFF; --nag-bg:#FFF6E6; --nag-ink:#7A4B00; --warn-bg:#FFF4E5;
+  --toast:#141414; --toast-ink:#FFFFFF; --toast-act:#7EE2A0; --bo:#1C1C1C; --foot:#AAA; --dim:rgba(0,0,0,.28);
+}
+:root[data-theme="dark"]{
+  --bg:#0D0D0E; --card:#18181A; --card2:#1C1C1E; --ink:#F2F2F2; --muted:#8E8E93; --line:#2A2A2D;
+  --green:#30D158; --green-ink:#34D86A; --red:#FF5A5F; --amber:#F5A524;
+  --sh:0 1px 0 rgba(255,255,255,.04) inset, 0 6px 18px rgba(0,0,0,.35);
+  --t2:#A1A1A6; --t3:#9A9AA0; --t4:#C7C7CC; --t5:#D1D1D6;
+  --seg:#2A2A2D; --seg-on:#48484C; --seg-on-ink:#FFF; --chip:#2C2C2E; --track:#2E2E31; --donut-bg:#2A2A2D;
+  --sheet:#141416; --grab:#48484A; --input:#1F1F22; --input-line:#2E2E31; --input-focus:#5A5A5E;
+  --btn:#F2F2F2; --btn-ink:#121212; --tabbar:rgba(30,30,32,.92); --tab-on:#3A3A3C; --tab-on-ink:#FFF;
+  --ring:#2C2C2E; --nag-bg:#2B2210; --nag-ink:#F5C26B; --warn-bg:#2B2210;
+  --toast:#F2F2F2; --toast-ink:#121212; --toast-act:#16A34A; --bo:#E5E5EA; --foot:#636366; --dim:rgba(0,0,0,.55);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none;transition:background-color .3s}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+#app{max-width:480px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 18px calc(env(safe-area-inset-bottom) + 120px)}
+
+/* Header */
+.hdr{display:flex;align-items:center;gap:10px;margin:6px 0 26px}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(#d4d4d4,#b5b5b5);color:#fff;display:grid;place-items:center;font-weight:600;font-size:15px;box-shadow:0 0 0 3px var(--ring);flex:none}
+.hello{flex:1;display:flex;flex-direction:column;min-width:0}
+.hello small{color:var(--muted);font-size:13px}
+.hello b{font-size:17px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.round{width:44px;height:44px;border-radius:50%;background:var(--card2);display:grid;place-items:center;box-shadow:var(--sh);position:relative;flex:none}
+.round.sm{width:34px;height:34px}
+.round:disabled{opacity:.35}
+.dot{position:absolute;top:10px;right:11px;width:9px;height:9px;border-radius:50%;background:#F97316;border:1.5px solid var(--card2)}
+.ph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0 20px;min-height:44px}
+.ph h1{margin:0;font-size:24px;font-weight:600;letter-spacing:-.01em}
+.ph.center h1{flex:1;text-align:center;font-size:18px}
+
+/* Balance */
+.acct{font-size:11px;letter-spacing:.02em;color:var(--t2);display:flex;align-items:center;gap:6px;text-transform:uppercase}
+.gdot{width:7px;height:7px;border-radius:2px;background:var(--green)}
+.bal-row{display:flex;align-items:center;gap:12px;margin:10px 0 6px}
+.bal{font-size:38px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.bal span{font-size:17px;color:#A3A3A3;font-weight:500;margin-left:6px;letter-spacing:0}
+@media (max-width:360px){.bal{font-size:31px}}
+.upd{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+
+.sec{display:flex;justify-content:space-between;align-items:center;margin:28px 0 12px;color:var(--t2);font-size:15px;gap:10px}
+.link{font-weight:600;color:var(--ink);font-size:15px}
+
+/* Accounts */
+.accs{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:2px 18px 8px;scroll-snap-type:x proximity}
+.accs::-webkit-scrollbar{display:none}
+.acc{flex:none;width:max-content;min-width:150px;max-width:250px;background:var(--card2);border-radius:18px;padding:14px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:14px;scroll-snap-align:start;transition:transform .15s}
+.acc:active{transform:scale(.97)}
+.acc-top{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);min-width:0}
+.acc-top span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acc-ic{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:15px;flex:none}
+.acc b{font-size:16px;padding-right:2px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acc.add{align-items:center;justify-content:center;gap:6px;color:var(--muted);font-size:13px;box-shadow:none;background:transparent;border:1.5px dashed var(--track);width:110px}
+
+/* Quick actions */
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qa{background:var(--card2);border-radius:18px;padding:16px 14px 14px;min-height:118px;display:flex;flex-direction:column;box-shadow:var(--sh);transition:transform .15s}
+.qa-ic{margin-bottom:auto;padding-bottom:18px;display:block}
+.qa b{font-weight:500;font-size:16px}
+.qa small{color:var(--muted);font-size:12px;margin-top:4px}
+.qa:active,.tx:active,.card[data-act]:active,.btn:active{transform:scale(.98)}
+
+.card{display:block;width:100%;background:var(--card2);border-radius:18px;padding:16px;box-shadow:var(--sh)}
+.spent{margin-top:10px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.spent .row span{font-size:14px}
+.spent .row b{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}
+.spent .row b small{color:var(--muted);font-weight:500;font-size:13px}
+.bar{height:14px;margin:14px 0 8px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--track) 0 3px,transparent 3px 6px);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green);border-radius:4px;transition:width .4s}
+.bar.warn i{background:#F59E0B}
+.bar.over i{background:var(--red)}
+.bar.sm{height:8px;margin:8px 0 0}
+.bar.xs{height:4px;margin:6px 0 0;width:100%;display:block}
+.mini{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--t3)}
+.pos{color:var(--green-ink)} .neg{color:var(--red)} .muted{color:var(--muted)}
+.nag{display:flex;align-items:center;gap:10px;margin-top:10px;background:var(--nag-bg);color:var(--nag-ink);font-size:13px}
+.nag span{flex:1}
+
+/* Lists */
+.list{display:flex;flex-direction:column;gap:8px}
+.tx{display:flex;align-items:center;gap:12px;width:100%;background:var(--card);border-radius:16px;padding:12px 14px;box-shadow:var(--sh);transition:transform .15s}
+.tx-ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:19px;flex:none;background:var(--chip)}
+.tx-ic.av{background:var(--chip);font-size:14px;font-weight:600;color:var(--t4)}
+.tx-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.tx-t{font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx-s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tx-s em{font-style:normal}
+.tx-r{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:none;max-width:48%}
+.tx-a{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dhead{display:flex;justify-content:space-between;font-size:13px;color:var(--t3);margin:18px 4px 8px}
+.empty{text-align:center;padding:30px 10px;color:var(--muted)}
+.empty span{font-size:34px;display:block}
+.empty p{margin:8px 0 0}
+.search{display:flex;align-items:center;gap:8px;background:var(--card2);border-radius:14px;padding:0 12px;box-shadow:var(--sh);color:var(--muted)}
+.search input{flex:1;border:0;background:transparent;padding:12px 0;font-size:16px;outline:none;color:var(--ink);min-width:0}
+
+/* Segmented */
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--seg);border-radius:13px;padding:3px}
+.seg button{padding:9px 6px;border-radius:10px;text-align:center;font-size:14px;color:var(--t2);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg button.on{background:var(--seg-on);color:var(--seg-on-ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+
+/* Stats */
+.mswitch{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px}
+.mswitch b{min-width:140px;text-align:center;font-size:16px;font-weight:600}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi small{color:var(--muted);font-size:12px;display:block}
+.kpi b{font-size:18px;font-weight:600;display:block;margin-top:6px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi.wide{margin-top:10px}
+.kpi.wide span{display:block;font-size:12px;margin-top:6px}
+.donut{position:relative;width:160px;height:160px;margin:4px auto 14px}
+.donut svg{transform:rotate(-90deg);display:block}
+.dc{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.dc small{color:var(--muted);font-size:11px}
+.dc b{font-size:18px}
+.lg{display:grid;grid-template-columns:10px 1fr auto 38px;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+.lg span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg b{font-weight:600;font-variant-numeric:tabular-nums}
+.lg small{text-align:right;color:var(--muted)}
+.sw{width:10px;height:10px;border-radius:3px}
+.bp+.bp{margin-top:14px}
+.bp .row{font-size:13px}
+.bp .row b{font-weight:600}
+.hint{display:flex;gap:10px;align-items:center;margin-top:10px}
+.hint span{flex:1;font-size:14px}
+.bars{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;height:150px}
+.bcol{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
+.bpair{flex:1;display:flex;align-items:flex-end;gap:3px;width:100%;justify-content:center}
+.bpair i{width:10px;border-radius:4px 4px 2px 2px;min-height:2px;display:block}
+.bi{background:var(--green)} .bo{background:var(--bo)}
+.bcol small{font-size:11px;color:var(--muted)}
+.bcol.cur small{color:var(--ink);font-weight:700}
+.blg{display:flex;gap:16px;justify-content:center;margin-top:12px;font-size:12px;color:var(--t2)}
+.blg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+
+/* Settings */
+.group-t{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:22px 4px 8px}
+.group{background:var(--card2);border-radius:16px;overflow:hidden;box-shadow:var(--sh)}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;width:100%;min-height:50px;border-top:1px solid var(--line);font-size:15px}
+.srow:first-child{border-top:0}
+.srow>span:first-child{flex:none;max-width:60%}
+.srow input{text-align:right;border:0;background:transparent;font-size:16px;outline:none;flex:1;min-width:0;padding:0;color:var(--t5)}
+.srow .muted{display:flex;align-items:center;gap:4px;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow.stack{flex-direction:column;align-items:stretch;gap:10px}
+.srow.stack>span:first-child{max-width:none;font-size:13px;color:var(--muted)}
+.srow .lead{display:flex;align-items:center;gap:10px;min-width:0}
+.danger{color:var(--red)}
+.note{font-size:12px;color:var(--muted);margin:8px 6px 0;line-height:1.45}
+.foot{text-align:center;color:var(--foot);font-size:12px;margin:26px 0 0}
+.switch{width:51px;height:31px;border-radius:999px;background:var(--seg);position:relative;flex:none;transition:background .2s}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .2s}
+.switch.on{background:var(--green)}
+.switch.on::after{transform:translateX(20px)}
+
+/* Tab bar */
+.tabbar{position:fixed;left:0;right:0;margin:0 auto;bottom:calc(env(safe-area-inset-bottom) + 10px);width:min(440px,calc(100% - 28px));background:var(--tabbar);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-radius:40px;padding:6px;display:grid;grid-template-columns:repeat(4,1fr);box-shadow:0 10px 30px rgba(0,0,0,.09),0 0 0 1px rgba(0,0,0,.03);z-index:10}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0 7px;border-radius:32px;font-size:11px;color:var(--t4);text-align:center;min-width:0}
+.tab span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
+.tab.on{background:var(--tab-on);color:var(--tab-on-ink);font-weight:600}
+.tab.on svg{stroke-width:2.2}
+.tab.on[data-v=home] svg path{fill:currentColor}
+
+/* Sheet */
+#sheets:not(.open){pointer-events:none}
+#sheets .backdrop{position:fixed;inset:0;background:var(--dim);opacity:0;transition:opacity .25s;z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;margin:0 auto;max-width:480px;background:var(--sheet);border-radius:28px 28px 0 0;padding:8px 18px calc(env(safe-area-inset-bottom) + 18px);max-height:92dvh;overflow-y:auto;transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);z-index:21;overscroll-behavior:contain}
+#sheets.open .backdrop{opacity:1}
+#sheets.open .sheet{transform:none}
+.grab{width:38px;height:5px;border-radius:3px;background:var(--grab);margin:0 auto 10px}
+.sh-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.sh-h h2{margin:0;font-size:20px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.amt{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:22px 0 12px}
+.amt input{width:1.2em;max-width:calc(100% - 60px);text-align:center;border:0;background:transparent;font-size:42px;font-weight:600;letter-spacing:-.02em;outline:none;padding:0;font-variant-numeric:tabular-nums}
+.amt.in input{color:var(--green-ink)}
+.amt span{font-size:18px;color:var(--muted);flex:none}
+.hint-t{text-align:center;font-size:13px;color:var(--t3);margin:0 0 6px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;margin:14px 0 16px}
+.cats button{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.cats span{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:24px;transition:transform .15s,box-shadow .15s;box-shadow:inset 0 0 0 2px transparent}
+.cats button.on span{box-shadow:inset 0 0 0 2px var(--ink);transform:scale(1.06)}
+.cats small{font-size:11px;color:var(--t4);text-align:center;line-height:1.15;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.cats .addc span{background:transparent;border:1.5px dashed var(--track);font-size:22px;color:var(--muted)}
+.pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px 12px;padding:2px 18px}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:none;display:flex;align-items:center;gap:6px;background:var(--input);border:1px solid var(--input-line);border-radius:20px;padding:8px 12px;font-size:13.5px;white-space:nowrap}
+.pill.on{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.plabel{font-size:12px;color:var(--muted);margin:0 0 6px 4px;display:block}
+.field{display:block;margin-bottom:10px}
+.field>small{display:block;font-size:12px;color:var(--muted);margin:0 0 5px 4px}
+.field input,.inrow{display:block;width:100%;background:var(--input);border:1px solid var(--input-line);border-radius:13px;padding:12px 14px;font-size:16px;outline:none;min-height:48px;-webkit-appearance:none;appearance:none;color:var(--ink)}
+.field input:focus{border-color:var(--input-focus)}
+.field input::-webkit-date-and-time-value{text-align:left}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inrow{display:flex;align-items:center;gap:8px;padding:4px 4px 4px 14px}
+.field .inrow input{border:0;padding:8px 0;min-height:0;background:transparent;border-radius:0;flex:1;min-width:0}
+.inrow.suf span{color:var(--muted);padding-right:10px}
+.btn{display:block;width:100%;background:var(--btn);color:var(--btn-ink);border-radius:16px;padding:16px;text-align:center;font-weight:600;font-size:16px;margin-top:8px;transition:transform .15s}
+.btn.sm{width:auto;padding:10px 16px;margin:0;border-radius:11px;font-size:14px;flex:none}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost.danger{color:var(--red)}
+.btn.red{background:var(--red);color:#fff}
+.check{display:flex;gap:10px;align-items:center;margin:6px 4px 10px;font-size:14px}
+.check input{width:20px;height:20px;accent-color:var(--btn);flex:none}
+.dsum{margin-bottom:14px}
+.dsum small{font-size:13px;color:var(--muted)}
+.dsum b{display:block;font-size:30px;font-weight:600;margin:6px 0;font-variant-numeric:tabular-nums}
+.dsum b span{font-size:15px;color:var(--muted)}
+.dsum .muted{font-size:13px}
+.dsum p{margin:10px 0 0;font-size:14px}
+.txt{font-size:14px;line-height:1.5;color:var(--t5)}
+.txt ol{padding-left:20px;margin:8px 0}
+.txt li{margin-bottom:8px}
+.warnbox{background:var(--warn-bg);color:var(--nag-ink);font-size:13px;padding:12px 14px;border-radius:14px;margin-bottom:14px;line-height:1.45}
+.swatches{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 14px}
+.swatches button{width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 2px transparent;display:grid;place-items:center;font-size:18px}
+.swatches button.on{box-shadow:inset 0 0 0 2px var(--ink)}
+.emojis button{background:var(--input)}
+textarea.out{width:100%;height:180px;border-radius:13px;border:1px solid var(--input-line);background:var(--input);color:var(--ink);padding:12px;font:12px/1.45 ui-monospace,Menlo,monospace;resize:vertical}
+
+/* PIN lock */
+#lock{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:calc(env(safe-area-inset-top) + 20px) 18px calc(env(safe-area-inset-bottom) + 20px)}
+#lock h2{margin:0;font-size:20px;font-weight:600;text-align:center}
+#lock p{margin:-14px 0 0;color:var(--muted);font-size:14px;text-align:center;min-height:19px}
+.logo{width:72px;height:72px;border-radius:20px;background:var(--card2);box-shadow:var(--sh);display:grid;place-items:center}
+.pdots{display:flex;gap:18px}
+.pdots i{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--ink);transition:background .12s}
+.pdots i.f{background:var(--ink)}
+.pdots.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.pad{display:grid;grid-template-columns:repeat(3,74px);gap:16px 24px}
+.pad button{width:74px;height:74px;border-radius:50%;background:var(--card2);box-shadow:var(--sh);font-size:28px;font-weight:500;text-align:center;font-variant-numeric:tabular-nums}
+.pad button:active{background:var(--seg)}
+.pad button.t{background:transparent;box-shadow:none;font-size:14px;color:var(--muted)}
+.forgot{font-size:13px;color:var(--muted);text-decoration:underline}
+
+/* Toast */
+#toast{position:fixed;top:calc(env(safe-area-inset-top) + 10px);left:50%;transform:translate(-50%,-160%);background:var(--toast);color:var(--toast-ink);padding:11px 18px;border-radius:30px;font-size:14px;display:flex;gap:14px;align-items:center;z-index:50;transition:transform .3s cubic-bezier(.2,.8,.2,1);width:max-content;max-width:calc(100% - 32px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+#toast.show{transform:translate(-50%,0)}
+#toast button{color:var(--toast-act);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <main id="view"></main>
+</div>
+<nav class="tabbar" id="tabbar"></nav>
+<div id="sheets"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+'use strict';
+
+/* =================== Tarjimalar =================== */
+const L = {
+uz: {
+  months:['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'],
+  mshort:['Yan','Fev','Mar','Apr','May','Iyn','Iyl','Avg','Sen','Okt','Noy','Dek'],
+  sum:"so'm", units:['mlrd','mln','ming'],
+  tabHome:'Asosiy', tabStats:'Statistika', tabDebts:'Qarzlar', tabSettings:'Sozlamalar', sections:"Bo'limlar",
+  today:'Bugun', yesterday:'Kecha', tomorrow:'Ertaga',
+  justNow:'hozirgina', minAgo:'{n} daqiqa oldin', hourAgo:'{n} soat oldin', dayAgo:'{n} kun oldin',
+  gNight:'Xayrli tun', gMorning:'Xayrli tong', gDay:'Xayrli kun', gEvening:'Xayrli kech', guest:'Mehmon',
+  profile:'Profil', reminders:'Eslatmalar', totalBal:'Umumiy balans', hideBal:'Balansni yashirish',
+  lastAct:'Oxirgi amal {t}', noActYet:"Hali amal yo'q — birinchisini qo'shing",
+  quick:'Tezkor amallar', addOut:"Chiqim qo'shish", addOutSub:"Xarajatni yozib qo'ying", addIn:"Kirim qo'shish", addInSub:'Maosh, daromad',
+  addDebt:'Qarz yozish', addDebtSub:'Berdim yoki oldim', openDebtsN:'{n} ta ochiq qarz', budget:'Budjet', budgetLim:'Oylik limit: {v}', budgetSet:'Oylik limit belgilang',
+  accounts:'Hisoblar', transfer:"O'tkazma", addAcc:"Hisob qo'shish",
+  spentMonth:'Bu oy sarflandi', incomeShort:'kirim', setLimit:'Limit belgilash →',
+  spentLine:'{p}% · qoldi {l} · kuniga ~{d}', overBy:"Limit {v} ga oshdi",
+  backupNag:"Zaxira nusxa olish vaqti keldi — ma'lumotlar faqat shu telefonda",
+  rateNag:"Dollar kursini kiriting — USD hisoblar so'mga aylantirilishi uchun",
+  recent:'Oxirgi amallar', seeAll:'Barchasi', emptyTx:"Amallar shu yerda ko'rinadi",
+  allTx:'Barcha amallar', back:'Orqaga', searchPh:'Izoh, kategoriya yoki summa', fAll:'Hammasi', out:'Chiqim', in:'Kirim',
+  notFound:'Hech narsa topilmadi', noActs:"Hali amal yo'q",
+  stats:'Statistika', prevM:'Oldingi oy', nextM:'Keyingi oy', net:'Sof natija', avgDaily:"O'rtacha kunlik xarajat: {v}",
+  vsPrev:"O'tgan oyga nisbatan xarajat: {v}", saveRate:"Jamg'arma ulushi: {v}",
+  structure:'Xarajatlar tarkibi', total:'Jami', noExpM:"Bu oyda xarajat yo'q", edit:'Tahrirlash', setLimitsHint:'Oylik va kategoriya limitlarini belgilang',
+  overallLimit:'Umumiy limit', last6:"So'nggi 6 oy", statsFoot:"Qarz va o'tkazmalar statistikaga kiritilmaydi. USD summalar joriy kurs bo'yicha so'mda.",
+  debts:'Qarzlar', newDebt:'Yangi qarz', owedToMe:'Menga qaytariladi', iOwe:'Men qaytaraman', openN:'Ochiq ({n})', closedN:'Yopilgan ({n})',
+  noOpen:"Ochiq qarzlar yo'q", noClosed:"Yopilgan qarzlar yo'q", gave:'Berdim', took:'Oldim', overdue:"muddati o'tdi", dueOn:'muddat {d}',
+  left:'qoldi', closedOk:'yopildi ✓',
+  settings:'Sozlamalar', yourName:'Ismingiz', namePh:'Ism', appearance:"Ko'rinish", language:'Til', theme:'Rejim',
+  light:'Kunduzgi', dark:'Tungi', auto:'Avto', autoHint:"Avto rejim 19:00 dan 07:00 gacha tungi ko'rinishni yoqadi.",
+  currency:'Valyuta', usdRate:'1 USD kursi', notSet:"kiritilmagan", rateHint:"Kurs qo'lda kiritiladi. Umumiy balans va statistika shu kurs bo'yicha so'mga aylantiriladi.",
+  limitsRow:'Oylik va kategoriya limitlari', none:"yo'q", categories:'Kategoriyalar', myCats:'Mening kategoriyalarim', catsSub:"{n} ta qo'shilgan",
+  security:'Xavfsizlik', pinLock:'PIN-kod bilan qulflash', changePin:"PIN-kodni o'zgartirish", pinHint:"Ilova ochilganda va 1 daqiqadan ko'p fonda turgandan keyin PIN so'raladi.",
+  widgetRow:"⚡ Widget orqali tez qo'shish", data:"Ma'lumotlar", backupRow:'Zaxira nusxa olish', notTaken:'hali olinmagan', restoreRow:'Zaxiradan tiklash',
+  exportRow:'Excel / CSV eksport', wipeRow:"Barcha ma'lumotlarni o'chirish",
+  dataNote:"Ma'lumotlar faqat shu telefonda saqlanadi — hech qayerga yuborilmaydi. Har 1–2 haftada zaxira nusxa olib, Google Drive yoki Telegram'ga saqlab qo'ying.",
+  foot:'Hamyon v2.0 · {a} ta amal · {d} ta qarz',
+  close:'Yopish', save:'Saqlash', add:"Qo'shish", del:"O'chirish", cancel:'Bekor qilish', undo:'Qaytarish', confirm:'Tasdiqlash',
+  editTx:'Tahrirlash', amount:'Summa', quickHint:'Kategoriyani tanlang — darhol saqlanadi', date:'Sana', time:'Vaqt', note:'Izoh', notePh:'Masalan: Korzinka',
+  account:'Hisob', from:'Qayerdan', to:'Qayerga', receives:'Tushadi ({c})', addCat:'Yangi',
+  needAmount:'Summani kiriting', needCat:'Kategoriyani tanlang', needOtherAcc:'Boshqa hisobni tanlang', needTwoAcc:"O'tkazma uchun kamida 2 ta hisob kerak",
+  delTxQ:"Bu amal o'chirilsinmi?", deleted:"O'chirildi", txSaved:'{k} saqlandi: {v}', txAdded:"{k} qo'shildi: {v}", trSaved:"O'tkazma saqlandi",
+  catLimitOver:'⚠️ {c} limiti oshdi', monthLimitOver:'⚠️ Oylik limit oshdi',
+  budgetT:'Budjet', monthlyLimit:'Oylik umumiy limit', limitPh:'Masalan: 5 000 000', byCats:"Kategoriyalar bo'yicha (ixtiyoriy)",
+  budgetNote:"80% ga yetganda chiziq sariq, limitdan oshganda qizil bo'ladi va ogohlantirish chiqadi. Limitlar so'mda.", budgetSaved:'Budjet saqlandi',
+  gaveDebt:'Qarz berdim', tookDebt:'Qarz oldim', whoTo:'Kimga?', whoFrom:'Kimdan?', dueDate:'Qaytarish muddati', optional:'Ixtiyoriy',
+  affOut:'Balansdan ayirish (pul hamyondan chiqdi)', affIn:"Balansga qo'shish (pul hamyonga kirdi)", needName:'Ismni kiriting', debtSaved:"Qarz yozib qo'yildi",
+  debtGivenNote:'Qarz berildi: {p}', debtTakenNote:'Qarz olindi: {p}', debtBackNote:'Qarz qaytdi: {p}', debtPaidNote:"Qarz to'landi: {p}",
+  debtClosed:'Qarz yopilgan ✓', theyOwe:'Sizga qaytarishi kerak', youOwe:'Siz qaytarishingiz kerak', given:'Berilgan', taken:'Olingan',
+  partial:"Qisman to'lov", fullBack:"To'liq qaytarildi", payHist:"To'lovlar tarixi", delDebt:"Qarzni o'chirish",
+  delDebtQ:"Qarz va unga bog'liq kirim/chiqim amallari o'chirilsinmi?", debtDeleted:"Qarz o'chirildi", debtClosedT:'Qarz yopildi ✓', payAdded:"To'lov qo'shildi · qoldi {v}",
+  accT:'Hisob', newAcc:'Yangi hisob', accName:'Nomi', accNamePh:'Masalan: Uzcard', type:'Turi', cash:'Naqd', card:'Karta', savings:"Jamg'arma",
+  initial:"Boshlang'ich qoldiq", initialHint:"Hisobni yuritishni boshlagan paytdagi qoldiq.", color:'Rang', curLocked:"Amallari bor hisobning valyutasini o'zgartirib bo'lmaydi.",
+  delAcc:"Hisobni o'chirish", cantDelAcc:"Amallari bor hisobni o'chirib bo'lmaydi", minOneAcc:"Kamida bitta hisob qolishi kerak", accDeleted:"Hisob o'chirildi", saved:'Saqlandi',
+  rateT:'Dollar kursi', rateSheetHint:"1 USD necha so'm ekanini kiriting (bank yoki Markaziy bank kursi). Ilova kursni internetdan olmaydi.", badRate:"Kursni to'g'ri kiriting", rateSaved:'Kurs saqlandi',
+  catsT:'Kategoriyalar', newCatT:'Yangi kategoriya', catName:'Nomi', catNamePh:'Masalan: Sport', emoji:'Belgi', forType:'Turi', catAdded:"Kategoriya qo'shildi", catExists:'Bunday kategoriya bor',
+  noCustom:"Hali o'z kategoriyangiz yo'q", catUsed:'{n} ta amal', catDeleted:"Kategoriya o'chirildi",
+  exportT:'Eksport', exExcel:'Excel uchun', exExcelSub:"Nuqtali vergul (;) bilan — o'zbek/rus Excel'da ustunlar to'g'ri ajraladi",
+  exCsv:'CSV (vergul)', exCsvSub:'Power BI, Google Sheets va ingliz tilidagi Excel uchun',
+  cols:['Sana','Vaqt','Turi','Hisob','Kategoriya','Summa','Valyuta',"Summa (so'm)",'Izoh'],
+  copy:'Nusxa olish', copied:'Nusxalandi', selectCopy:'Matn belgilandi — nusxalang', fileText:'Fayl matni',
+  fileSaved:'Fayl saqlandi ✓', backupReady:'Zaxira nusxa tayyor', notBackup:'Bu fayl Hamyon zaxirasi emas',
+  restoreQ:"Zaxirada {a} ta amal va {d} ta qarz bor. Joriy ma'lumotlar almashtirilsinmi?", restored:"Ma'lumotlar tiklandi ✓",
+  wipeQ:"Barcha amallar, hisoblar, qarzlar va sozlamalar o'chiriladi. Bu amalni ortga qaytarib bo'lmaydi.", wiped:"Ma'lumotlar o'chirildi",
+  saveFail:"Saqlab bo'lmadi — xotira bloklangan",
+  welcomeT:"Hamyon'ga xush kelibsiz 👋", welcomeTxt:"Kirim, chiqim, hisoblar, budjet va qarzlarni bir joyda yuriting. Ma'lumotlar faqat shu telefonda saqlanadi.",
+  welcomeName:'Ismingiz', welcomeNamePh:'Masalan: Alisher', welcomeStart:'Hozir qancha pulingiz bor? (ixtiyoriy)', start:'Boshlash',
+  widgetT:"Widget orqali qo'shish", widgetHow:"Bosh ekranga widget qo'yish",
+  w1:"Bosh ekranning bo'sh joyini bosib turing.", w2:"<b>Vidjetlar</b> (Widgets) ni tanlang va ro'yxatdan <b>Hamyon</b> ni toping.", w3:"Widgetni bosib turib, bosh ekranga olib o'ting.",
+  wInfo:"Widgetda umumiy balans va shu oydagi xarajat ko'rinadi. <b>Chiqim</b> yoki <b>Kirim</b> tugmasini bossangiz, ilova summa kiritish oynasi bilan ochiladi.",
+  wFaster:'Yana tezroq usul', wFasterTxt:"Hamyon ikonkasini bosib turing — «Chiqim qo'shish» va «Kirim qo'shish» menyusi chiqadi. Ularni ham bosh ekranga sudrab qo'yish mumkin.",
+  wBrowser:"Widget va ikonka menyusi Android ilovasida ishlaydi.",
+  wSpent:"Bu oy: {s} / {l}", wSpentNo:"Bu oy sarflandi: {s}",
+  pinEnter:'PIN-kodni kiriting', pinWrong:"Noto'g'ri PIN. Qayta urinib ko'ring.", pinNew:'Yangi PIN-kod', pinThink:"4 xonali kod o'ylab toping",
+  pinConfirm:'PIN-kodni tasdiqlang', pinRepeat:'Shu kodni qayta kiriting', pinMismatch:'Kodlar mos kelmadi. Qaytadan kiriting.', pinOn:'PIN yoqildi',
+  pinOffT:"PIN-ni o'chirish", pinCurrent:'Joriy PIN-kodni kiriting', pinOff:"PIN o'chirildi", pinForgot:'PIN-ni unutdingizmi?',
+  pinForgotQ:"PIN-kodni tiklashning yagona yo'li — barcha ma'lumotlarni o'chirish. Zaxira faylingiz bo'lsa, keyin undan tiklashingiz mumkin.", pinResetBtn:"Hammasini o'chirish", erase:'O\'chirish',
+  iosGroup:'iPhone', installRow:"📲 Bosh ekranga o'rnatish", installedNow:"o'rnatilgan", shortcutRow:"⚡ Qisqa buyruqlar orqali tez qo'shish",
+  installNag:"Hamyon'ni bosh ekranga qo'shing — ilova kabi ochiladi va internetsiz ishlaydi", howTo:"Qanday?",
+  installT:"Bosh ekranga o'rnatish", i1:"Shu sahifani iPhone'da <b>Safari</b>'da oching.", i2:"Pastdagi <b>Ulashish</b> tugmasini bosing (□↑). iOS 26'da avval <b>•••</b> ni bosing.",
+  i3:"<b>Bosh ekranga qo'shish</b> (Add to Home Screen) ni tanlang.", i4:"<b>Veb-ilova sifatida ochish</b> yoqilgan qolsin va <b>Qo'shish</b> ni bosing.", i5:"Endi Hamyon'ni doim bosh ekrandagi ikonkadan oching.",
+  iNote:"Bosh ekrandagi ilova va Safari ma'lumotlarni alohida saqlaydi. Shuning uchun hisobni doim ikonkadan yuriting.",
+  iMove:"Android'dan o'tyapsizmi?", iMoveTxt:"Android'dagi Hamyon'da Sozlamalar → Zaxira nusxa olish. Faylni iPhone'ga yuboring (Telegram yoki AirDrop) va shu yerda Sozlamalar → Zaxiradan tiklash orqali oching.",
+  scT:"Qisqa buyruqlar orqali qo'shish", scIntro:"iPhone'dagi <b>Qisqa buyruqlar</b> (Shortcuts) ilovasi yordamida bosh ekranga «Chiqim» va «Kirim» tugmalarini qo'yasiz.",
+  scWarn:"Diqqat: iOS'da bosh ekrandagi veb-ilova Safari'dan alohida xotira ishlatadi. Qisqa buyruqlar havolani Safari'da ochadi, shuning uchun bu usulda qo'shilgan amallar Safari'dagi Hamyon'da saqlanadi. Bu usuldan foydalansangiz, Hamyon'ni doim Safari'da oching.",
+  sc1h:"1. Oddiy tugma", sc1a:"Shortcuts → <b>+</b> → <b>Add Action</b> → <b>Open URLs</b> (Открыть URL).", sc1b:"Unga quyidagi «Chiqim» havolasini joylang va nomini <b>Chiqim</b> qo'ying. Xuddi shunday <b>Kirim</b> ni yarating.",
+  sc2h:"2. Summani darhol so'rash", sc2a:"Birinchi amal: <b>Ask for Input</b>, turi <b>Number</b>.", sc2b:"Ikkinchi amal: <b>Open URLs</b>, quyidagi havola va oxiriga <b>Provided Input</b>. Ilova summa bilan ochiladi, faqat kategoriyani bosasiz.",
+  sc3h:"3. Bosh ekranga widget", sc3a:"Bosh ekranni bosib turing → <b>Tahrirlash</b> → <b>Widget qo'shish</b> → <b>Shortcuts</b> va yaratgan buyruqlaringizni tanlang.",
+  lOut:'Chiqim', lIn:'Kirim', lOutAmt:'Chiqim + summa', lInAmt:'Kirim + summa', copyLink:'Havolani nusxalash', linkCopied:'Havola nusxalandi',
+  accMain:'Asosiy hamyon',
+},
+ru: {
+  months:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+  monthsGen:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
+  mshort:['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+  sum:'сум', units:['млрд','млн','тыс'],
+  tabHome:'Главная', tabStats:'Статистика', tabDebts:'Долги', tabSettings:'Настройки', sections:'Разделы',
+  today:'Сегодня', yesterday:'Вчера', tomorrow:'Завтра',
+  justNow:'только что', minAgo:'{n} мин назад', hourAgo:'{n} ч назад', dayAgo:'{n} дн назад',
+  gNight:'Доброй ночи', gMorning:'Доброе утро', gDay:'Добрый день', gEvening:'Добрый вечер', guest:'Гость',
+  profile:'Профиль', reminders:'Напоминания', totalBal:'Общий баланс', hideBal:'Скрыть баланс',
+  lastAct:'Последняя операция {t}', noActYet:'Операций пока нет — добавьте первую',
+  quick:'Быстрые действия', addOut:'Добавить расход', addOutSub:'Запишите трату', addIn:'Добавить доход', addInSub:'Зарплата, доход',
+  addDebt:'Записать долг', addDebtSub:'Дал или взял', openDebtsN:'Открытых долгов: {n}', budget:'Бюджет', budgetLim:'Лимит в месяц: {v}', budgetSet:'Задайте месячный лимит',
+  accounts:'Счета', transfer:'Перевод', addAcc:'Добавить счёт',
+  spentMonth:'Потрачено в этом месяце', incomeShort:'доход', setLimit:'Задать лимит →',
+  spentLine:'{p}% · осталось {l} · в день ~{d}', overBy:'Лимит превышен на {v}',
+  backupNag:'Пора сделать резервную копию — данные хранятся только на этом телефоне',
+  rateNag:'Укажите курс доллара, чтобы пересчитывать USD-счета в сумы',
+  recent:'Последние операции', seeAll:'Все', emptyTx:'Здесь появятся операции',
+  allTx:'Все операции', back:'Назад', searchPh:'Заметка, категория или сумма', fAll:'Все', out:'Расход', in:'Доход',
+  notFound:'Ничего не найдено', noActs:'Операций пока нет',
+  stats:'Статистика', prevM:'Предыдущий месяц', nextM:'Следующий месяц', net:'Чистый итог', avgDaily:'Средний расход в день: {v}',
+  vsPrev:'Расходы к прошлому месяцу: {v}', saveRate:'Доля сбережений: {v}',
+  structure:'Структура расходов', total:'Всего', noExpM:'В этом месяце расходов нет', edit:'Изменить', setLimitsHint:'Задайте месячный лимит и лимиты категорий',
+  overallLimit:'Общий лимит', last6:'Последние 6 месяцев', statsFoot:'Долги и переводы не входят в статистику. Суммы в USD пересчитаны в сумы по текущему курсу.',
+  debts:'Долги', newDebt:'Новый долг', owedToMe:'Мне вернут', iOwe:'Я верну', openN:'Открытые ({n})', closedN:'Закрытые ({n})',
+  noOpen:'Открытых долгов нет', noClosed:'Закрытых долгов нет', gave:'Дал', took:'Взял', overdue:'просрочен', dueOn:'срок {d}',
+  left:'осталось', closedOk:'закрыт ✓',
+  settings:'Настройки', yourName:'Ваше имя', namePh:'Имя', appearance:'Оформление', language:'Язык', theme:'Тема',
+  light:'Светлая', dark:'Тёмная', auto:'Авто', autoHint:'В режиме «Авто» тёмная тема включается с 19:00 до 07:00.',
+  currency:'Валюта', usdRate:'Курс 1 USD', notSet:'не указан', rateHint:'Курс вводится вручную. Общий баланс и статистика пересчитываются в сумы по этому курсу.',
+  limitsRow:'Месячный лимит и лимиты категорий', none:'нет', categories:'Категории', myCats:'Мои категории', catsSub:'добавлено: {n}',
+  security:'Безопасность', pinLock:'Блокировка PIN-кодом', changePin:'Сменить PIN-код', pinHint:'PIN запрашивается при запуске и после 1 минуты в фоне.',
+  widgetRow:'⚡ Быстрое добавление виджетом', data:'Данные', backupRow:'Создать резервную копию', notTaken:'ещё не создана', restoreRow:'Восстановить из копии',
+  exportRow:'Экспорт в Excel / CSV', wipeRow:'Удалить все данные',
+  dataNote:'Данные хранятся только на этом телефоне и никуда не отправляются. Раз в 1–2 недели делайте резервную копию и сохраняйте её в Google Drive или Telegram.',
+  foot:'Hamyon v2.0 · операций: {a} · долгов: {d}',
+  close:'Закрыть', save:'Сохранить', add:'Добавить', del:'Удалить', cancel:'Отмена', undo:'Вернуть', confirm:'Подтвердить',
+  editTx:'Изменить', amount:'Сумма', quickHint:'Выберите категорию — сохранится сразу', date:'Дата', time:'Время', note:'Заметка', notePh:'Например: Korzinka',
+  account:'Счёт', from:'Откуда', to:'Куда', receives:'Зачислится ({c})', addCat:'Новая',
+  needAmount:'Введите сумму', needCat:'Выберите категорию', needOtherAcc:'Выберите другой счёт', needTwoAcc:'Для перевода нужно минимум 2 счёта',
+  delTxQ:'Удалить эту операцию?', deleted:'Удалено', txSaved:'{k} сохранён: {v}', txAdded:'{k} добавлен: {v}', trSaved:'Перевод сохранён',
+  catLimitOver:'⚠️ Превышен лимит «{c}»', monthLimitOver:'⚠️ Превышен месячный лимит',
+  budgetT:'Бюджет', monthlyLimit:'Общий лимит в месяц', limitPh:'Например: 5 000 000', byCats:'По категориям (необязательно)',
+  budgetNote:'При 80% полоса становится жёлтой, при превышении — красной, и появляется предупреждение. Лимиты в сумах.', budgetSaved:'Бюджет сохранён',
+  gaveDebt:'Дал в долг', tookDebt:'Взял в долг', whoTo:'Кому?', whoFrom:'У кого?', dueDate:'Срок возврата', optional:'Необязательно',
+  affOut:'Списать с баланса (деньги ушли)', affIn:'Добавить к балансу (деньги пришли)', needName:'Введите имя', debtSaved:'Долг записан',
+  debtGivenNote:'Дал в долг: {p}', debtTakenNote:'Взял в долг: {p}', debtBackNote:'Долг вернули: {p}', debtPaidNote:'Долг оплачен: {p}',
+  debtClosed:'Долг закрыт ✓', theyOwe:'Вам должны вернуть', youOwe:'Вы должны вернуть', given:'Дано', taken:'Взято',
+  partial:'Частичная оплата', fullBack:'Возвращён полностью', payHist:'История платежей', delDebt:'Удалить долг',
+  delDebtQ:'Удалить долг и связанные с ним операции?', debtDeleted:'Долг удалён', debtClosedT:'Долг закрыт ✓', payAdded:'Платёж добавлен · осталось {v}',
+  accT:'Счёт', newAcc:'Новый счёт', accName:'Название', accNamePh:'Например: Uzcard', type:'Тип', cash:'Наличные', card:'Карта', savings:'Накопления',
+  initial:'Начальный остаток', initialHint:'Остаток на момент начала учёта.', color:'Цвет', curLocked:'Нельзя сменить валюту счёта, по которому есть операции.',
+  delAcc:'Удалить счёт', cantDelAcc:'Нельзя удалить счёт с операциями', minOneAcc:'Должен остаться хотя бы один счёт', accDeleted:'Счёт удалён', saved:'Сохранено',
+  rateT:'Курс доллара', rateSheetHint:'Укажите, сколько сумов стоит 1 USD (курс банка или ЦБ). Приложение не загружает курс из интернета.', badRate:'Введите корректный курс', rateSaved:'Курс сохранён',
+  catsT:'Категории', newCatT:'Новая категория', catName:'Название', catNamePh:'Например: Спорт', emoji:'Значок', forType:'Тип', catAdded:'Категория добавлена', catExists:'Такая категория уже есть',
+  noCustom:'Своих категорий пока нет', catUsed:'операций: {n}', catDeleted:'Категория удалена',
+  exportT:'Экспорт', exExcel:'Для Excel', exExcelSub:'С точкой с запятой (;) — столбцы правильно разделятся в русском/узбекском Excel',
+  exCsv:'CSV (запятая)', exCsvSub:'Для Power BI, Google Таблиц и англоязычного Excel',
+  cols:['Дата','Время','Тип','Счёт','Категория','Сумма','Валюта','Сумма (сум)','Заметка'],
+  copy:'Копировать', copied:'Скопировано', selectCopy:'Текст выделен — скопируйте', fileText:'Содержимое файла',
+  fileSaved:'Файл сохранён ✓', backupReady:'Резервная копия готова', notBackup:'Это не резервная копия Hamyon',
+  restoreQ:'В копии {a} операций и {d} долгов. Заменить текущие данные?', restored:'Данные восстановлены ✓',
+  wipeQ:'Все операции, счета, долги и настройки будут удалены. Это действие нельзя отменить.', wiped:'Данные удалены',
+  saveFail:'Не удалось сохранить — хранилище заблокировано',
+  welcomeT:'Добро пожаловать в Hamyon 👋', welcomeTxt:'Доходы, расходы, счета, бюджет и долги в одном месте. Данные хранятся только на этом телефоне.',
+  welcomeName:'Ваше имя', welcomeNamePh:'Например: Алишер', welcomeStart:'Сколько у вас сейчас денег? (необязательно)', start:'Начать',
+  widgetT:'Добавление через виджет', widgetHow:'Как поставить виджет',
+  w1:'Нажмите и удерживайте пустое место на главном экране.', w2:'Выберите <b>Виджеты</b> и найдите в списке <b>Hamyon</b>.', w3:'Перетащите виджет на главный экран.',
+  wInfo:'На виджете видны общий баланс и расходы за месяц. Кнопки <b>Chiqim</b> (расход) и <b>Kirim</b> (доход) открывают окно ввода суммы.',
+  wFaster:'Ещё быстрее', wFasterTxt:'Нажмите и удерживайте иконку Hamyon — появится меню добавления расхода и дохода. Эти пункты тоже можно перетащить на главный экран.',
+  wBrowser:'Виджет и меню иконки работают в Android-приложении.',
+  wSpent:'Месяц: {s} / {l}', wSpentNo:'Потрачено за месяц: {s}',
+  pinEnter:'Введите PIN-код', pinWrong:'Неверный PIN. Попробуйте ещё раз.', pinNew:'Новый PIN-код', pinThink:'Придумайте 4-значный код',
+  pinConfirm:'Подтвердите PIN-код', pinRepeat:'Введите этот код ещё раз', pinMismatch:'Коды не совпали. Введите заново.', pinOn:'PIN включён',
+  pinOffT:'Отключить PIN', pinCurrent:'Введите текущий PIN-код', pinOff:'PIN отключён', pinForgot:'Забыли PIN?',
+  pinForgotQ:'Сбросить PIN можно только удалив все данные. Если у вас есть файл резервной копии, потом можно восстановиться из него.', pinResetBtn:'Удалить всё', erase:'Удалить',
+  iosGroup:'iPhone', installRow:'📲 Установить на экран «Домой»', installedNow:'установлено', shortcutRow:'⚡ Быстрое добавление через «Команды»',
+  installNag:'Добавьте Hamyon на экран «Домой» — откроется как приложение и будет работать без интернета', howTo:'Как?',
+  installT:'Установка на экран «Домой»', i1:'Откройте эту страницу на iPhone в <b>Safari</b>.', i2:'Нажмите кнопку <b>Поделиться</b> внизу (□↑). В iOS 26 сначала нажмите <b>•••</b>.',
+  i3:'Выберите <b>На экран «Домой»</b>.', i4:'Оставьте включённым <b>Открыть как веб-приложение</b> и нажмите <b>Добавить</b>.', i5:'Теперь всегда открывайте Hamyon с иконки на экране «Домой».',
+  iNote:'Приложение на экране «Домой» и Safari хранят данные отдельно. Поэтому ведите учёт всегда через иконку.',
+  iMove:'Переходите с Android?', iMoveTxt:'В Hamyon на Android: Настройки → Создать резервную копию. Отправьте файл на iPhone (Telegram или AirDrop) и откройте его здесь через Настройки → Восстановить из копии.',
+  scT:'Добавление через «Команды»', scIntro:'С помощью приложения <b>Команды</b> (Shortcuts) на iPhone вы поставите на экран «Домой» кнопки «Расход» и «Доход».',
+  scWarn:'Внимание: в iOS веб-приложение на экране «Домой» использует отдельное от Safari хранилище. «Команды» открывают ссылку в Safari, поэтому операции, добавленные так, сохраняются в Hamyon в Safari. Если пользуетесь этим способом, открывайте Hamyon всегда в Safari.',
+  sc1h:'1. Простая кнопка', sc1a:'Команды → <b>+</b> → <b>Добавить действие</b> → <b>Открыть URL</b>.', sc1b:'Вставьте ссылку «Расход» ниже и назовите команду <b>Расход</b>. Так же создайте <b>Доход</b>.',
+  sc2h:'2. Сразу спросить сумму', sc2a:'Первое действие: <b>Запросить ввод</b>, тип <b>Число</b>.', sc2b:'Второе действие: <b>Открыть URL</b> со ссылкой ниже и переменной <b>Предоставленный ввод</b> в конце. Приложение откроется с суммой, останется выбрать категорию.',
+  sc3h:'3. Виджет на экране «Домой»', sc3a:'Нажмите и удерживайте экран → <b>Изменить</b> → <b>Добавить виджет</b> → <b>Команды</b> и выберите свои команды.',
+  lOut:'Расход', lIn:'Доход', lOutAmt:'Расход + сумма', lInAmt:'Доход + сумма', copyLink:'Скопировать ссылку', linkCopied:'Ссылка скопирована',
+  accMain:'Основной кошелёк',
+},
+en: {
+  months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+  mshort:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  sum:'UZS', units:['B','M','K'],
+  tabHome:'Home', tabStats:'Stats', tabDebts:'Debts', tabSettings:'Settings', sections:'Sections',
+  today:'Today', yesterday:'Yesterday', tomorrow:'Tomorrow',
+  justNow:'just now', minAgo:'{n} min ago', hourAgo:'{n} h ago', dayAgo:'{n} days ago',
+  gNight:'Good night', gMorning:'Good morning', gDay:'Good afternoon', gEvening:'Good evening', guest:'Guest',
+  profile:'Profile', reminders:'Reminders', totalBal:'Total balance', hideBal:'Hide balance',
+  lastAct:'Last entry {t}', noActYet:'No entries yet — add your first one',
+  quick:'Quick actions', addOut:'Add expense', addOutSub:'Log what you spent', addIn:'Add income', addInSub:'Salary, earnings',
+  addDebt:'Record a debt', addDebtSub:'Lent or borrowed', openDebtsN:'{n} open debts', budget:'Budget', budgetLim:'Monthly limit: {v}', budgetSet:'Set a monthly limit',
+  accounts:'Accounts', transfer:'Transfer', addAcc:'Add account',
+  spentMonth:'Spent this month', incomeShort:'income', setLimit:'Set a limit →',
+  spentLine:'{p}% · {l} left · ~{d}/day', overBy:'Over the limit by {v}',
+  backupNag:"Time for a backup — your data lives only on this phone",
+  rateNag:'Set the dollar rate so USD accounts convert to UZS',
+  recent:'Recent', seeAll:'See all', emptyTx:'Your entries will show up here',
+  allTx:'All entries', back:'Back', searchPh:'Note, category or amount', fAll:'All', out:'Expense', in:'Income',
+  notFound:'Nothing found', noActs:'No entries yet',
+  stats:'Stats', prevM:'Previous month', nextM:'Next month', net:'Net result', avgDaily:'Average daily spend: {v}',
+  vsPrev:'Spending vs last month: {v}', saveRate:'Savings rate: {v}',
+  structure:'Spending breakdown', total:'Total', noExpM:'No expenses this month', edit:'Edit', setLimitsHint:'Set monthly and category limits',
+  overallLimit:'Overall limit', last6:'Last 6 months', statsFoot:'Debts and transfers are excluded from stats. USD amounts are converted to UZS at the current rate.',
+  debts:'Debts', newDebt:'New debt', owedToMe:'Owed to me', iOwe:'I owe', openN:'Open ({n})', closedN:'Closed ({n})',
+  noOpen:'No open debts', noClosed:'No closed debts', gave:'Lent', took:'Borrowed', overdue:'overdue', dueOn:'due {d}',
+  left:'left', closedOk:'closed ✓',
+  settings:'Settings', yourName:'Your name', namePh:'Name', appearance:'Appearance', language:'Language', theme:'Theme',
+  light:'Light', dark:'Dark', auto:'Auto', autoHint:'Auto turns on the dark theme from 7 PM to 7 AM.',
+  currency:'Currency', usdRate:'1 USD rate', notSet:'not set', rateHint:'The rate is entered manually. Total balance and stats are converted to UZS at this rate.',
+  limitsRow:'Monthly and category limits', none:'none', categories:'Categories', myCats:'My categories', catsSub:'{n} added',
+  security:'Security', pinLock:'PIN lock', changePin:'Change PIN', pinHint:'The PIN is asked at launch and after the app has been in the background for over a minute.',
+  widgetRow:'⚡ Quick add with the widget', data:'Data', backupRow:'Back up data', notTaken:'never', restoreRow:'Restore from backup',
+  exportRow:'Export to Excel / CSV', wipeRow:'Erase all data',
+  dataNote:'Data stays on this phone only and is never sent anywhere. Every 1–2 weeks, make a backup and keep it in Google Drive or Telegram.',
+  foot:'Hamyon v2.0 · {a} entries · {d} debts',
+  close:'Close', save:'Save', add:'Add', del:'Delete', cancel:'Cancel', undo:'Undo', confirm:'Confirm',
+  editTx:'Edit', amount:'Amount', quickHint:'Pick a category — it saves right away', date:'Date', time:'Time', note:'Note', notePh:'e.g. Korzinka',
+  account:'Account', from:'From', to:'To', receives:'Receives ({c})', addCat:'New',
+  needAmount:'Enter an amount', needCat:'Pick a category', needOtherAcc:'Pick a different account', needTwoAcc:'You need at least 2 accounts to transfer',
+  delTxQ:'Delete this entry?', deleted:'Deleted', txSaved:'{k} saved: {v}', txAdded:'{k} added: {v}', trSaved:'Transfer saved',
+  catLimitOver:'⚠️ {c} limit exceeded', monthLimitOver:'⚠️ Monthly limit exceeded',
+  budgetT:'Budget', monthlyLimit:'Overall monthly limit', limitPh:'e.g. 5 000 000', byCats:'By category (optional)',
+  budgetNote:'The bar turns yellow at 80% and red past the limit, with a warning. Limits are in UZS.', budgetSaved:'Budget saved',
+  gaveDebt:'I lent', tookDebt:'I borrowed', whoTo:'To whom?', whoFrom:'From whom?', dueDate:'Due date', optional:'Optional',
+  affOut:'Subtract from balance (money left the wallet)', affIn:'Add to balance (money came in)', needName:'Enter a name', debtSaved:'Debt recorded',
+  debtGivenNote:'Lent to {p}', debtTakenNote:'Borrowed from {p}', debtBackNote:'Repaid by {p}', debtPaidNote:'Repaid to {p}',
+  debtClosed:'Debt closed ✓', theyOwe:'They owe you', youOwe:'You owe', given:'Lent', taken:'Borrowed',
+  partial:'Partial payment', fullBack:'Fully repaid', payHist:'Payment history', delDebt:'Delete debt',
+  delDebtQ:'Delete the debt and its linked entries?', debtDeleted:'Debt deleted', debtClosedT:'Debt closed ✓', payAdded:'Payment added · {v} left',
+  accT:'Account', newAcc:'New account', accName:'Name', accNamePh:'e.g. Uzcard', type:'Type', cash:'Cash', card:'Card', savings:'Savings',
+  initial:'Opening balance', initialHint:'The balance when you started tracking.', color:'Color', curLocked:"You can't change the currency of an account with entries.",
+  delAcc:'Delete account', cantDelAcc:"An account with entries can't be deleted", minOneAcc:'Keep at least one account', accDeleted:'Account deleted', saved:'Saved',
+  rateT:'Dollar rate', rateSheetHint:"Enter how many UZS 1 USD costs (your bank's or the Central Bank rate). The app doesn't fetch rates online.", badRate:'Enter a valid rate', rateSaved:'Rate saved',
+  catsT:'Categories', newCatT:'New category', catName:'Name', catNamePh:'e.g. Sports', emoji:'Icon', forType:'Type', catAdded:'Category added', catExists:'This category already exists',
+  noCustom:'No custom categories yet', catUsed:'{n} entries', catDeleted:'Category deleted',
+  exportT:'Export', exExcel:'For Excel', exExcelSub:'Semicolon-separated (;) — splits correctly in Uzbek/Russian Excel',
+  exCsv:'CSV (comma)', exCsvSub:'For Power BI, Google Sheets and English Excel',
+  cols:['Date','Time','Type','Account','Category','Amount','Currency','Amount (UZS)','Note'],
+  copy:'Copy', copied:'Copied', selectCopy:'Text selected — copy it', fileText:'File contents',
+  fileSaved:'File saved ✓', backupReady:'Backup ready', notBackup:"This isn't a Hamyon backup",
+  restoreQ:'The backup has {a} entries and {d} debts. Replace current data?', restored:'Data restored ✓',
+  wipeQ:'All entries, accounts, debts and settings will be erased. This cannot be undone.', wiped:'Data erased',
+  saveFail:"Couldn't save — storage is blocked",
+  welcomeT:'Welcome to Hamyon 👋', welcomeTxt:'Track income, expenses, accounts, budget and debts in one place. Data stays on this phone only.',
+  welcomeName:'Your name', welcomeNamePh:'e.g. Alisher', welcomeStart:'How much money do you have now? (optional)', start:'Start',
+  widgetT:'Add with the widget', widgetHow:'Put the widget on your home screen',
+  w1:'Press and hold an empty spot on the home screen.', w2:'Choose <b>Widgets</b> and find <b>Hamyon</b> in the list.', w3:'Hold the widget and drag it to the home screen.',
+  wInfo:'The widget shows your total balance and this month\'s spending. The <b>Chiqim</b> (expense) and <b>Kirim</b> (income) buttons open the app ready to enter an amount.',
+  wFaster:'Even faster', wFasterTxt:'Press and hold the Hamyon icon to get "add expense" and "add income" shortcuts. You can drag those to the home screen too.',
+  wBrowser:'The widget and icon shortcuts work in the Android app.',
+  wSpent:'Month: {s} / {l}', wSpentNo:'Spent this month: {s}',
+  pinEnter:'Enter your PIN', pinWrong:'Wrong PIN. Try again.', pinNew:'New PIN', pinThink:'Choose a 4-digit code',
+  pinConfirm:'Confirm your PIN', pinRepeat:'Enter the same code again', pinMismatch:"Codes didn't match. Try again.", pinOn:'PIN turned on',
+  pinOffT:'Turn off PIN', pinCurrent:'Enter your current PIN', pinOff:'PIN turned off', pinForgot:'Forgot your PIN?',
+  pinForgotQ:'The only way to reset the PIN is to erase all data. If you have a backup file, you can restore from it afterwards.', pinResetBtn:'Erase everything', erase:'Erase',
+  iosGroup:'iPhone', installRow:'📲 Add to Home Screen', installedNow:'installed', shortcutRow:'⚡ Quick add with Shortcuts',
+  installNag:'Add Hamyon to your Home Screen — it opens like an app and works offline', howTo:'How?',
+  installT:'Add to Home Screen', i1:'Open this page on your iPhone in <b>Safari</b>.', i2:'Tap the <b>Share</b> button at the bottom (□↑). On iOS 26, tap <b>•••</b> first.',
+  i3:'Choose <b>Add to Home Screen</b>.', i4:'Keep <b>Open as Web App</b> turned on and tap <b>Add</b>.', i5:'From now on, always open Hamyon from its Home Screen icon.',
+  iNote:'The Home Screen app and Safari keep separate data, so always track your money from the icon.',
+  iMove:'Moving from Android?', iMoveTxt:'In Hamyon on Android: Settings → Back up data. Send the file to your iPhone (Telegram or AirDrop) and open it here with Settings → Restore from backup.',
+  scT:'Add with Shortcuts', scIntro:'With the iPhone <b>Shortcuts</b> app you can put "Expense" and "Income" buttons on your Home Screen.',
+  scWarn:'Note: on iOS a Home Screen web app uses storage separate from Safari. Shortcuts open links in Safari, so entries added this way are saved in Hamyon in Safari. If you use this method, always open Hamyon in Safari.',
+  sc1h:'1. A simple button', sc1a:'Shortcuts → <b>+</b> → <b>Add Action</b> → <b>Open URLs</b>.', sc1b:'Paste the "Expense" link below and name it <b>Expense</b>. Create <b>Income</b> the same way.',
+  sc2h:'2. Ask for the amount right away', sc2a:'First action: <b>Ask for Input</b>, type <b>Number</b>.', sc2b:'Second action: <b>Open URLs</b> with the link below and <b>Provided Input</b> at the end. The app opens with the amount; just pick a category.',
+  sc3h:'3. Home Screen widget', sc3a:'Touch and hold the Home Screen → <b>Edit</b> → <b>Add Widget</b> → <b>Shortcuts</b>, then choose your shortcuts.',
+  lOut:'Expense', lIn:'Income', lOutAmt:'Expense + amount', lInAmt:'Income + amount', copyLink:'Copy link', linkCopied:'Link copied',
+  accMain:'Main wallet',
+},
+};
+const LANGS = [['uz', "O'zbek"], ['ru', 'Русский'], ['en', 'English']];
+
+const CAT_NAMES = {
+  food:["Oziq-ovqat",'Продукты','Groceries'], cafe:['Kafe','Кафе','Cafe'], transport:['Transport','Транспорт','Transport'],
+  home:['Uy-joy','Жильё','Housing'], utility:['Kommunal','Коммуналка','Utilities'], phone:['Aloqa','Связь','Phone'],
+  clothes:['Kiyim','Одежда','Clothing'], health:["Sog'liq",'Здоровье','Health'], edu:["Ta'lim",'Образование','Education'],
+  fun:["Ko'ngilochar",'Развлечения','Fun'], gift:["Sovg'a",'Подарки','Gifts'], other:['Boshqa','Другое','Other'], debt:['Qarz','Долг','Debt'],
+  salary:['Maosh','Зарплата','Salary'], business:['Biznes','Бизнес','Business'], freelance:['Frilans','Фриланс','Freelance'],
+  gift_in:["Sovg'a",'Подарок','Gift'], other_in:['Boshqa','Другое','Other'], debt_in:['Qarz','Долг','Debt'],
+};
+const BASE_CATS = {
+  out: [
+    {id:'food', e:'🛒', c:'#22C55E'}, {id:'cafe', e:'☕', c:'#F59E0B'}, {id:'transport', e:'🚕', c:'#3B82F6'},
+    {id:'home', e:'🏠', c:'#8B5CF6'}, {id:'utility', e:'💡', c:'#EAB308'}, {id:'phone', e:'📱', c:'#06B6D4'},
+    {id:'clothes', e:'👕', c:'#EC4899'}, {id:'health', e:'💊', c:'#EF4444'}, {id:'edu', e:'📚', c:'#0EA5E9'},
+    {id:'fun', e:'🎬', c:'#A855F7'}, {id:'gift', e:'🎁', c:'#F97316'}, {id:'other', e:'📦', c:'#94A3B8'},
+    {id:'debt', e:'🤝', c:'#64748B', hidden:true},
+  ],
+  in: [
+    {id:'salary', e:'💼', c:'#22C55E'}, {id:'business', e:'📈', c:'#10B981'}, {id:'freelance', e:'💻', c:'#3B82F6'},
+    {id:'gift_in', e:'🎁', c:'#F97316'}, {id:'other_in', e:'✨', c:'#94A3B8'}, {id:'debt_in', e:'🤝', c:'#64748B', hidden:true},
+  ],
+};
+const DEBT_CATS = new Set(['debt', 'debt_in']);
+const PALETTE = ['#22C55E','#3B82F6','#F59E0B','#8B5CF6','#EC4899','#06B6D4','#EF4444','#10B981','#F97316','#0EA5E9','#A855F7','#64748B'];
+const EMOJIS = ['🛍️','🚗','⛽','🏋️','🐶','✈️','🎮','💄','🍼','🏦','💳','🧾','🔧','📺','🎓','🍔','🚌','💇','🏥','🎵','📦','💰','🌱','⚽'];
+const ACC_E = {cash:'💵', card:'💳', savings:'🏦'};
+
+/* =================== Yordamchilar =================== */
+const KEY = 'hamyon_v1';
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad = n => String(n).padStart(2, '0');
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+const ICONS = {
+  home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  chart: '<path d="M4 21V11h4v10M10 21V4h4v17M16 21v-7h4v7M2 21h20"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.5 3.6 5.2"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+  bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/>',
+  eye: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  eyeOff: '<path d="M17.9 17.9A10.1 10.1 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.1-5.9M9.9 4.2A9.1 9.1 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.2 3.2M14.1 14.1a3 3 0 1 1-4.2-4.2M1 1l22 22"/>',
+  up: '<path d="M7 17 17 7M8 7h9v9"/>',
+  down: '<path d="M17 7 7 17M16 17H7V8"/>',
+  swap: '<path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  x: '<path d="M18 6 6 18M6 6l12 12"/>',
+  back: '<path d="M15 18 9 12l6-6"/>',
+  chevR: '<path d="m9 18 6-6-6-6"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon: '<path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/>',
+  lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+};
+const ic = (n, s = 22) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
+const LOGO = `<svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="11" width="30" height="20" rx="5" fill="#3F7A4A"/><rect x="7" y="14" width="34" height="21" rx="5" fill="#2E4E33"/><rect x="5" y="17" width="38" height="24" rx="5" fill="#141414"/><rect x="10" y="22" width="12" height="2" rx="1" fill="#8A8A8A"/><rect x="10" y="27" width="19" height="3" rx="1.5" fill="#fff"/><rect x="10" y="34" width="9" height="2" rx="1" fill="#6E6E6E"/><circle cx="33" cy="35" r="3.4" fill="#EF4B3F"/><circle cx="36.5" cy="35" r="3.4" fill="#F29C1F"/></svg>`;
+
+/* =================== Holat =================== */
+const fresh = () => ({
+  v:2, name:'', limit:0, catLimits:{}, tx:[], debts:[], cats:[],
+  accounts:[{id:'main', k:'main', type:'cash', cur:'UZS', initial:0, color:'#22C55E'}],
+  rate:0, lang:'uz', theme:'light', pin:'', lastBackup:0, hide:false, onboarded:false, installSeen:false,
+});
+/* v1 (asl Hamyon) ma'lumotlarini v2 ga ko'chirish: start → asosiy hisob qoldig'i, har bir amalga hisob */
+function migrate(r) {
+  const s = {...fresh(), ...r};
+  if (!Array.isArray(r.accounts) || !r.accounts.length) s.accounts = [{...fresh().accounts[0], initial: Number(r.start) || 0}];
+  delete s.start;
+  const first = s.accounts[0].id;
+  s.tx = (s.tx || []).map(t => ({...t, acc: t.acc && s.accounts.some(a => a.id === t.acc) ? t.acc : first}));
+  s.debts = (s.debts || []).map(d => ({...d, acc: d.acc && s.accounts.some(a => a.id === d.acc) ? d.acc : first, payments: d.payments || []}));
+  s.cats = Array.isArray(s.cats) ? s.cats : [];
+  s.catLimits = s.catLimits || {};
+  if (!L[s.lang]) s.lang = 'uz';
+  s.v = 2;
+  return s;
+}
+function load() {
+  try {
+    const r = JSON.parse(localStorage.getItem(KEY));
+    if (r && Array.isArray(r.tx)) return migrate(r);
+  } catch (e) {}
+  return fresh();
+}
+let S = load();
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(S)); }
+  catch (e) { toast(T('saveFail')); }
+  pushWidget();
+}
+
+/* =================== Til va formatlash =================== */
+const LI = () => ({uz:0, ru:1, en:2})[S.lang] ?? 0;
+function T(k, p) {
+  let s = L[S.lang]?.[k] ?? L.uz[k] ?? k;
+  if (p && typeof s === 'string') for (const x in p) s = s.split('{' + x + '}').join(p[x]);
+  return s;
+}
+const MONTHS = () => T('months'), MSHORT = () => T('mshort');
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const today = () => iso(new Date());
+const dayOffset = n => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+const nowTime = () => { const d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()); };
+const parseISO = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const mkey = s => s.slice(0, 7);
+const shiftMonth = (k, n) => { const [y, m] = k.split('-').map(Number); const d = new Date(y, m - 1 + n, 1); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}`; };
+const mlabel = k => { const [y, m] = k.split('-').map(Number); return `${MONTHS()[m - 1]} ${y}`; };
+const daysIn = k => { const [y, m] = k.split('-').map(Number); return new Date(y, m, 0).getDate(); };
+function dateText(s) {
+  const d = parseISO(s), y = d.getFullYear() !== new Date().getFullYear() ? d.getFullYear() : '';
+  if (S.lang === 'ru') return `${d.getDate()} ${L.ru.monthsGen[d.getMonth()]}${y ? ' ' + y : ''}`;
+  if (S.lang === 'en') return `${L.en.mshort[d.getMonth()]} ${d.getDate()}${y ? ', ' + y : ''}`;
+  return `${d.getDate()}-${L.uz.months[d.getMonth()].toLowerCase()}${y ? ' ' + y : ''}`;
+}
+function dayLabel(s) {
+  if (s === today()) return T('today');
+  if (s === dayOffset(-1)) return T('yesterday');
+  if (s === dayOffset(1)) return T('tomorrow');
+  return dateText(s);
+}
+function ago(ts) {
+  if (!ts) return '';
+  const m = Math.floor((Date.now() - ts) / 60000);
+  if (m < 1) return T('justNow');
+  if (m < 60) return T('minAgo', {n: m});
+  const h = Math.floor(m / 60);
+  if (h < 24) return T('hourAgo', {n: h});
+  return T('dayAgo', {n: Math.floor(h / 24)});
+}
+const grp = s => s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+const fmt = n => grp(String(Math.round(Math.abs(n))));
+const fmtUsd = n => '$' + grp(Math.floor(Math.abs(n) + 1e-9).toString()) + '.' + pad(Math.round((Math.abs(n) % 1) * 100) % 100);
+const money = (n, sign) => (n < 0 ? '−' : sign ? '+' : '') + fmt(n) + ' ' + T('sum');
+const amtCur = (n, cur, sign) => cur === 'USD' ? (n < 0 ? '−' : sign ? '+' : '') + fmtUsd(n) : money(n, sign);
+const amtBare = (n, cur) => cur === 'USD' ? fmtUsd(n) : fmt(n);
+const digits = s => Number(String(s).replace(/\D/g, '')) || 0;
+const parseDec = s => { const v = parseFloat(String(s).replace(/\s/g, '').replace(',', '.')); return isFinite(v) ? Math.round(v * 100) / 100 : 0; };
+const parseAmt = (s, cur) => cur === 'USD' ? parseDec(s) : digits(s);
+function short(n) {
+  const [b, m, k] = T('units'), en = S.lang === 'en';
+  const a = Math.abs(n), t = (v, u) => { const r = (Math.round(v * 10) / 10).toString(); return (en ? r : r.replace('.', ',')) + (en ? '' : ' ') + u; };
+  if (a >= 1e9) return t(n / 1e9, b);
+  if (a >= 1e6) return t(n / 1e6, m);
+  if (a >= 1e4) return t(n / 1e3, k);
+  return fmt(n);
+}
+const initials = name => (name || '').trim().split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('') || '?';
+
+/* =================== Ma'lumot modeli =================== */
+const allCats = () => [
+  ...BASE_CATS.out.map(c => ({...c, type:'out'})), ...BASE_CATS.in.map(c => ({...c, type:'in'})),
+  ...S.cats.map(c => ({...c, custom:true})),
+];
+const catList = type => allCats().filter(c => c.type === type && !c.hidden);
+const cat = id => allCats().find(c => c.id === id) || {...BASE_CATS.out.find(c => c.id === 'other'), type:'out'};
+const catName = c => c.custom ? c.name : (CAT_NAMES[c.id] || CAT_NAMES.other)[LI()];
+const acc = id => S.accounts.find(a => a.id === id) || S.accounts[0];
+const accName = a => a ? (a.k === 'main' && !a.name ? T('accMain') : a.name) : '';
+const curOf = id => acc(id)?.cur || 'UZS';
+const toUZS = (v, cur) => cur === 'USD' ? v * (S.rate || 0) : v;
+const uzs = t => toUZS(t.amount, curOf(t.acc));
+const hasUsd = () => S.accounts.some(a => a.cur === 'USD');
+function accBal(a) {
+  let b = Number(a.initial) || 0;
+  for (const t of S.tx) {
+    if (t.acc === a.id) b += t.type === 'in' ? t.amount : -t.amount;
+    if (t.type === 'transfer' && t.to === a.id) b += t.toAmount ?? t.amount;
+  }
+  return Math.round(b * 100) / 100;
+}
+const balance = () => S.accounts.reduce((s, a) => s + toUZS(accBal(a), a.cur), 0);
+const monthTx = k => S.tx.filter(t => mkey(t.date) === k && t.type !== 'transfer' && !DEBT_CATS.has(t.cat));
+const sum = (arr, type) => arr.reduce((a, t) => a + (t.type === type ? uzs(t) : 0), 0);
+const sortTx = arr => [...arr].sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time) || (b.created || 0) - (a.created || 0));
+const debtLeft = d => Math.round((d.amount - d.payments.reduce((a, p) => a + p.amount, 0)) * 100) / 100;
+const dueDebts = () => S.debts.filter(d => debtLeft(d) > 0 && d.due && d.due <= dayOffset(3));
+
+function budgetWarn(catId, date) {
+  const k = mkey(date), mt = monthTx(k).filter(t => t.type === 'out');
+  const l = S.catLimits[catId];
+  if (l && sum(mt.filter(t => t.cat === catId), 'out') > l) return T('catLimitOver', {c: catName(cat(catId))});
+  if (S.limit && sum(mt, 'out') > S.limit) return T('monthLimitOver');
+  return '';
+}
+
+/* =================== Mavzu =================== */
+function isDark() {
+  if (S.theme === 'dark') return true;
+  if (S.theme === 'auto') { const h = new Date().getHours(); return h >= 19 || h < 7; }
+  return false;
+}
+function applyTheme() {
+  const d = isDark();
+  document.documentElement.setAttribute('data-theme', d ? 'dark' : 'light');
+  document.documentElement.lang = S.lang;
+  const m = $('meta[name=theme-color]'); if (m) m.content = d ? '#0D0D0E' : '#EBEBEB';
+}
+
+/* =================== Android ko'prigi =================== */
+const ANDROID = !!window.HamyonAndroid;
+const IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const STANDALONE = navigator.standalone === true || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+function pushWidget() {
+  if (!ANDROID) return;
+  try {
+    const spent = sum(monthTx(mkey(today())), 'out');
+    HamyonAndroid.updateWidget(JSON.stringify({
+      balance: S.hide ? '••••••• ' + T('sum') : money(balance()),
+      spent: S.limit ? T('wSpent', {s: fmt(spent), l: fmt(S.limit)}) : T('wSpentNo', {s: money(spent)}),
+      pct: S.limit ? Math.round(spent / S.limit * 100) : -1,
+    }));
+  } catch (e) {}
+}
+
+/* =================== Ko'rinishlar =================== */
+let view = 'home', statsMonth = mkey(today()), allFilter = 'all', allQuery = '', debtTab = 'open';
+const empty = (e, t) => `<div class="empty"><span>${e}</span><p>${t}</p></div>`;
+const multiAcc = () => S.accounts.length > 1;
+
+function txRow(t) {
+  const a = acc(t.acc), cur = a.cur;
+  if (t.type === 'transfer') {
+    const b = acc(t.to);
+    return `<button class="tx" data-act="editTx" data-id="${t.id}">
+      <span class="tx-ic">⇄</span>
+      <span class="tx-main"><span class="tx-t">${esc(t.note || T('transfer'))}</span><span class="tx-s">${dayLabel(t.date)}, ${t.time} · ${esc(accName(a))} → ${esc(accName(b))}</span></span>
+      <span class="tx-r"><span class="tx-a">${amtBare(t.amount, cur)}</span><span class="tx-s">${T('transfer')}</span></span></button>`;
+  }
+  const c = cat(t.cat), inc = t.type === 'in';
+  return `<button class="tx" data-act="editTx" data-id="${t.id}">
+    <span class="tx-ic" style="background:${c.c}22">${c.e}</span>
+    <span class="tx-main"><span class="tx-t">${esc(t.note || catName(c))}</span><span class="tx-s">${dayLabel(t.date)}, ${t.time}${multiAcc() ? ' · ' + esc(accName(a)) : ''}</span></span>
+    <span class="tx-r"><span class="tx-a ${inc ? 'pos' : 'neg'}">${inc ? '+' : '−'}${amtBare(t.amount, cur)}</span><span class="tx-s">${esc(catName(c))}</span></span>
+  </button>`;
+}
+
+function vHome() {
+  const b = balance(), k = mkey(today()), mt = monthTx(k), spent = sum(mt, 'out'), inc = sum(mt, 'in');
+  const last = S.tx.reduce((a, t) => Math.max(a, t.created || 0), 0);
+  const h = new Date().getHours();
+  const greet = h < 5 ? T('gNight') : h < 12 ? T('gMorning') : h < 18 ? T('gDay') : T('gEvening');
+  const openDebts = S.debts.filter(d => debtLeft(d) > 0).length;
+  const recent = sortTx(S.tx).slice(0, 6);
+  const qa = (act, type, icon, title, sub) =>
+    `<button class="qa" data-act="${act}" ${type ? `data-type="${type}"` : ''}><span class="qa-ic">${ic(icon)}</span><b>${title}</b><small>${sub}</small></button>`;
+  const usdLine = hasUsd() && S.rate && !S.hide ? ` · ≈ ${fmtUsd(b / S.rate)}` : '';
+  return `
+  <header class="hdr">
+    <button class="avatar" data-act="go" data-v="settings" aria-label="${T('profile')}">${esc(initials(S.name))}</button>
+    <div class="hello"><small>${greet},</small><b>${esc(S.name || T('guest'))}</b></div>
+    <button class="round" data-act="toggleTheme" aria-label="${T('theme')}">${ic(isDark() ? 'sun' : 'moon', 20)}</button>
+    <button class="round" data-act="go" data-v="debts" aria-label="${T('reminders')}">${ic('bell')}${dueDebts().length ? '<i class="dot"></i>' : ''}</button>
+  </header>
+  <div class="acct">${T('totalBal')} · ${T('sum')} <i class="gdot"></i></div>
+  <div class="bal-row">
+    <div class="bal ${b < 0 ? 'neg' : ''}">${S.hide ? '•••••••' : `${b < 0 ? '−' : ''}${fmt(b)}<span>${T('sum')}</span>`}</div>
+    <button class="round sm" data-act="toggleHide" aria-label="${T('hideBal')}">${ic(S.hide ? 'eyeOff' : 'eye', 17)}</button>
+  </div>
+  <div class="upd">${ic('info', 15)} ${last ? T('lastAct', {t: ago(last)}) : T('noActYet')}${usdLine}</div>
+
+  <div class="sec"><span>${T('accounts')}</span>${multiAcc() ? `<button class="link" data-act="newTx" data-type="transfer">${T('transfer')}</button>` : ''}</div>
+  <div class="accs">${S.accounts.map(a => `<button class="acc" data-act="editAcc" data-id="${a.id}">
+      <span class="acc-top"><span class="acc-ic" style="background:${a.color}26">${ACC_E[a.type] || '💵'}</span><span>${esc(accName(a))}</span></span>
+      <b>${S.hide ? '•••••' : amtCur(accBal(a), a.cur)}</b></button>`).join('')}
+    <button class="acc add" data-act="newAcc">${ic('plus', 18)}<span>${T('addAcc')}</span></button></div>
+
+  <div class="sec"><span>${T('quick')}</span></div>
+  <div class="qgrid">
+    ${qa('newTx', 'out', 'up', T('addOut'), T('addOutSub'))}
+    ${qa('newTx', 'in', 'down', T('addIn'), T('addInSub'))}
+    ${qa('newDebt', '', 'users', T('addDebt'), openDebts ? T('openDebtsN', {n: openDebts}) : T('addDebtSub'))}
+    ${qa('budget', '', 'target', T('budget'), S.limit ? T('budgetLim', {v: short(S.limit)}) : T('budgetSet'))}
+  </div>
+  ${spentCard(spent, inc)}
+  ${hasUsd() && !S.rate ? `<button class="card nag" data-act="rate">💱<span>${T('rateNag')}</span>${ic('chevR', 16)}</button>` : ''}
+  ${installNag()}
+  ${backupNag()}
+
+  <div class="sec"><span>${T('recent')}</span>${S.tx.length ? `<button class="link" data-act="go" data-v="all">${T('seeAll')}</button>` : ''}</div>
+  <div class="list">${recent.length ? recent.map(txRow).join('') : empty('🧾', T('emptyTx'))}</div>`;
+}
+
+function spentCard(spent, inc) {
+  if (!S.limit) return `<button class="card spent" data-act="budget">
+    <div class="row"><span>${T('spentMonth')}</span><b>${fmt(spent)} <small>${T('sum')}</small></b></div>
+    <div class="mini" style="margin-top:10px"><span class="pos">+${fmt(inc)} ${T('incomeShort')}</span><span>${T('setLimit')}</span></div></button>`;
+  const p = spent / S.limit, pct = Math.round(p * 100);
+  const d = new Date(), left = daysIn(mkey(today())) - d.getDate() + 1;
+  return `<button class="card spent" data-act="budget">
+    <div class="row"><span>${T('spentMonth')}</span><b>${fmt(spent)}<small>/${fmt(S.limit)}</small></b></div>
+    <div class="bar ${p >= 1 ? 'over' : p >= .8 ? 'warn' : ''}"><i style="width:${Math.min(100, pct)}%"></i></div>
+    <div class="mini"><span>${p < 1 ? T('spentLine', {p: pct, l: fmt(S.limit - spent), d: short((S.limit - spent) / left)}) : `<b class="neg">${T('overBy', {v: money(spent - S.limit)})}</b>`}</span><span>100%</span></div>
+  </button>`;
+}
+
+function installNag() {
+  if (ANDROID || STANDALONE || S.installSeen) return '';
+  return `<div class="card nag" style="margin-top:10px"><span style="font-size:20px">📲</span><span>${T('installNag')}</span>
+    <button class="btn sm" data-act="installHelp">${T('howTo')}</button><button class="round sm" data-act="dismissInstall" aria-label="${T('close')}">${ic('x', 14)}</button></div>`;
+}
+
+function backupNag() {
+  if (S.tx.length < 15) return '';
+  const first = S.tx.reduce((a, t) => Math.min(a, t.created || Date.now()), Date.now());
+  if (Date.now() - (S.lastBackup || first) < 14 * 864e5) return '';
+  return `<button class="card nag" data-act="exportJson">💾<span>${T('backupNag')}</span>${ic('chevR', 16)}</button>`;
+}
+
+function vAll() {
+  return `
+  <header class="ph center">
+    <button class="round" data-act="go" data-v="home" aria-label="${T('back')}">${ic('back')}</button>
+    <h1>${T('allTx')}</h1><span style="width:44px"></span>
+  </header>
+  <label class="search">${ic('search', 18)}<input id="q" type="search" placeholder="${T('searchPh')}" value="${esc(allQuery)}" autocomplete="off"></label>
+  <div class="seg" style="margin:12px 0 4px">${[['all', T('fAll')], ['out', T('out')], ['in', T('in')], ...(multiAcc() ? [['transfer', T('transfer')]] : [])].map(([v, l]) =>
+    `<button class="${allFilter === v ? 'on' : ''}" data-act="allFilter" data-f="${v}">${l}</button>`).join('')}</div>
+  <div id="allList">${allList()}</div>`;
+}
+function allList() {
+  const q = allQuery.trim().toLowerCase(), qd = q.replace(/\s/g, '');
+  let arr = sortTx(S.tx).filter(t => allFilter === 'all' || t.type === allFilter);
+  if (q) arr = arr.filter(t => (t.note || '').toLowerCase().includes(q)
+    || (t.type !== 'transfer' && catName(cat(t.cat)).toLowerCase().includes(q))
+    || accName(acc(t.acc)).toLowerCase().includes(q)
+    || (qd && /^[\d.,]+$/.test(qd) && String(t.amount).includes(qd.replace(',', '.'))));
+  if (!arr.length) return empty('🔍', S.tx.length ? T('notFound') : T('noActs'));
+  const groups = [];
+  for (const t of arr.slice(0, 400)) {
+    let g = groups[groups.length - 1];
+    if (!g || g.d !== t.date) groups.push(g = {d: t.date, items: [], net: 0});
+    g.items.push(t); if (t.type !== 'transfer') g.net += t.type === 'in' ? uzs(t) : -uzs(t);
+  }
+  return groups.map(g => `<div class="dhead"><span>${dayLabel(g.d)}</span><span class="${g.net < 0 ? 'neg' : 'pos'}">${money(g.net, true)}</span></div>
+    <div class="list">${g.items.map(txRow).join('')}</div>`).join('');
+}
+
+function vStats() {
+  const k = statsMonth, mt = monthTx(k), out = sum(mt, 'out'), inc = sum(mt, 'in');
+  const byCat = {};
+  mt.filter(t => t.type === 'out').forEach(t => byCat[t.cat] = (byCat[t.cat] || 0) + uzs(t));
+  const rows = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+  const isCur = k === mkey(today());
+  const days = isCur ? new Date().getDate() : daysIn(k);
+  const prevOut = sum(monthTx(shiftMonth(k, -1)), 'out');
+  const delta = prevOut ? Math.round((out - prevOut) / prevOut * 100) : null;
+  const sr = inc ? Math.round((inc - out) / inc * 100) : null;
+  return `
+  <header class="ph"><h1>${T('stats')}</h1></header>
+  <div class="mswitch">
+    <button class="round sm" data-act="mshift" data-n="-1" aria-label="${T('prevM')}">${ic('back', 18)}</button>
+    <b>${mlabel(k)}</b>
+    <button class="round sm" data-act="mshift" data-n="1" aria-label="${T('nextM')}" ${isCur ? 'disabled' : ''}>${ic('chevR', 18)}</button>
+  </div>
+  <div class="kpis">
+    <div class="card kpi"><small>${T('in')}</small><b class="pos">+${fmt(inc)}</b></div>
+    <div class="card kpi"><small>${T('out')}</small><b class="neg">−${fmt(out)}</b></div>
+  </div>
+  <div class="card kpi wide"><small>${T('net')}</small><b class="${inc - out < 0 ? 'neg' : ''}">${money(inc - out, true)}</b>
+    <span class="muted">${T('avgDaily', {v: money(out / days)})}</span>
+    ${delta !== null ? `<span class="muted">${T('vsPrev', {v: `<b class="${delta > 0 ? 'neg' : 'pos'}" style="display:inline;font-size:12px">${delta > 0 ? '+' : ''}${delta}%</b>`})}</span>` : ''}
+    ${sr !== null ? `<span class="muted">${T('saveRate', {v: sr + '%'})}</span>` : ''}</div>
+
+  <div class="sec"><span>${T('structure')}</span></div>
+  <div class="card">${rows.length ? donut(rows, out) + rows.map(([id, v]) => {
+    const c = cat(id);
+    return `<div class="lg"><span class="sw" style="background:${c.c}"></span><span>${c.e} ${esc(catName(c))}</span><b>${fmt(v)}</b><small>${Math.round(v / out * 100)}%</small></div>`;
+  }).join('') : empty('📊', T('noExpM'))}</div>
+  ${budgetProgress(byCat, out)}
+
+  <div class="sec"><span>${T('last6')}</span></div>
+  <div class="card">${bars(k)}</div>
+  <p class="foot">${T('statsFoot')}</p>`;
+}
+
+function donut(rows, total) {
+  const R = 56, C = 2 * Math.PI * R;
+  let off = 0;
+  const segs = rows.map(([id, v]) => {
+    const len = v / total * C, gap = rows.length > 1 ? 2 : 0;
+    const s = `<circle r="${R}" cx="80" cy="80" fill="none" stroke="${cat(id).c}" stroke-width="20" stroke-dasharray="${Math.max(0, len - gap)} ${C}" stroke-dashoffset="${-off}"/>`;
+    off += len;
+    return s;
+  }).join('');
+  return `<div class="donut"><svg viewBox="0 0 160 160" width="160" height="160"><circle r="${R}" cx="80" cy="80" fill="none" stroke="var(--donut-bg)" stroke-width="20"/>${segs}</svg>
+    <div class="dc"><small>${T('total')}</small><b>${short(total)}</b></div></div>`;
+}
+
+function budgetProgress(byCat, out) {
+  const lims = Object.entries(S.catLimits).filter(([id, v]) => v > 0 && allCats().some(c => c.id === id));
+  if (!S.limit && !lims.length) return `<button class="card hint" data-act="budget">${ic('target', 20)}<span>${T('setLimitsHint')}</span>${ic('chevR', 18)}</button>`;
+  const item = (label, v, l) => {
+    const p = v / l;
+    return `<div class="bp"><div class="row"><span>${label}</span><span><b>${fmt(v)}</b> / ${fmt(l)}</span></div>
+      <div class="bar sm ${p >= 1 ? 'over' : p >= .8 ? 'warn' : ''}"><i style="width:${Math.min(100, p * 100)}%"></i></div></div>`;
+  };
+  return `<div class="sec"><span>${T('budget')}</span><button class="link" data-act="budget">${T('edit')}</button></div>
+  <div class="card">${S.limit ? item(T('overallLimit'), out, S.limit) : ''}${lims.map(([id, l]) => item(cat(id).e + ' ' + esc(catName(cat(id))), byCat[id] || 0, l)).join('')}</div>`;
+}
+
+function bars(k) {
+  const data = [5, 4, 3, 2, 1, 0].map(i => { const m = shiftMonth(k, -i), t = monthTx(m); return {m, i: sum(t, 'in'), o: sum(t, 'out')}; });
+  const max = Math.max(1, ...data.map(d => Math.max(d.i, d.o)));
+  return `<div class="bars">${data.map(d => `<button class="bcol ${d.m === k ? 'cur' : ''}" data-act="setMonth" data-m="${d.m}" aria-label="${mlabel(d.m)}">
+      <span class="bpair"><i class="bi" style="height:${d.i / max * 100}%"></i><i class="bo" style="height:${d.o / max * 100}%"></i></span>
+      <small>${MSHORT()[+d.m.slice(5) - 1]}</small></button>`).join('')}</div>
+    <div class="blg"><span><i class="bi"></i>${T('in')}</span><span><i class="bo"></i>${T('out')}</span></div>`;
+}
+
+function vDebts() {
+  const open = S.debts.filter(d => debtLeft(d) > 0), closed = S.debts.filter(d => debtLeft(d) <= 0);
+  const total = dir => open.filter(d => d.dir === dir).reduce((a, d) => a + toUZS(debtLeft(d), curOf(d.acc)), 0);
+  const list = (debtTab === 'open' ? open : closed).sort((a, b) => (a.due || '9999').localeCompare(b.due || '9999') || b.createdAt - a.createdAt);
+  return `
+  <header class="ph"><h1>${T('debts')}</h1><button class="round" data-act="newDebt" aria-label="${T('newDebt')}">${ic('plus')}</button></header>
+  <div class="kpis">
+    <div class="card kpi"><small>${T('owedToMe')}</small><b class="pos">${fmt(total('gave'))}</b></div>
+    <div class="card kpi"><small>${T('iOwe')}</small><b class="neg">${fmt(total('took'))}</b></div>
+  </div>
+  <div class="seg" style="margin:18px 0 12px">
+    <button class="${debtTab === 'open' ? 'on' : ''}" data-act="debtTab" data-t="open">${T('openN', {n: open.length})}</button>
+    <button class="${debtTab === 'closed' ? 'on' : ''}" data-act="debtTab" data-t="closed">${T('closedN', {n: closed.length})}</button>
+  </div>
+  <div class="list">${list.length ? list.map(debtRow).join('') : empty('🤝', debtTab === 'open' ? T('noOpen') : T('noClosed'))}</div>`;
+}
+function debtRow(d) {
+  const left = debtLeft(d), paid = d.amount - left, gave = d.dir === 'gave', cur = curOf(d.acc);
+  const late = d.due && left > 0 && d.due < today(), soon = d.due && left > 0 && d.due <= dayOffset(3);
+  return `<button class="tx" data-act="debt" data-id="${d.id}">
+    <span class="tx-ic av">${esc(initials(d.person))}</span>
+    <span class="tx-main"><span class="tx-t">${esc(d.person)}</span>
+      <span class="tx-s">${gave ? T('gave') : T('took')} · ${dayLabel(d.date)}${d.due && left > 0 ? ` · <em class="${late ? 'neg' : ''}" ${soon && !late ? 'style="color:var(--amber)"' : ''}>${late ? T('overdue') : T('dueOn', {d: dayLabel(d.due)})}</em>` : ''}</span>
+      ${paid > 0 && left > 0 ? `<span class="bar xs"><i style="width:${paid / d.amount * 100}%"></i></span>` : ''}
+    </span>
+    <span class="tx-r"><span class="tx-a ${left > 0 ? (gave ? 'pos' : 'neg') : 'muted'}">${amtBare(left > 0 ? left : d.amount, cur)}</span><span class="tx-s">${left > 0 ? (paid > 0 ? T('left') : (cur === 'USD' ? 'USD' : T('sum'))) : T('closedOk')}</span></span>
+  </button>`;
+}
+
+function vSettings() {
+  const seg = (act, cur, opts) => `<div class="seg">${opts.map(([v, l]) => `<button class="${cur === v ? 'on' : ''}" data-act="${act}" data-v="${v}">${l}</button>`).join('')}</div>`;
+  return `
+  <header class="ph"><h1>${T('settings')}</h1></header>
+  <div class="group-t">${T('profile')}</div>
+  <div class="group">
+    <label class="srow"><span>${T('yourName')}</span><input id="sName" value="${esc(S.name)}" placeholder="${T('namePh')}" maxlength="40" autocomplete="off"></label>
+  </div>
+
+  <div class="group-t">${T('appearance')}</div>
+  <div class="group">
+    <div class="srow stack"><span>${T('language')}</span>${seg('setLang', S.lang, LANGS)}</div>
+    <div class="srow stack"><span>${T('theme')}</span>${seg('setTheme', S.theme, [['light', T('light')], ['dark', T('dark')], ['auto', T('auto')]])}</div>
+  </div>
+  ${S.theme === 'auto' ? `<p class="note">${T('autoHint')}</p>` : ''}
+
+  <div class="group-t">${T('accounts')}</div>
+  <div class="group">
+    ${S.accounts.map(a => `<button class="srow" data-act="editAcc" data-id="${a.id}"><span class="lead"><span class="acc-ic" style="background:${a.color}26">${ACC_E[a.type] || '💵'}</span>${esc(accName(a))}</span><span class="muted">${amtCur(accBal(a), a.cur)} ${ic('chevR', 16)}</span></button>`).join('')}
+    <button class="srow" data-act="newAcc"><span class="lead">${ic('plus', 18)} ${T('addAcc')}</span></button>
+  </div>
+
+  <div class="group-t">${T('currency')}</div>
+  <div class="group"><button class="srow" data-act="rate"><span>${T('usdRate')}</span><span class="muted">${S.rate ? money(S.rate) : T('notSet')} ${ic('chevR', 16)}</span></button></div>
+  <p class="note">${T('rateHint')}</p>
+
+  <div class="group-t">${T('budget')}</div>
+  <div class="group">
+    <button class="srow" data-act="budget"><span>${T('limitsRow')}</span><span class="muted">${S.limit ? short(S.limit) : T('none')} ${ic('chevR', 16)}</span></button>
+    <button class="srow" data-act="cats"><span>${T('myCats')}</span><span class="muted">${T('catsSub', {n: S.cats.length})} ${ic('chevR', 16)}</span></button>
+  </div>
+
+  <div class="group-t">${T('security')}</div>
+  <div class="group">
+    <button class="srow" data-act="pinToggle"><span>${T('pinLock')}</span><span class="switch ${S.pin ? 'on' : ''}" role="switch" aria-checked="${!!S.pin}"></span></button>
+    ${S.pin ? `<button class="srow" data-act="pinChange"><span>${T('changePin')}</span><span class="muted">${ic('chevR', 16)}</span></button>` : ''}
+  </div>
+  <p class="note">${T('pinHint')}</p>
+
+  <div class="group-t">${ANDROID ? 'Android' : T('iosGroup')}</div>
+  <div class="group">
+    ${ANDROID ? '' : `<button class="srow" data-act="installHelp"><span>${T('installRow')}</span><span class="muted">${STANDALONE ? T('installedNow') + ' ✓' : ''} ${ic('chevR', 16)}</span></button>`}
+    <button class="srow" data-act="widgetHelp"><span>${ANDROID ? T('widgetRow') : T('shortcutRow')}</span><span class="muted">${ic('chevR', 16)}</span></button>
+  </div>
+
+  <div class="group-t">${T('data')}</div>
+  <div class="group">
+    <button class="srow" data-act="exportJson"><span>${T('backupRow')}</span><span class="muted">${S.lastBackup ? ago(S.lastBackup) : T('notTaken')}</span></button>
+    <button class="srow" data-act="importJson"><span>${T('restoreRow')}</span><span class="muted">${ic('chevR', 16)}</span></button>
+    <button class="srow" data-act="exportMenu"><span>${T('exportRow')}</span><span class="muted">${ic('chevR', 16)}</span></button>
+    <button class="srow danger" data-act="wipe"><span>${T('wipeRow')}</span></button>
+  </div>
+  <p class="note">${T('dataNote')}</p>
+  <p class="foot">${T('foot', {a: S.tx.length, d: S.debts.length})}${ANDROID ? ' · Android' : IOS ? ' · iPhone' : ''}</p>
+  <input type="file" id="importFile" accept=".json,application/json,text/plain,*/*" hidden>`;
+}
+
+const VIEWS = {home: vHome, all: vAll, stats: vStats, debts: vDebts, settings: vSettings};
+function renderTabs() {
+  const tabs = [['home', 'home', 'tabHome'], ['stats', 'chart', 'tabStats'], ['debts', 'users', 'tabDebts'], ['settings', 'gear', 'tabSettings']];
+  const nav = $('#tabbar');
+  nav.setAttribute('aria-label', T('sections'));
+  nav.innerHTML = tabs.map(([v, i, l]) => `<button class="tab" data-act="go" data-v="${v}">${ic(i)}<span>${T(l)}</span></button>`).join('');
+}
+function render() {
+  $('#view').innerHTML = VIEWS[view]();
+  const tabV = view === 'all' ? 'home' : view;
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('on', b.dataset.v === tabV));
+}
+function go(v) { view = v; render(); window.scrollTo(0, 0); }
+function rerenderAll() { applyTheme(); renderTabs(); render(); pushWidget(); }
+
+/* =================== Pastki oyna =================== */
+const root = $('#sheets');
+let closeTimer;
+const closeBtn = () => `<button class="round sm" data-act="closeSheet" aria-label="${T('close')}">${ic('x', 18)}</button>`;
+function sheet(html, mount) {
+  clearTimeout(closeTimer);
+  if (!root.querySelector('.sheet')) {
+    root.innerHTML = '<div class="backdrop" data-act="closeSheet"></div><div class="sheet" role="dialog" aria-modal="true"></div>';
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('open')));
+  }
+  const el = root.querySelector('.sheet');
+  el.innerHTML = '<div class="grab"></div>' + html;
+  el.scrollTop = 0;
+  mount && mount(el);
+}
+function closeSheet() {
+  root.classList.remove('open');
+  document.activeElement && document.activeElement.blur && document.activeElement.blur();
+  closeTimer = setTimeout(() => { root.innerHTML = ''; }, 300);
+}
+const sheetOpen = () => !!root.querySelector('.sheet') && root.classList.contains('open');
+function sizeAmt(i) { i.style.width = Math.max(1, i.value.length || 1) * 0.56 + 0.2 + 'em'; }
+/* Tasdiqlash oynasi (confirm() o'rniga) */
+function ask(title, text, btnLabel, fn, back) {
+  sheet(`<div class="sh-h"><h2>${title}</h2>${closeBtn()}</div>
+    <p class="txt" style="margin:0 0 6px">${text}</p>
+    <button class="btn red" id="aOk">${btnLabel}</button>
+    <button class="btn ghost" id="aNo">${T('cancel')}</button>`, el => {
+    $('#aOk', el).onclick = () => fn();
+    $('#aNo', el).onclick = () => back ? back() : closeSheet();
+  });
+}
+const accPills = (id, sel, exclude) => `<div class="pills" id="${id}">${S.accounts.filter(a => a.id !== exclude).map(a =>
+  `<button class="pill ${a.id === sel ? 'on' : ''}" data-a="${a.id}">${ACC_E[a.type] || '💵'} ${esc(accName(a))} <span class="muted">${a.cur}</span></button>`).join('')}</div>`;
+
+/* Kirim / chiqim / o'tkazma */
+function openTx(type = 'out', pre = {}) {
+  const ex = pre.id ? S.tx.find(t => t.id === pre.id) : null;
+  if (type === 'transfer' && !ex && S.accounts.length < 2) { toast(T('needTwoAcc')); return openAcc(); }
+  const d = {
+    id: ex?.id, type: ex?.type || type, amount: ex?.amount || pre.amount || 0, cat: ex?.cat || pre.cat || null,
+    acc: ex?.acc || pre.acc || S.accounts[0].id, to: ex?.to || null, toAmount: ex?.toAmount ?? '',
+    date: ex?.date || today(), time: ex?.time || nowTime(), note: ex?.note ?? pre.note ?? '', quick: !!pre.quick,
+  };
+  const draw = () => {
+    const cur = curOf(d.acc), isTr = d.type === 'transfer';
+    if (isTr && (!d.to || d.to === d.acc)) d.to = (S.accounts.find(a => a.id !== d.acc) || {}).id;
+    const toCur = isTr ? curOf(d.to) : cur;
+    const cats = isTr ? [] : catList(d.type);
+    if (d.cat && !cats.some(c => c.id === d.cat)) d.cat = null;
+    const dec = cur === 'USD';
+    const amtVal = d.amount ? (dec ? String(d.amount) : fmt(d.amount)) : '';
+    const title = d.id ? T('editTx') : isTr ? T('transfer') : d.type === 'in' ? T('addIn') : T('addOut');
+    const est = d.amount && S.rate ? (cur === 'USD' ? fmt(d.amount * S.rate) : String(Math.round(d.amount / S.rate * 100) / 100)) : '0';
+    sheet(`
+      <div class="sh-h"><h2>${title}</h2>${closeBtn()}</div>
+      <div class="seg" id="tType"><button data-t="out" class="${d.type === 'out' ? 'on' : ''}">${T('out')}</button><button data-t="in" class="${d.type === 'in' ? 'on' : ''}">${T('in')}</button>${multiAcc() ? `<button data-t="transfer" class="${isTr ? 'on' : ''}">${T('transfer')}</button>` : ''}</div>
+      <div class="amt ${d.type}"><input id="tAmt" class="${dec ? 'dec' : 'num'}" inputmode="${dec ? 'decimal' : 'numeric'}" placeholder="0" value="${amtVal}" autocomplete="off" aria-label="${T('amount')}"><span>${dec ? 'USD' : T('sum')}</span></div>
+      ${d.quick ? `<p class="hint-t">${T('quickHint')}</p>` : ''}
+      ${multiAcc() || isTr ? `<span class="plabel">${isTr ? T('from') : T('account')}</span>${accPills('tAcc', d.acc)}` : ''}
+      ${isTr ? `<span class="plabel">${T('to')}</span>${accPills('tTo', d.to, d.acc)}
+        ${cur !== toCur ? `<label class="field"><small>${T('receives', {c: toCur})}</small><input id="tToAmt" class="dec" inputmode="decimal" placeholder="${est}" value="${d.toAmount}" autocomplete="off"></label>` : ''}` : ''}
+      ${isTr ? '' : `<div class="cats" id="tCats">${cats.map(c => `<button data-c="${c.id}" class="${d.cat === c.id ? 'on' : ''}"><span style="background:${c.c}26">${c.e}</span><small>${esc(catName(c))}</small></button>`).join('')}
+        <button class="addc" data-addcat="1"><span>+</span><small>${T('addCat')}</small></button></div>`}
+      <div class="frow">
+        <label class="field"><small>${T('date')}</small><input type="date" id="tDate" value="${d.date}"></label>
+        <label class="field"><small>${T('time')}</small><input type="time" id="tTime" value="${d.time}"></label>
+      </div>
+      <label class="field"><small>${T('note')}</small><input id="tNote" value="${esc(d.note)}" placeholder="${T('notePh')}" maxlength="80" autocomplete="off"></label>
+      <button class="btn" id="tSave">${d.id ? T('save') : T('add')}</button>
+      ${d.id ? `<button class="btn ghost danger" id="tDel">${T('del')}</button>` : ''}`, el => {
+      const amt = $('#tAmt', el);
+      sizeAmt(amt);
+      if (!d.amount) setTimeout(() => amt.focus(), 320);
+      amt.addEventListener('input', () => {
+        d.amount = parseAmt(amt.value, curOf(d.acc)); sizeAmt(amt);
+        const ta = $('#tToAmt', el);
+        if (ta && S.rate) ta.placeholder = !d.amount ? '0' : curOf(d.acc) === 'USD' ? fmt(d.amount * S.rate) : String(Math.round(d.amount / S.rate * 100) / 100);
+      });
+      const sync = () => {
+        d.date = $('#tDate', el).value || today(); d.time = $('#tTime', el).value || nowTime(); d.note = $('#tNote', el).value.trim();
+        const ta = $('#tToAmt', el); if (ta) d.toAmount = ta.value;
+      };
+      const commit = () => {
+        sync();
+        if (!d.amount) { toast(T('needAmount')); amt.focus(); return; }
+        if (d.type === 'transfer') {
+          if (!d.to || d.to === d.acc) { toast(T('needOtherAcc')); return; }
+          const fc = curOf(d.acc), tc = curOf(d.to);
+          let toAmount = d.amount;
+          if (fc !== tc) {
+            toAmount = parseDec(d.toAmount);
+            if (!toAmount && S.rate) toAmount = fc === 'USD' ? Math.round(d.amount * S.rate) : Math.round(d.amount / S.rate * 100) / 100;
+            if (!toAmount) { toast(T('needAmount')); return; }
+          }
+          const rec = {type: 'transfer', amount: d.amount, acc: d.acc, to: d.to, toAmount, date: d.date, time: d.time, note: d.note};
+          if (d.id) { const t = S.tx.find(t => t.id === d.id); delete t.cat; Object.assign(t, rec); }
+          else S.tx.push({id: uid(), ...rec, created: Date.now()});
+          save(); closeSheet(); render(); toast(T('trSaved'));
+          return;
+        }
+        if (!d.cat) { toast(T('needCat')); return; }
+        const rec = {type: d.type, amount: d.amount, cat: d.cat, acc: d.acc, date: d.date, time: d.time, note: d.note};
+        if (d.id) { const t = S.tx.find(t => t.id === d.id); delete t.to; delete t.toAmount; Object.assign(t, rec); }
+        else S.tx.push({id: uid(), ...rec, created: Date.now()});
+        save(); closeSheet(); render();
+        const w = d.type === 'out' ? budgetWarn(d.cat, d.date) : '';
+        const kind = d.type === 'in' ? T('in') : T('out');
+        toast(w || T(d.id ? 'txSaved' : 'txAdded', {k: kind, v: amtCur(d.amount, curOf(d.acc))}));
+      };
+      $('#tType', el).onclick = e => { const b = e.target.closest('button'); if (!b || b.dataset.t === d.type) return; sync(); d.type = b.dataset.t; draw(); };
+      const pillsA = $('#tAcc', el);
+      if (pillsA) pillsA.onclick = e => { const b = e.target.closest('[data-a]'); if (!b || b.dataset.a === d.acc) return; sync(); const oc = curOf(d.acc); d.acc = b.dataset.a; if (curOf(d.acc) !== oc) d.amount = 0; d.toAmount = ''; draw(); };
+      const pillsT = $('#tTo', el);
+      if (pillsT) pillsT.onclick = e => { const b = e.target.closest('[data-a]'); if (!b) return; sync(); d.to = b.dataset.a; d.toAmount = ''; draw(); };
+      const cg = $('#tCats', el);
+      if (cg) cg.onclick = e => {
+        const b = e.target.closest('button'); if (!b) return;
+        if (b.dataset.addcat) { sync(); return openCatNew(d.type, id => { d.cat = id; draw(); }, draw); }
+        d.cat = b.dataset.c;
+        el.querySelectorAll('#tCats button').forEach(x => x.classList.toggle('on', x === b));
+        if (d.quick && d.amount) commit();
+      };
+      $('#tSave', el).onclick = commit;
+      const del = $('#tDel', el);
+      if (del) del.onclick = () => ask(T('del'), T('delTxQ'), T('del'), () => {
+        const removed = S.tx.find(t => t.id === d.id);
+        S.tx = S.tx.filter(t => t.id !== d.id); save(); closeSheet(); render();
+        toast(T('deleted'), {label: T('undo'), fn: () => { S.tx.push(removed); save(); render(); }});
+      }, draw);
+    });
+  };
+  draw();
+}
+
+/* Budjet */
+function openBudget() {
+  sheet(`
+    <div class="sh-h"><h2>${T('budgetT')}</h2>${closeBtn()}</div>
+    <label class="field"><small>${T('monthlyLimit')}</small><span class="inrow suf"><input id="bAll" class="num" inputmode="numeric" value="${S.limit ? fmt(S.limit) : ''}" placeholder="${T('limitPh')}"><span>${T('sum')}</span></span></label>
+    <div class="sec" style="margin-top:18px"><span>${T('byCats')}</span></div>
+    <div class="group">${catList('out').map(c =>
+      `<label class="srow"><span>${c.e} ${esc(catName(c))}</span><input class="num" data-cl="${c.id}" inputmode="numeric" placeholder="—" value="${S.catLimits[c.id] ? fmt(S.catLimits[c.id]) : ''}"></label>`).join('')}</div>
+    <p class="note">${T('budgetNote')}</p>
+    <button class="btn" id="bSave">${T('save')}</button>`, el => {
+    $('#bSave', el).onclick = () => {
+      S.limit = digits($('#bAll', el).value);
+      S.catLimits = {};
+      el.querySelectorAll('[data-cl]').forEach(i => { const v = digits(i.value); if (v) S.catLimits[i.dataset.cl] = v; });
+      save(); closeSheet(); render(); toast(T('budgetSaved'));
+    };
+  });
+}
+
+/* Hisoblar */
+function openAcc(id) {
+  const ex = id ? acc(id) : null;
+  const used = !!ex && (S.tx.some(t => t.acc === id || t.to === id) || S.debts.some(d => d.acc === id));
+  const a = ex ? {...ex} : {type: 'card', cur: 'UZS', initial: 0, color: PALETTE[S.accounts.length % PALETTE.length]};
+  const draw = () => {
+    const dec = a.cur === 'USD';
+    sheet(`
+      <div class="sh-h"><h2>${ex ? T('accT') : T('newAcc')}</h2>${closeBtn()}</div>
+      <label class="field"><small>${T('accName')}</small><input id="aName" value="${esc(ex ? accName(ex) : a.name || '')}" placeholder="${T('accNamePh')}" maxlength="30" autocomplete="off"></label>
+      <span class="plabel">${T('type')}</span>
+      <div class="seg" id="aType" style="margin-bottom:12px">${['cash', 'card', 'savings'].map(k => `<button data-v="${k}" class="${a.type === k ? 'on' : ''}">${ACC_E[k]} ${T(k)}</button>`).join('')}</div>
+      <span class="plabel">${T('currency')}</span>
+      <div class="seg" id="aCur" style="margin-bottom:${used ? 4 : 12}px">${['UZS', 'USD'].map(k => `<button data-v="${k}" class="${a.cur === k ? 'on' : ''}" ${used && a.cur !== k ? 'disabled style="opacity:.4"' : ''}>${k}</button>`).join('')}</div>
+      ${used ? `<p class="note" style="margin:0 6px 12px">${T('curLocked')}</p>` : ''}
+      <label class="field"><small>${T('initial')}</small><span class="inrow suf"><input id="aInit" class="${dec ? 'dec' : 'num'}" inputmode="${dec ? 'decimal' : 'numeric'}" value="${a.initial ? (dec ? a.initial : fmt(a.initial)) : ''}" placeholder="0"><span>${dec ? 'USD' : T('sum')}</span></span></label>
+      <p class="note" style="margin:-4px 6px 12px">${T('initialHint')}</p>
+      <span class="plabel">${T('color')}</span>
+      <div class="swatches" id="aCol">${PALETTE.map(c => `<button data-c="${c}" class="${a.color === c ? 'on' : ''}" style="background:${c}" aria-label="${T('color')}"></button>`).join('')}</div>
+      <button class="btn" id="aSave">${T('save')}</button>
+      ${ex ? `<button class="btn ghost danger" id="aDel">${T('delAcc')}</button>` : ''}`, el => {
+      const keep = () => { a.name = $('#aName', el).value; a.initial = parseAmt($('#aInit', el).value, a.cur); };
+      $('#aType', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; keep(); a.type = b.dataset.v; draw(); };
+      $('#aCur', el).onclick = e => { const b = e.target.closest('button'); if (!b || b.disabled || b.dataset.v === a.cur) return; keep(); a.cur = b.dataset.v; a.initial = 0; draw(); };
+      $('#aCol', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; a.color = b.dataset.c; el.querySelectorAll('#aCol button').forEach(x => x.classList.toggle('on', x === b)); };
+      $('#aSave', el).onclick = () => {
+        keep();
+        const name = (a.name || '').trim();
+        if (!name) { toast(T('needName')); $('#aName', el).focus(); return; }
+        const rec = {id: ex?.id || uid(), type: a.type, cur: a.cur, initial: a.initial, color: a.color};
+        if (ex && ex.k === 'main' && name === T('accMain') && !ex.name) rec.k = 'main'; else rec.name = name;
+        if (ex) S.accounts = S.accounts.map(x => x.id === ex.id ? rec : x); else S.accounts.push(rec);
+        save(); closeSheet(); render(); toast(T('saved'));
+        if (rec.cur === 'USD' && !S.rate) setTimeout(openRate, 350);
+      };
+      const del = $('#aDel', el);
+      if (del) del.onclick = () => {
+        if (used) return toast(T('cantDelAcc'));
+        if (S.accounts.length <= 1) return toast(T('minOneAcc'));
+        ask(T('delAcc'), esc(accName(ex)), T('del'), () => { S.accounts = S.accounts.filter(x => x.id !== ex.id); save(); closeSheet(); render(); toast(T('accDeleted')); }, draw);
+      };
+    });
+  };
+  draw();
+}
+
+function openRate() {
+  sheet(`
+    <div class="sh-h"><h2>${T('rateT')}</h2>${closeBtn()}</div>
+    <div class="amt"><input id="rVal" class="num" inputmode="numeric" placeholder="0" value="${S.rate ? fmt(S.rate) : ''}" autocomplete="off" aria-label="${T('usdRate')}"><span>${T('sum')}</span></div>
+    <p class="hint-t">1 USD = ? ${T('sum')}</p>
+    <p class="note" style="text-align:center">${T('rateSheetHint')}</p>
+    <button class="btn" id="rSave">${T('save')}</button>`, el => {
+    const i = $('#rVal', el); sizeAmt(i); i.addEventListener('input', () => sizeAmt(i)); setTimeout(() => i.focus(), 320);
+    $('#rSave', el).onclick = () => {
+      const v = digits(i.value);
+      if (!v) { toast(T('badRate')); return; }
+      S.rate = v; save(); closeSheet(); render(); toast(T('rateSaved'));
+    };
+  });
+}
+
+/* Kategoriyalar */
+function openCats() {
+  const list = S.cats;
+  sheet(`
+    <div class="sh-h"><h2>${T('myCats')}</h2>${closeBtn()}</div>
+    ${list.length ? `<div class="group">${list.map(c => {
+      const n = S.tx.filter(t => t.cat === c.id).length;
+      return `<div class="srow"><span class="lead"><span class="acc-ic" style="background:${c.c}26">${c.e}</span>${esc(c.name)}</span>
+        <span class="muted">${c.type === 'in' ? T('in') : T('out')}${n ? ' · ' + T('catUsed', {n}) : ''}${n ? '' : ` <button class="btn sm ghost danger" data-rm="${c.id}">${T('del')}</button>`}</span></div>`;
+    }).join('')}</div>` : empty('🏷️', T('noCustom'))}
+    <button class="btn" id="cNew">${T('newCatT')}</button>`, el => {
+    el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => {
+      S.cats = S.cats.filter(c => c.id !== b.dataset.rm); delete S.catLimits[b.dataset.rm];
+      save(); render(); openCats(); toast(T('catDeleted'));
+    });
+    $('#cNew', el).onclick = () => openCatNew('out', () => openCats(), openCats);
+  });
+}
+function openCatNew(type, done, back) {
+  const c = {type, e: EMOJIS[0], c: PALETTE[(S.cats.length + 3) % PALETTE.length], name: ''};
+  const draw = () => sheet(`
+    <div class="sh-h"><h2>${T('newCatT')}</h2>${closeBtn()}</div>
+    <div class="seg" id="ncType" style="margin-bottom:14px"><button data-v="out" class="${c.type === 'out' ? 'on' : ''}">${T('out')}</button><button data-v="in" class="${c.type === 'in' ? 'on' : ''}">${T('in')}</button></div>
+    <label class="field"><small>${T('catName')}</small><input id="ncName" value="${esc(c.name)}" placeholder="${T('catNamePh')}" maxlength="24" autocomplete="off"></label>
+    <span class="plabel">${T('emoji')}</span>
+    <div class="swatches emojis" id="ncE">${EMOJIS.map(e => `<button data-e="${e}" class="${c.e === e ? 'on' : ''}">${e}</button>`).join('')}</div>
+    <span class="plabel">${T('color')}</span>
+    <div class="swatches" id="ncC">${PALETTE.map(x => `<button data-c="${x}" class="${c.c === x ? 'on' : ''}" style="background:${x}" aria-label="${T('color')}"></button>`).join('')}</div>
+    <button class="btn" id="ncSave">${T('add')}</button>
+    <button class="btn ghost" id="ncBack">${T('cancel')}</button>`, el => {
+    const keep = () => { c.name = $('#ncName', el).value; };
+    $('#ncType', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; keep(); c.type = b.dataset.v; draw(); };
+    $('#ncE', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; c.e = b.dataset.e; el.querySelectorAll('#ncE button').forEach(x => x.classList.toggle('on', x === b)); };
+    $('#ncC', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; c.c = b.dataset.c; el.querySelectorAll('#ncC button').forEach(x => x.classList.toggle('on', x === b)); };
+    $('#ncBack', el).onclick = () => back ? back() : closeSheet();
+    setTimeout(() => $('#ncName', el)?.focus(), 320);
+    $('#ncSave', el).onclick = () => {
+      keep();
+      const name = c.name.trim();
+      if (!name) { toast(T('needName')); return; }
+      if (catList(c.type).some(x => catName(x).toLowerCase() === name.toLowerCase())) { toast(T('catExists')); return; }
+      const rec = {id: 'u_' + uid(), name, e: c.e, c: c.c, type: c.type};
+      S.cats.push(rec); save(); render(); toast(T('catAdded'));
+      done ? done(rec.id) : closeSheet();
+    };
+  });
+  draw();
+}
+
+/* Qarzlar */
+function openDebt() {
+  const d = {dir: 'gave', acc: S.accounts[0].id};
+  const draw = (keepVals = {}) => {
+    const cur = curOf(d.acc), dec = cur === 'USD';
+    sheet(`
+    <div class="sh-h"><h2>${T('newDebt')}</h2>${closeBtn()}</div>
+    <div class="seg" id="dDir"><button data-t="gave" class="${d.dir === 'gave' ? 'on' : ''}">${T('gaveDebt')}</button><button data-t="took" class="${d.dir === 'took' ? 'on' : ''}">${T('tookDebt')}</button></div>
+    <div class="amt"><input id="dAmt" class="${dec ? 'dec' : 'num'}" inputmode="${dec ? 'decimal' : 'numeric'}" placeholder="0" value="${esc(keepVals.amt || '')}" autocomplete="off" aria-label="${T('amount')}"><span>${dec ? 'USD' : T('sum')}</span></div>
+    <label class="field"><small>${d.dir === 'gave' ? T('whoTo') : T('whoFrom')}</small><input id="dWho" placeholder="${T('namePh')}" value="${esc(keepVals.who || '')}" maxlength="40" autocomplete="off"></label>
+    ${multiAcc() ? `<span class="plabel">${T('account')}</span>${accPills('dAcc', d.acc)}` : ''}
+    <div class="frow">
+      <label class="field"><small>${T('date')}</small><input type="date" id="dDate" value="${keepVals.date || today()}"></label>
+      <label class="field"><small>${T('dueDate')}</small><input type="date" id="dDue" value="${keepVals.due || ''}"></label>
+    </div>
+    <label class="field"><small>${T('note')}</small><input id="dNote" maxlength="80" placeholder="${T('optional')}" value="${esc(keepVals.note || '')}" autocomplete="off"></label>
+    <label class="check"><input type="checkbox" id="dAff" ${keepVals.aff === false ? '' : 'checked'}><span>${d.dir === 'gave' ? T('affOut') : T('affIn')}</span></label>
+    <button class="btn" id="dSave">${T('save')}</button>`, el => {
+      const amt = $('#dAmt', el);
+      sizeAmt(amt);
+      amt.addEventListener('input', () => sizeAmt(amt));
+      if (!keepVals.amt) setTimeout(() => amt.focus(), 320);
+      const vals = () => ({amt: amt.value, who: $('#dWho', el).value, date: $('#dDate', el).value, due: $('#dDue', el).value, note: $('#dNote', el).value, aff: $('#dAff', el).checked});
+      $('#dDir', el).onclick = e => { const b = e.target.closest('button'); if (!b || b.dataset.t === d.dir) return; const v = vals(); d.dir = b.dataset.t; draw(v); };
+      const pa = $('#dAcc', el);
+      if (pa) pa.onclick = e => { const b = e.target.closest('[data-a]'); if (!b) return; const v = vals(); const oc = curOf(d.acc); d.acc = b.dataset.a; if (curOf(d.acc) !== oc) v.amt = ''; draw(v); };
+      $('#dSave', el).onclick = () => {
+        const amount = parseAmt(amt.value, cur), person = $('#dWho', el).value.trim();
+        if (!amount) { toast(T('needAmount')); amt.focus(); return; }
+        if (!person) { toast(T('needName')); $('#dWho', el).focus(); return; }
+        const debt = {id: uid(), dir: d.dir, person, amount, acc: d.acc, date: $('#dDate', el).value || today(), due: $('#dDue', el).value || '',
+          note: $('#dNote', el).value.trim(), payments: [], affect: $('#dAff', el).checked, createdAt: Date.now()};
+        S.debts.push(debt);
+        if (debt.affect) S.tx.push({id: uid(), type: d.dir === 'gave' ? 'out' : 'in', cat: d.dir === 'gave' ? 'debt' : 'debt_in', amount, acc: d.acc,
+          date: debt.date, time: nowTime(), note: T(d.dir === 'gave' ? 'debtGivenNote' : 'debtTakenNote', {p: person}), debtId: debt.id, created: Date.now()});
+        save(); closeSheet(); debtTab = 'open';
+        if (view !== 'debts') go('debts'); else render();
+        toast(T('debtSaved'));
+      };
+    });
+  };
+  draw();
+}
+
+function openDebtDetail(id) {
+  const d = S.debts.find(x => x.id === id);
+  if (!d) return;
+  const left = debtLeft(d), gave = d.dir === 'gave', cur = curOf(d.acc), dec = cur === 'USD';
+  sheet(`
+    <div class="sh-h"><h2>${esc(d.person)}</h2>${closeBtn()}</div>
+    <div class="card dsum">
+      <small>${left <= 0 ? T('debtClosed') : gave ? T('theyOwe') : T('youOwe')}</small>
+      <b class="${left <= 0 ? '' : gave ? 'pos' : 'neg'}">${amtBare(left > 0 ? left : d.amount, cur)} <span>${dec ? 'USD' : T('sum')}</span></b>
+      <span class="muted">${gave ? T('given') : T('taken')}: ${amtCur(d.amount, cur)} · ${dayLabel(d.date)}${d.due ? ' · ' + T('dueOn', {d: dayLabel(d.due)}) : ''}${multiAcc() ? ' · ' + esc(accName(acc(d.acc))) : ''}</span>
+      ${d.note ? `<p>${esc(d.note)}</p>` : ''}
+    </div>
+    ${left > 0 ? `
+      <label class="field"><small>${T('partial')}</small><span class="inrow"><input id="pAmt" class="${dec ? 'dec' : 'num'}" inputmode="${dec ? 'decimal' : 'numeric'}" placeholder="${amtBare(left, cur)}"><button class="btn sm" id="pAdd">${T('add')}</button></span></label>
+      <button class="btn" id="pAll">${T('fullBack')}</button>` : ''}
+    ${d.payments.length ? `<div class="sec"><span>${T('payHist')}</span></div><div class="list">${d.payments.map(p =>
+      `<div class="tx"><span class="tx-ic">💸</span><span class="tx-main"><span class="tx-t">${amtCur(p.amount, cur)}</span><span class="tx-s">${dayLabel(p.date)}</span></span></div>`).join('')}</div>` : ''}
+    <button class="btn ghost danger" id="dDel">${T('delDebt')}</button>`, el => {
+    const pay = a => {
+      a = Math.min(a, debtLeft(d));
+      if (a <= 0) { toast(T('needAmount')); return; }
+      d.payments.push({id: uid(), amount: a, date: today()});
+      if (d.affect) S.tx.push({id: uid(), type: gave ? 'in' : 'out', cat: gave ? 'debt_in' : 'debt', amount: a, acc: d.acc, date: today(), time: nowTime(),
+        note: T(gave ? 'debtBackNote' : 'debtPaidNote', {p: d.person}), debtId: d.id, created: Date.now()});
+      save(); render(); openDebtDetail(id);
+      toast(debtLeft(d) <= 0 ? T('debtClosedT') : T('payAdded', {v: amtCur(debtLeft(d), cur)}));
+    };
+    const pAdd = $('#pAdd', el);
+    if (pAdd) {
+      pAdd.onclick = () => pay(parseAmt($('#pAmt', el).value, cur));
+      $('#pAll', el).onclick = () => pay(debtLeft(d));
+    }
+    $('#dDel', el).onclick = () => ask(T('delDebt'), T('delDebtQ'), T('del'), () => {
+      S.debts = S.debts.filter(x => x.id !== id);
+      S.tx = S.tx.filter(t => t.debtId !== id);
+      save(); closeSheet(); render(); toast(T('debtDeleted'));
+    }, () => openDebtDetail(id));
+  });
+}
+
+const appUrl = () => location.origin + location.pathname.replace(/index\.html$/, '');
+function openInstallHelp() {
+  if (!S.installSeen) { S.installSeen = true; save(); render(); }
+  sheet(`
+    <div class="sh-h"><h2>${T('installT')}</h2>${closeBtn()}</div>
+    <div class="txt">
+      <ol><li>${T('i1')}</li><li>${T('i2')}</li><li>${T('i3')}</li><li>${T('i4')}</li><li>${T('i5')}</li></ol>
+    </div>
+    <div class="warnbox">${T('iNote')}</div>
+    <div class="txt"><b>${T('iMove')}</b><p>${T('iMoveTxt')}</p></div>`);
+}
+function openShortcutsHelp() {
+  const b = appUrl();
+  const u = (label, url) => `<div class="card" style="display:flex;align-items:center;gap:10px;padding:10px 10px 10px 14px;margin-bottom:8px">
+      <div style="flex:1;min-width:0"><b style="font-size:14px;font-weight:600">${label}</b><code style="display:block;font-size:11.5px;color:var(--t3);word-break:break-all;margin-top:3px;font-family:ui-monospace,Menlo,monospace">${esc(url)}</code></div>
+      <button class="round sm" data-act="copyUrl" data-u="${esc(url)}" aria-label="${T('copyLink')}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></button></div>`;
+  sheet(`
+    <div class="sh-h"><h2>${T('scT')}</h2>${closeBtn()}</div>
+    <p class="txt" style="margin:0 0 12px">${T('scIntro')}</p>
+    <div class="warnbox">${T('scWarn')}</div>
+    <div class="txt"><b>${T('sc1h')}</b><ol><li>${T('sc1a')}</li><li>${T('sc1b')}</li></ol></div>
+    ${u(T('lOut'), b + '?add=out')}${u(T('lIn'), b + '?add=in')}
+    <div class="txt" style="margin-top:12px"><b>${T('sc2h')}</b><ol><li>${T('sc2a')}</li><li>${T('sc2b')}</li></ol></div>
+    ${u(T('lOutAmt'), b + '?add=out&amount=')}${u(T('lInAmt'), b + '?add=in&amount=')}
+    <div class="txt" style="margin-top:12px"><b>${T('sc3h')}</b><ol><li>${T('sc3a')}</li></ol></div>`);
+}
+function copyUrl(text) {
+  const done = () => toast(T('linkCopied'));
+  const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { toast(text); } ta.remove(); };
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+}
+function openWidgetHelp() {
+  if (!ANDROID) return openShortcutsHelp();
+  sheet(`
+    <div class="sh-h"><h2>${T('widgetT')}</h2>${closeBtn()}</div>
+    ${ANDROID ? '' : `<div class="warnbox">${T('wBrowser')}</div>`}
+    <div class="txt">
+      <b>${T('widgetHow')}</b>
+      <ol><li>${T('w1')}</li><li>${T('w2')}</li><li>${T('w3')}</li></ol>
+      <p>${T('wInfo')}</p>
+      <b>${T('wFaster')}</b>
+      <p>${T('wFasterTxt')}</p>
+    </div>`);
+}
+
+function openWelcome() {
+  const draw = () => sheet(`
+    <div class="seg" id="wLang" style="margin-bottom:16px">${LANGS.map(([v, l]) => `<button data-v="${v}" class="${S.lang === v ? 'on' : ''}">${l}</button>`).join('')}</div>
+    <div class="sh-h"><h2>${T('welcomeT')}</h2></div>
+    <p class="txt" style="margin-top:0">${T('welcomeTxt')}</p>
+    <label class="field"><small>${T('welcomeName')}</small><input id="wName" maxlength="40" placeholder="${T('welcomeNamePh')}" autocomplete="off"></label>
+    <label class="field"><small>${T('welcomeStart')}</small><span class="inrow suf"><input id="wStart" class="num" inputmode="numeric" placeholder="0"><span>${T('sum')}</span></span></label>
+    <button class="btn" id="wGo">${T('start')}</button>`, el => {
+    $('#wLang', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; S.lang = b.dataset.v; rerenderAll(); draw(); };
+    $('#wGo', el).onclick = () => {
+      S.name = $('#wName', el).value.trim();
+      S.accounts[0].initial = digits($('#wStart', el).value);
+      S.onboarded = true; save(); closeSheet(); render();
+    };
+  });
+  draw();
+}
+
+/* =================== Eksport / zaxira =================== */
+let pendingBackup = false;
+window.hamyonSaved = ok => {
+  if (ok) {
+    if (pendingBackup) { S.lastBackup = Date.now(); save(); render(); }
+    toast(T('fileSaved'));
+  }
+  pendingBackup = false;
+};
+function showText(name, text) {
+  sheet(`<div class="sh-h"><h2>${esc(name)}</h2>${closeBtn()}</div>
+    <textarea class="out" id="oTxt" readonly aria-label="${T('fileText')}"></textarea>
+    <button class="btn" id="oCopy">${T('copy')}</button>`, el => {
+    const ta = $('#oTxt', el); ta.value = text;
+    $('#oCopy', el).onclick = () => {
+      const fb = () => { ta.focus(); ta.select(); toast(T('selectCopy')); };
+      try { navigator.clipboard.writeText(text).then(() => toast(T('copied')), fb); } catch (e) { fb(); }
+    };
+  });
+}
+async function shareOrDownload(name, text, mime) {
+  if (ANDROID) { HamyonAndroid.saveFile(name, mime, text); return 'android'; }
+  const blob = new Blob([text], {type: mime});
+  try {
+    const file = new File([blob], name, {type: mime});
+    if (navigator.canShare && navigator.canShare({files: [file]}) && (IOS || /Android/.test(navigator.userAgent))) {
+      await navigator.share({files: [file], title: name}); return true;
+    }
+  } catch (e) { if (e.name === 'AbortError') return false; }
+  showText(name, text);
+  return 'shown';
+}
+async function exportJson() {
+  const data = {...S, pin: ''};
+  const ok = await shareOrDownload(`hamyon-zaxira-${today()}.json`, JSON.stringify(data, null, 1), 'application/json');
+  if (ok === 'android') pendingBackup = true;
+  else if (ok) { S.lastBackup = Date.now(); save(); if (ok === true) { render(); toast(T('backupReady')); } }
+}
+function exportCsv(sep) {
+  const q = v => { const s = String(v ?? ''); return /[",;\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+  const num = v => sep === ';' ? String(v).replace('.', ',') : String(v);
+  const lines = [T('cols').map(q).join(sep)];
+  sortTx(S.tx).forEach(t => {
+    const a = acc(t.acc), cur = a.cur;
+    if (t.type === 'transfer') {
+      lines.push([t.date, t.time, T('transfer'), q(accName(a) + ' → ' + accName(acc(t.to))), '', num(-t.amount), cur, num(-Math.round(uzs(t))), q(t.note || '')].join(sep));
+    } else {
+      const s = t.type === 'in' ? 1 : -1;
+      lines.push([t.date, t.time, t.type === 'in' ? T('in') : T('out'), q(accName(a)), q(catName(cat(t.cat))), num(s * t.amount), cur, num(s * Math.round(uzs(t))), q(t.note || '')].join(sep));
+    }
+  });
+  closeSheet();
+  setTimeout(() => shareOrDownload(`hamyon-${today()}.csv`, '﻿' + (sep === ';' ? 'sep=;\n' : '') + lines.join('\n'), 'text/csv'), 320);
+}
+function openExportMenu() {
+  sheet(`<div class="sh-h"><h2>${T('exportT')}</h2>${closeBtn()}</div>
+    <div class="group">
+      <button class="srow" data-x=";"><span class="lead">📗 <span><b style="font-weight:500">${T('exExcel')}</b><br><small class="muted" style="font-size:12px">${T('exExcelSub')}</small></span></span>${ic('chevR', 16)}</button>
+      <button class="srow" data-x=","><span class="lead">📄 <span><b style="font-weight:500">${T('exCsv')}</b><br><small class="muted" style="font-size:12px">${T('exCsvSub')}</small></span></span>${ic('chevR', 16)}</button>
+    </div>`, el => el.querySelectorAll('[data-x]').forEach(b => b.onclick = () => exportCsv(b.dataset.x)));
+}
+function importFile(file) {
+  const r = new FileReader();
+  r.onload = () => {
+    let data;
+    try { data = JSON.parse(r.result); if (!data || !Array.isArray(data.tx) || !Array.isArray(data.debts)) throw 0; }
+    catch (e) { toast(T('notBackup')); return; }
+    ask(T('restoreRow'), T('restoreQ', {a: data.tx.length, d: data.debts.length}), T('confirm'), () => {
+      const keep = {pin: S.pin};
+      S = {...migrate(data), ...keep, onboarded: true}; save(); closeSheet(); rerenderAll(); toast(T('restored'));
+    });
+  };
+  r.readAsText(file);
+}
+
+/* =================== PIN =================== */
+/* SHA-256 (sof JS — file:// muhitida crypto.subtle bo'lmasligi mumkin) */
+function sha256(str) {
+  const K = [], H = [];
+  let n = 2, c = 0;
+  const frac = x => (x - Math.floor(x)) * 4294967296 | 0;
+  while (c < 64) { let p = true; for (let i = 2; i * i <= n; i++) if (n % i === 0) { p = false; break; } if (p) { if (c < 8) H[c] = frac(Math.pow(n, 1 / 2)); K[c++] = frac(Math.pow(n, 1 / 3)); } n++; }
+  const bytes = unescape(encodeURIComponent(str)).split('').map(ch => ch.charCodeAt(0));
+  const l = bytes.length * 8; bytes.push(0x80); while (bytes.length % 64 !== 56) bytes.push(0);
+  for (let i = 7; i >= 0; i--) bytes.push(i > 3 ? 0 : (l >>> (i * 8)) & 255);
+  const r = (x, k) => (x >>> k) | (x << (32 - k)), W = new Array(64);
+  for (let o = 0; o < bytes.length; o += 64) {
+    for (let i = 0; i < 16; i++) W[i] = (bytes[o + 4 * i] << 24) | (bytes[o + 4 * i + 1] << 16) | (bytes[o + 4 * i + 2] << 8) | bytes[o + 4 * i + 3];
+    for (let i = 16; i < 64; i++) { const s0 = r(W[i - 15], 7) ^ r(W[i - 15], 18) ^ (W[i - 15] >>> 3), s1 = r(W[i - 2], 17) ^ r(W[i - 2], 19) ^ (W[i - 2] >>> 10); W[i] = (W[i - 16] + s0 + W[i - 7] + s1) | 0; }
+    let [a, b, cc, d, e, f, g, h] = H;
+    for (let i = 0; i < 64; i++) {
+      const t1 = (h + (r(e, 6) ^ r(e, 11) ^ r(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + W[i]) | 0;
+      const t2 = ((r(a, 2) ^ r(a, 13) ^ r(a, 22)) + ((a & b) ^ (a & cc) ^ (b & cc))) | 0;
+      h = g; g = f; f = e; e = (d + t1) | 0; d = cc; cc = b; b = a; a = (t1 + t2) | 0;
+    }
+    H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + cc) | 0; H[3] = (H[3] + d) | 0; H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+  }
+  return H.map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+}
+const pinHash = p => sha256('hamyon:' + p);
+let locked = false, pendingCmd = null, hiddenAt = 0;
+function pinScreen({title, sub, onDone, cancellable, forgot}) {
+  const old = $('#lock'); if (old) old.remove();
+  const el = document.createElement('div'); el.id = 'lock'; el.setAttribute('role', 'dialog'); el.tabIndex = -1;
+  el.innerHTML = `<div class="logo">${LOGO}</div><h2></h2><p></p><div class="pdots">${'<i></i>'.repeat(4)}</div>
+    <div class="pad">${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button data-k="${n}">${n}</button>`).join('')}<button class="t" data-k="c">${cancellable ? T('cancel') : ''}</button><button data-k="0">0</button><button class="t" data-k="b" aria-label="${T('del')}">⌫</button></div>
+    ${forgot ? `<button class="forgot" data-k="f">${T('pinForgot')}</button>` : ''}`;
+  let code = '';
+  const h = $('h2', el), p = $('p', el), dots = $('.pdots', el);
+  h.textContent = title; p.textContent = sub;
+  const paint = () => dots.querySelectorAll('i').forEach((d, i) => d.classList.toggle('f', i < code.length));
+  const close = () => { el.remove(); };
+  const press = k => {
+    if (k === 'f') { forgot(); return; }
+    if (k === 'c') { if (cancellable) close(); return; }
+    if (k === 'b') { code = code.slice(0, -1); return paint(); }
+    if (code.length >= 4) return;
+    code += k; paint();
+    if (code.length === 4) setTimeout(() => {
+      const r = onDone(code);
+      if (r === true) close();
+      else { code = ''; paint(); if (r?.title) h.textContent = r.title; p.textContent = r?.sub || sub; dots.classList.remove('shake'); void dots.offsetWidth; dots.classList.add('shake'); }
+    }, 120);
+  };
+  el.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) press(b.dataset.k); });
+  el.addEventListener('keydown', e => { if (/^\d$/.test(e.key)) press(e.key); else if (e.key === 'Backspace') press('b'); });
+  el.close = close;
+  document.body.appendChild(el); el.focus();
+  return el;
+}
+function lockApp() {
+  if (!S.pin || locked) return;
+  locked = true;
+  pinScreen({title: 'Hamyon', sub: T('pinEnter'), onDone: c => {
+    if (pinHash(c) !== S.pin) return {sub: T('pinWrong')};
+    locked = false;
+    if (pendingCmd) { const q = pendingCmd; pendingCmd = null; setTimeout(() => window.hamyonHandle(q), 50); }
+    return true;
+  }, forgot: () => {
+    const l = $('#lock'); if (l) l.style.display = 'none';
+    ask(T('pinForgot'), T('pinForgotQ'), T('pinResetBtn'), () => {
+      const lang = S.lang; S = fresh(); S.lang = lang; S.onboarded = true; save();
+      locked = false; const l2 = $('#lock'); if (l2) l2.remove(); closeSheet(); view = 'home'; rerenderAll(); toast(T('wiped'));
+    }, () => { closeSheet(); const l3 = $('#lock'); if (l3) l3.style.display = ''; });
+  }});
+}
+function setPin(after) {
+  let first = null;
+  pinScreen({title: T('pinNew'), sub: T('pinThink'), cancellable: true, onDone: c => {
+    if (!first) { first = c; return {title: T('pinConfirm'), sub: T('pinRepeat')}; }
+    if (c !== first) { first = null; return {title: T('pinNew'), sub: T('pinMismatch')}; }
+    S.pin = pinHash(c); save(); render(); toast(after || T('pinOn')); return true;
+  }});
+}
+function checkPin(title, fn) {
+  pinScreen({title, sub: T('pinCurrent'), cancellable: true, onDone: c => {
+    if (pinHash(c) !== S.pin) return {sub: T('pinWrong')};
+    setTimeout(fn, 50); return true;
+  }});
+}
+
+/* =================== Toast =================== */
+let toastTimer;
+function toast(msg, action) {
+  const t = $('#toast');
+  t.innerHTML = `<span>${esc(msg)}</span>${action ? `<button>${esc(action.label)}</button>` : ''}`;
+  if (action) t.querySelector('button').onclick = () => { action.fn(); t.classList.remove('show'); };
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), action ? 5000 : 2600);
+}
+
+/* =================== Hodisalar =================== */
+const ACT = {
+  go: b => { closeSheet(); go(b.dataset.v); },
+  toggleHide: () => { S.hide = !S.hide; save(); render(); },
+  toggleTheme: () => { S.theme = isDark() ? 'light' : 'dark'; save(); applyTheme(); render(); },
+  newTx: b => openTx(b.dataset.type),
+  editTx: b => {
+    const t = S.tx.find(x => x.id === b.dataset.id);
+    if (!t) return;
+    if (t.debtId && S.debts.some(d => d.id === t.debtId)) openDebtDetail(t.debtId);
+    else openTx(t.type, {id: t.id});
+  },
+  newAcc: () => openAcc(),
+  editAcc: b => openAcc(b.dataset.id),
+  rate: () => openRate(),
+  cats: () => openCats(),
+  newDebt: () => openDebt(),
+  debt: b => openDebtDetail(b.dataset.id),
+  debtTab: b => { debtTab = b.dataset.t; render(); },
+  budget: () => openBudget(),
+  mshift: b => { statsMonth = shiftMonth(statsMonth, +b.dataset.n); render(); },
+  setMonth: b => { statsMonth = b.dataset.m; render(); },
+  allFilter: b => { allFilter = b.dataset.f; render(); },
+  setLang: b => { S.lang = b.dataset.v; save(); rerenderAll(); },
+  setTheme: b => { S.theme = b.dataset.v; save(); applyTheme(); render(); },
+  pinToggle: () => S.pin ? checkPin(T('pinOffT'), () => { S.pin = ''; save(); render(); toast(T('pinOff')); }) : setPin(),
+  pinChange: () => checkPin(T('changePin'), () => setPin(T('saved'))),
+  closeSheet: () => closeSheet(),
+  widgetHelp: () => openWidgetHelp(),
+  installHelp: () => openInstallHelp(),
+  dismissInstall: () => { S.installSeen = true; save(); render(); },
+  copyUrl: b => copyUrl(b.dataset.u),
+  exportJson: () => exportJson(),
+  exportMenu: () => openExportMenu(),
+  importJson: () => $('#importFile').click(),
+  wipe: () => ask(T('wipeRow'), T('wipeQ'), T('erase'), () => {
+    const lang = S.lang, theme = S.theme;
+    S = fresh(); S.lang = lang; S.theme = theme; S.onboarded = true; save(); closeSheet(); view = 'home'; rerenderAll(); toast(T('wiped'));
+  }),
+};
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if (!b || b.disabled) return;
+  const f = ACT[b.dataset.act];
+  if (f) { e.preventDefault(); f(b); }
+});
+document.addEventListener('input', e => {
+  const i = e.target;
+  if (i.classList && i.classList.contains('num')) { const v = digits(i.value); i.value = v ? fmt(v) : ''; }
+  if (i.classList && i.classList.contains('dec')) {
+    let v = i.value.replace(/[^\d.,]/g, '').replace(',', '.');
+    const p = v.split('.'); if (p.length > 2) v = p[0] + '.' + p.slice(1).join('');
+    const [w, f] = v.split('.'); i.value = f !== undefined ? w + '.' + f.slice(0, 2) : w;
+  }
+  if (i.id === 'q') { allQuery = i.value; $('#allList').innerHTML = allList(); }
+});
+document.addEventListener('change', e => {
+  const i = e.target;
+  if (i.id === 'sName') { S.name = i.value.trim(); save(); }
+  if (i.id === 'importFile' && i.files[0]) { importFile(i.files[0]); i.value = ''; }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && root.querySelector('.sheet')) closeSheet(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') { hiddenAt = Date.now(); return; }
+  if (S.pin && hiddenAt && Date.now() - hiddenAt > 60000) { closeSheet(); lockApp(); }
+  hiddenAt = 0;
+  if (root.querySelector('.sheet')) return;
+  S = load(); applyTheme(); render();
+});
+window.addEventListener('storage', e => { if (e.key === KEY) { S = load(); render(); } });
+
+/* =================== URL / widget / ikonka menyusi =================== */
+/* ?add=out|in|transfer [&amount=50000] [&cat=transport] [&note=Taksi] */
+function handleUrl() {
+  const p = new URLSearchParams(location.search);
+  if (!p.has('add')) return false;
+  history.replaceState(null, '', location.pathname);
+  if (locked) { pendingCmd = p.toString(); return true; }
+  handleParams(p);
+  return true;
+}
+function handleParams(p) {
+  const type = p.get('add') === 'in' ? 'in' : 'out';
+  const amount = Math.round(parseFloat(String(p.get('amount') || '').replace(/[\s ]/g, '').replace(',', '.')) || 0);
+  const cq = (p.get('cat') || '').toLowerCase();
+  const c = catList(type).find(x => x.id === cq || catName(x).toLowerCase() === cq || (CAT_NAMES[x.id] || []).some(n => n.toLowerCase() === cq));
+  const note = (p.get('note') || '').slice(0, 80);
+  const a = S.accounts.find(x => x.cur === 'UZS') || S.accounts[0];
+  if (amount > 0 && c) {
+    const t = {id: uid(), type, amount, cat: c.id, acc: a.id, date: today(), time: nowTime(), note, created: Date.now()};
+    S.tx.push(t); save(); render();
+    const w = type === 'out' ? budgetWarn(c.id, t.date) : '';
+    toast(w || `✓ ${c.e} ${amtCur(amount, a.cur)}`, {label: T('undo'), fn: () => { S.tx = S.tx.filter(x => x.id !== t.id); save(); render(); }});
+  } else {
+    if (view !== 'home') go('home');
+    openTx(type, {amount, note, cat: c?.id, acc: a.id, quick: amount > 0});
+  }
+}
+window.hamyonHandle = qs => {
+  const p = new URLSearchParams(qs);
+  if (!p.has('add')) return;
+  if (locked) { pendingCmd = qs; return; }
+  handleParams(p);
+};
+window.hamyonBack = () => {
+  if ($('#lock') && !locked) { $('#lock').close?.(); return true; }
+  if (locked) return false;
+  if (sheetOpen()) { closeSheet(); return true; }
+  if (view !== 'home') { go('home'); return true; }
+  return false;
+};
+
+/* =================== Ishga tushirish =================== */
+applyTheme();
+renderTabs();
+render();
+if (S.pin) lockApp();
+const fromUrl = handleUrl();
+if (!fromUrl && !S.onboarded && !S.tx.length) openWelcome();
+pushWidget();
+setInterval(() => { if (S.theme === 'auto') { const d = isDark(); if ((document.documentElement.getAttribute('data-theme') === 'dark') !== d) { applyTheme(); render(); } } }, 60000);
+if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(() => {});
+})();
+</script>
+</body>
+</html>
