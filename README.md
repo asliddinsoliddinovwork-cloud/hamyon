@@ -4,13 +4,13 @@ Shaxsiy moliya ilovasi: kirim, chiqim, budjet, hisoblar va qarzlar. Bepul, inter
 
 - **Sayt:** https://hamyonapp.uz/
 - **iPhone:** https://hamyonapp.uz/app/ — Safari'da oching → Ulashish → Bosh ekranga qo'shish
-- **Android (APK):** https://hamyonapp.uz/Hamyon-2.2.apk — Android 8.0 va undan yuqori, 98 KB
+- **Android (APK):** https://hamyonapp.uz/Hamyon-2.3.apk — Android 8.0 va undan yuqori, 114 KB
 
 ## Tuzilma
 
 - `index.html` — targ'ibot sayti (bosh sahifa)
 - `app/` — iPhone veb-ilovasi (PWA): `index.html`, `manifest.webmanifest`, `sw.js`, `icons/`
-- `Hamyon-2.2.apk` — Android ilova
+- `Hamyon-2.3.apk` — Android ilova
 - `CNAME` — GitHub Pages uchun domen (`hamyonapp.uz`)
 - `.nojekyll` — GitHub Pages fayllarni o'zgartirmasligi uchun
 

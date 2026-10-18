@@ -1,6 +1,6 @@
 /* Hamyon — oflayn ishlash uchun service worker.
    Yangi versiya chiqarganda VERSION qiymatini o'zgartiring. */
-const VERSION = 'hamyon-2.2.0';
+const VERSION = 'hamyon-2.3.0';
 const ASSETS = ['./', 'index.html', 'manifest.webmanifest', 'icons/apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {
