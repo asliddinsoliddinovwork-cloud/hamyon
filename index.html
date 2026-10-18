@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#FFFFFF">
+<script>(function(){var r=document.documentElement,t=null;try{t=localStorage.getItem('hamyon_site_theme')}catch(e){}r.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();</script>
 <link rel="canonical" href="https://hamyonapp.uz/">
 <link rel="icon" type="image/png" href="app/icons/icon-192.png">
 <link rel="apple-touch-icon" href="app/icons/apple-touch-icon.png">
@@ -24,8 +25,8 @@
   /* Color */
   --bg:#FFFFFF; --bg-alt:#F5F5F7; --card:#FFFFFF; --ink:#1D1D1F; --ink-2:#6E6E73; --ink-3:#86868B;
   --line:#D2D2D7; --hair:rgba(0,0,0,.08); --brand:#0E8A3E; --link:#0066CC;
-  --btn:#1D1D1F; --btn-ink:#FFFFFF; --nav:rgba(255,255,255,.8); --chip:#F5F5F7;
-  --band:#000000; --band-ink:#F5F5F7; --band-ink-2:#A1A1A6; --band-brand:#30D158;
+  --btn:#1D1D1F; --btn-ink:#FFFFFF; --nav:rgba(255,255,255,.8); --chip:#F0F0F2; --shadow:rgba(0,0,0,.12);
+  --band:#121214; --band-ink:#F5F5F7; --band-ink-2:#A1A1A6; --band-brand:#30D158;
   /* Type — SF Pro on Apple devices (system), Inter as the closest open fallback elsewhere */
   --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","SF Pro","Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
   /* Apple marketing type scale: size / line-height / tracking */
@@ -42,13 +43,22 @@
   --phone-ratio:2.0862;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#000000; --bg-alt:#101012; --card:#1C1C1E; --ink:#F5F5F7; --ink-2:#A1A1A6; --ink-3:#86868B;
-  --line:#424245; --hair:rgba(255,255,255,.1); --brand:#30D158; --link:#2997FF;
-  --btn:#F5F5F7; --btn-ink:#1D1D1F; --nav:rgba(22,22,23,.8); --chip:#1C1C1E; --band:#0A0A0B; --dim:rgba(255,255,255,.5); color-scheme:dark}}
+  --bg:#0E0E10; --bg-alt:#161618; --card:#1E1E21; --ink:#F2F2F4; --ink-2:#A1A1A6; --ink-3:#86868B;
+  --line:#3A3A3D; --hair:rgba(255,255,255,.09); --brand:#30D158; --link:#3A9BFF;
+  --btn:#F2F2F4; --btn-ink:#141416; --nav:rgba(18,18,20,.78); --chip:#1E1E21; --band:#18181B; --dim:rgba(255,255,255,.5);
+  --shadow:rgba(0,0,0,.45); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#000000; --bg-alt:#101012; --card:#1C1C1E; --ink:#F5F5F7; --ink-2:#A1A1A6; --ink-3:#86868B;
-  --line:#424245; --hair:rgba(255,255,255,.1); --brand:#30D158; --link:#2997FF;
-  --btn:#F5F5F7; --btn-ink:#1D1D1F; --nav:rgba(22,22,23,.8); --chip:#1C1C1E; --band:#0A0A0B; --dim:rgba(255,255,255,.5); color-scheme:dark}
+  --bg:#0E0E10; --bg-alt:#161618; --card:#1E1E21; --ink:#F2F2F4; --ink-2:#A1A1A6; --ink-3:#86868B;
+  --line:#3A3A3D; --hair:rgba(255,255,255,.09); --brand:#30D158; --link:#3A9BFF;
+  --btn:#F2F2F4; --btn-ink:#141416; --nav:rgba(18,18,20,.78); --chip:#1E1E21; --band:#18181B; --dim:rgba(255,255,255,.5);
+  --shadow:rgba(0,0,0,.45); color-scheme:dark}
+/* Theme switch: colours ease together, not one by one */
+html.theming,html.theming *,html.theming *::before,html.theming *::after{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
+.theme-btn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--chip);color:var(--ink);flex:none}
+.theme-btn:hover{background:var(--line)}
+.theme-btn svg{width:18px;height:18px;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.theme-btn .i-sun,.theme-btn .i-moon{grid-area:1/1}
+:root[data-theme="dark"] .theme-btn .i-moon,:root:not([data-theme="dark"]) .theme-btn .i-sun{opacity:0;transform:rotate(-90deg) scale(.6)}
 
 html{scroll-behavior:smooth;scroll-padding-top:56px;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--sf);font-size:16px;line-height:1.6;font-weight:400;letter-spacing:0;
@@ -116,7 +126,7 @@ p{text-wrap:pretty}
     padding:8px max(22px,env(safe-area-inset-right,0px)) 20px max(22px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--hair);box-shadow:0 20px 40px rgba(0,0,0,.08)}
   .nav.open .links{display:flex}
   .links a{font-size:24px;font-weight:500;letter-spacing:-.022em;color:var(--ink);opacity:1;min-height:52px;border-bottom:1px solid var(--hair)}
-  .lang{margin-left:auto}
+  .theme-btn{margin-left:auto}
   .nav-cta{display:none}
   .menu-btn{display:grid;align-content:center}
 }
@@ -301,6 +311,7 @@ footer{background:var(--bg-alt);color:var(--ink-2)}
     <nav class="links" id="links" aria-label="Menu">
       <a href="#features" data-i="navFeatures"></a><a href="#privacy" data-i="navPrivacy"></a><a href="#install" data-i="navInstall"></a><a href="#faq" data-i="navFaq"></a>
     </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Rejimni almashtirish"><svg class="i-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 14.6A8.6 8.6 0 0 1 9.4 3.6a.6.6 0 0 0-.8-.7A9.6 9.6 0 1 0 21.1 15.4a.6.6 0 0 0-.7-.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
     <div class="lang" role="group" aria-label="Language"><button data-lang="uz">UZ</button><button data-lang="ru">RU</button><button data-lang="en">EN</button></div>
     <a class="btn sm nav-cta" data-dl href="#install" data-i="download"></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links" aria-label="Menu"><span></span><span></span></button>
@@ -694,6 +705,28 @@ const blur = document.getElementById('blur'), eye = document.getElementById('eye
 eye.onclick = () => { const on = blur.classList.toggle('on'); eye.setAttribute('aria-pressed', on); };
 
 apply(lang);
+})();
+
+/* Theme: light / dark only. First visit follows the device, a tap is remembered. */
+(() => {
+  const root = document.documentElement, btn = document.getElementById('themeBtn');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const label = { uz: ['Tungi rejim', 'Kunduzgi rejim'], ru: ['Тёмная тема', 'Светлая тема'], en: ['Dark mode', 'Light mode'] };
+  const sync = () => {
+    const dark = root.dataset.theme === 'dark';
+    if (meta) meta.content = dark ? '#0E0E10' : '#FFFFFF';
+    const l = label[root.lang] || label.uz;
+    btn.setAttribute('aria-label', dark ? l[1] : l[0]); btn.title = dark ? l[1] : l[0];
+  };
+  if (!root.dataset.theme) root.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  sync();
+  btn.addEventListener('click', () => {
+    root.classList.add('theming');
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('hamyon_site_theme', root.dataset.theme); } catch (e) {}
+    sync(); setTimeout(() => root.classList.remove('theming'), 400);
+  });
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['lang'] });
 })();
 </script>
 
