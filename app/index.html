@@ -399,7 +399,8 @@ uz: {
   restoreQ:"Zaxirada {a} ta amal va {d} ta qarz bor. Joriy ma'lumotlar almashtirilsinmi?", restored:"Ma'lumotlar tiklandi ✓",
   wipeQ:"Barcha amallar, hisoblar, qarzlar va sozlamalar o'chiriladi. Bu amalni ortga qaytarib bo'lmaydi.", wiped:"Ma'lumotlar o'chirildi",
   saveFail:"Saqlab bo'lmadi — xotira bloklangan",
-  welcomeT:"Hamyon'ga xush kelibsiz 👋", welcomeTxt:"Kirim, chiqim, hisoblar, budjet va qarzlarni bir joyda yuriting. Ma'lumotlar faqat shu telefonda saqlanadi.",
+  welcomeT:"Hamyon'ga xush kelibsiz 👋", welcomeTxt:"Kirim, chiqim, hisoblar, budjet va qarzlarni bir joyda yuriting. Ma'lumotlar faqat shu telefonda saqlanadi. Faqat kerakli narsa, ortiqchasi yo'q.",
+  motto:"Hamyon — ortiqchaliksiz. Faqat kerakli narsa.",
   welcomeName:'Ismingiz', welcomeNamePh:'Masalan: Alisher', welcomeStart:'Hozir qancha pulingiz bor? (ixtiyoriy)', start:'Boshlash',
   widgetT:"Widget orqali qo'shish", widgetHow:"Bosh ekranga widget qo'yish",
   w1:"Bosh ekranning bo'sh joyini bosib turing.", w2:"<b>Vidjetlar</b> (Widgets) ni tanlang va ro'yxatdan <b>Hamyon</b> ni toping.", w3:"Widgetni bosib turib, bosh ekranga olib o'ting.",
@@ -499,7 +500,8 @@ ru: {
   restoreQ:'В копии {a} операций и {d} долгов. Заменить текущие данные?', restored:'Данные восстановлены ✓',
   wipeQ:'Все операции, счета, долги и настройки будут удалены. Это действие нельзя отменить.', wiped:'Данные удалены',
   saveFail:'Не удалось сохранить — хранилище заблокировано',
-  welcomeT:'Добро пожаловать в Hamyon 👋', welcomeTxt:'Доходы, расходы, счета, бюджет и долги в одном месте. Данные хранятся только на этом телефоне.',
+  welcomeT:'Добро пожаловать в Hamyon 👋', welcomeTxt:'Доходы, расходы, счета, бюджет и долги в одном месте. Данные хранятся только на этом телефоне. Только нужное, ничего лишнего.',
+  motto:'Hamyon — ничего лишнего. Только нужное.',
   welcomeName:'Ваше имя', welcomeNamePh:'Например: Алишер', welcomeStart:'Сколько у вас сейчас денег? (необязательно)', start:'Начать',
   widgetT:'Добавление через виджет', widgetHow:'Как поставить виджет',
   w1:'Нажмите и удерживайте пустое место на главном экране.', w2:'Выберите <b>Виджеты</b> и найдите в списке <b>Hamyon</b>.', w3:'Перетащите виджет на главный экран.',
@@ -598,7 +600,8 @@ en: {
   restoreQ:'The backup has {a} entries and {d} debts. Replace current data?', restored:'Data restored ✓',
   wipeQ:'All entries, accounts, debts and settings will be erased. This cannot be undone.', wiped:'Data erased',
   saveFail:"Couldn't save — storage is blocked",
-  welcomeT:'Welcome to Hamyon 👋', welcomeTxt:'Track income, expenses, accounts, budget and debts in one place. Data stays on this phone only.',
+  welcomeT:'Welcome to Hamyon 👋', welcomeTxt:'Track income, expenses, accounts, budget and debts in one place. Data stays on this phone only. Only what matters, nothing extra.',
+  motto:'Hamyon — nothing extra. Only what matters.',
   welcomeName:'Your name', welcomeNamePh:'e.g. Alisher', welcomeStart:'How much money do you have now? (optional)', start:'Start',
   widgetT:'Add with the widget', widgetHow:'Put the widget on your home screen',
   w1:'Press and hold an empty spot on the home screen.', w2:'Choose <b>Widgets</b> and find <b>Hamyon</b> in the list.', w3:'Hold the widget and drag it to the home screen.',
@@ -1158,7 +1161,7 @@ function vSettings() {
     <button class="srow danger" data-act="wipe"><span>${T('wipeRow')}</span></button>
   </div>
   <p class="note">${T('dataNote')}</p>
-  <p class="foot">${T('foot', {a: S.tx.length, d: S.debts.length})}${ANDROID ? ' · Android' : IOS ? ' · iPhone' : ''}</p>
+  <p class="foot">${T('motto')}<br>${T('foot', {a: S.tx.length, d: S.debts.length})}${ANDROID ? ' · Android' : IOS ? ' · iPhone' : ''}</p>
   <input type="file" id="importFile" accept=".json,application/json,text/plain,*/*" hidden>`;
 }
 
