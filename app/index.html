@@ -223,8 +223,16 @@ input{font:inherit;color:inherit}
 .hint-t{text-align:center;font-size:13px;color:var(--t3);margin:0 0 6px}
 .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;margin:14px 0 16px}
 .cats button{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
-.cats span{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:24px;transition:transform .15s,box-shadow .15s;box-shadow:inset 0 0 0 2px transparent}
-.cats button.on span{box-shadow:inset 0 0 0 2px var(--ink);transform:scale(1.06)}
+.cats span{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px;transition:transform .15s,box-shadow .15s;box-shadow:inset 0 0 0 2px transparent}
+.cats button.on span{box-shadow:0 0 0 2px var(--sheet),0 0 0 4px var(--ink);transform:scale(1.04)}
+.g svg{width:56%;height:56%}
+.tx-ic.g{border-radius:11px}
+.si{width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:15px;flex:none;vertical-align:middle}
+.glyphs{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;margin-bottom:14px}
+.glyphs button{aspect-ratio:1;border-radius:12px;background:var(--chip);color:var(--ink);display:grid;place-items:center;transition:background .15s,color .15s}
+.glyphs button svg{width:22px;height:22px}
+.glyphs button.on{color:#fff}
+.round.danger{color:var(--red)}
 .cats small{font-size:11px;color:var(--t4);text-align:center;line-height:1.15;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .cats .addc span{background:transparent;border:1.5px dashed var(--track);font-size:22px;color:var(--muted)}
 .pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px 12px;padding:2px 18px}
@@ -336,7 +344,7 @@ uz: {
   widgetRow:"⚡ Widget orqali tez qo'shish", data:"Ma'lumotlar", backupRow:'Zaxira nusxa olish', notTaken:'hali olinmagan', restoreRow:'Zaxiradan tiklash',
   exportRow:'Excel / CSV eksport', wipeRow:"Barcha ma'lumotlarni o'chirish",
   dataNote:"Ma'lumotlar faqat shu telefonda saqlanadi — hech qayerga yuborilmaydi. Har 1–2 haftada zaxira nusxa olib, Google Drive yoki Telegram'ga saqlab qo'ying.",
-  foot:'Hamyon v2.1 · {a} ta amal · {d} ta qarz',
+  foot:'Hamyon v2.2 · {a} ta amal · {d} ta qarz',
   close:'Yopish', save:'Saqlash', add:"Qo'shish", del:"O'chirish", cancel:'Bekor qilish', undo:'Qaytarish', confirm:'Tasdiqlash',
   editTx:'Tahrirlash', amount:'Summa', quickHint:'Kategoriyani tanlang — darhol saqlanadi', date:'Sana', time:'Vaqt', note:'Izoh', notePh:'Masalan: Korzinka',
   account:'Hisob', from:'Qayerdan', to:'Qayerga', receives:'Tushadi ({c})', addCat:'Yangi',
@@ -356,6 +364,9 @@ uz: {
   savNag:"Jamg'arma oching: pul umumiy balansdan alohida turadi, maqsadgacha qancha qolgani ko'rinadi", toSaving:"Jamg'armaga o'tkazish",
   goal:'Maqsad (ixtiyoriy)', goalOf:'{p}% · maqsad {g}', goalDone:"Maqsadga erishildi ✓", savedMonth:"Jamg'armaga o'tkazildi: {v}",
   needSpendAcc:"Kamida bitta oddiy hisob (naqd yoki karta) qolishi kerak",
+  showOnHome:"Bosh ekranda ko'rsatish", addSav:"Jamg'arma qo'shish", savSetNote:"Jamg'arma umumiy balansga qo'shilmaydi. Pulni jamg'armaga o'tkazish uchun «O'tkazma»dan foydalaning.",
+  catsN:'{n} ta', catsOut:'Chiqim', catsIn:'Kirim', delCatQ:"«{n}» o'chirilsinmi?", delCatUsed:"{n} ta amalda ishlatilgan. Amallar o'chmaydi, ularda nomi saqlanadi.",
+  restoreCats:'Standart kategoriyalarni tiklash', catsRestored:'Standart kategoriyalar tiklandi', noCats:"Bu turda kategoriya qolmadi", icon:'Belgi',
   initial:"Boshlang'ich qoldiq", initialHint:"Hisobni yuritishni boshlagan paytdagi qoldiq.", color:'Rang', curLocked:"Amallari bor hisobning valyutasini o'zgartirib bo'lmaydi.",
   delAcc:"Hisobni o'chirish", cantDelAcc:"Amallari bor hisobni o'chirib bo'lmaydi", minOneAcc:"Kamida bitta hisob qolishi kerak", accDeleted:"Hisob o'chirildi", saved:'Saqlandi',
   rateT:'Dollar kursi', rateSheetHint:"1 USD necha so'm ekanini kiriting (bank yoki Markaziy bank kursi). Ilova kursni internetdan olmaydi.", badRate:"Kursni to'g'ri kiriting", rateSaved:'Kurs saqlandi',
@@ -431,7 +442,7 @@ ru: {
   widgetRow:'⚡ Быстрое добавление виджетом', data:'Данные', backupRow:'Создать резервную копию', notTaken:'ещё не создана', restoreRow:'Восстановить из копии',
   exportRow:'Экспорт в Excel / CSV', wipeRow:'Удалить все данные',
   dataNote:'Данные хранятся только на этом телефоне и никуда не отправляются. Раз в 1–2 недели делайте резервную копию и сохраняйте её в Google Drive или Telegram.',
-  foot:'Hamyon v2.1 · операций: {a} · долгов: {d}',
+  foot:'Hamyon v2.2 · операций: {a} · долгов: {d}',
   close:'Закрыть', save:'Сохранить', add:'Добавить', del:'Удалить', cancel:'Отмена', undo:'Вернуть', confirm:'Подтвердить',
   editTx:'Изменить', amount:'Сумма', quickHint:'Выберите категорию — сохранится сразу', date:'Дата', time:'Время', note:'Заметка', notePh:'Например: Korzinka',
   account:'Счёт', from:'Откуда', to:'Куда', receives:'Зачислится ({c})', addCat:'Новая',
@@ -451,6 +462,9 @@ ru: {
   savNag:'Откройте накопления: деньги хранятся отдельно от общего баланса, видно, сколько осталось до цели', toSaving:'Перевести в накопления',
   goal:'Цель (необязательно)', goalOf:'{p}% · цель {g}', goalDone:'Цель достигнута ✓', savedMonth:'Отложено в накопления: {v}',
   needSpendAcc:'Должен остаться хотя бы один обычный счёт (наличные или карта)',
+  showOnHome:'Показывать на главной', addSav:'Добавить накопления', savSetNote:'Накопления не входят в общий баланс. Чтобы отложить деньги, используйте «Перевод».',
+  catsN:'{n}', catsOut:'Расход', catsIn:'Доход', delCatQ:'Удалить «{n}»?', delCatUsed:'Используется в операциях: {n}. Операции не удалятся, название в них сохранится.',
+  restoreCats:'Восстановить стандартные категории', catsRestored:'Стандартные категории восстановлены', noCats:'В этом типе категорий не осталось', icon:'Значок',
   initial:'Начальный остаток', initialHint:'Остаток на момент начала учёта.', color:'Цвет', curLocked:'Нельзя сменить валюту счёта, по которому есть операции.',
   delAcc:'Удалить счёт', cantDelAcc:'Нельзя удалить счёт с операциями', minOneAcc:'Должен остаться хотя бы один счёт', accDeleted:'Счёт удалён', saved:'Сохранено',
   rateT:'Курс доллара', rateSheetHint:'Укажите, сколько сумов стоит 1 USD (курс банка или ЦБ). Приложение не загружает курс из интернета.', badRate:'Введите корректный курс', rateSaved:'Курс сохранён',
@@ -525,7 +539,7 @@ en: {
   widgetRow:'⚡ Quick add with the widget', data:'Data', backupRow:'Back up data', notTaken:'never', restoreRow:'Restore from backup',
   exportRow:'Export to Excel / CSV', wipeRow:'Erase all data',
   dataNote:'Data stays on this phone only and is never sent anywhere. Every 1–2 weeks, make a backup and keep it in Google Drive or Telegram.',
-  foot:'Hamyon v2.1 · {a} entries · {d} debts',
+  foot:'Hamyon v2.2 · {a} entries · {d} debts',
   close:'Close', save:'Save', add:'Add', del:'Delete', cancel:'Cancel', undo:'Undo', confirm:'Confirm',
   editTx:'Edit', amount:'Amount', quickHint:'Pick a category — it saves right away', date:'Date', time:'Time', note:'Note', notePh:'e.g. Korzinka',
   account:'Account', from:'From', to:'To', receives:'Receives ({c})', addCat:'New',
@@ -545,6 +559,9 @@ en: {
   savNag:'Start a savings pot: the money stays apart from your total balance, and you see how far you are from the goal', toSaving:'Move to savings',
   goal:'Goal (optional)', goalOf:'{p}% · goal {g}', goalDone:'Goal reached ✓', savedMonth:'Moved to savings: {v}',
   needSpendAcc:'Keep at least one regular account (cash or card)',
+  showOnHome:'Show on Home', addSav:'Add savings', savSetNote:'Savings are not included in your total balance. Use "Transfer" to move money into savings.',
+  catsN:'{n}', catsOut:'Expense', catsIn:'Income', delCatQ:'Delete "{n}"?', delCatUsed:'Used in {n} entries. They stay, and keep the category name.',
+  restoreCats:'Restore default categories', catsRestored:'Default categories restored', noCats:'No categories left in this type', icon:'Icon',
   initial:'Opening balance', initialHint:'The balance when you started tracking.', color:'Color', curLocked:"You can't change the currency of an account with entries.",
   delAcc:'Delete account', cantDelAcc:"An account with entries can't be deleted", minOneAcc:'Keep at least one account', accDeleted:'Account deleted', saved:'Saved',
   rateT:'Dollar rate', rateSheetHint:"Enter how many UZS 1 USD costs (your bank's or the Central Bank rate). The app doesn't fetch rates online.", badRate:'Enter a valid rate', rateSaved:'Rate saved',
@@ -597,15 +614,15 @@ const CAT_NAMES = {
 };
 const BASE_CATS = {
   out: [
-    {id:'food', e:'🛒', c:'#22C55E'}, {id:'cafe', e:'☕', c:'#F59E0B'}, {id:'transport', e:'🚕', c:'#3B82F6'},
-    {id:'home', e:'🏠', c:'#8B5CF6'}, {id:'utility', e:'💡', c:'#EAB308'}, {id:'phone', e:'📱', c:'#06B6D4'},
-    {id:'clothes', e:'👕', c:'#EC4899'}, {id:'health', e:'💊', c:'#EF4444'}, {id:'edu', e:'📚', c:'#0EA5E9'},
-    {id:'fun', e:'🎬', c:'#A855F7'}, {id:'gift', e:'🎁', c:'#F97316'}, {id:'other', e:'📦', c:'#94A3B8'},
-    {id:'debt', e:'🤝', c:'#64748B', hidden:true},
+    {id:'food', i:'shopping-cart', e:'🛒', c:'#22C55E'}, {id:'cafe', i:'coffee', e:'☕', c:'#F59E0B'}, {id:'transport', i:'car-taxi-front', e:'🚕', c:'#3B82F6'},
+    {id:'home', i:'house', e:'🏠', c:'#8B5CF6'}, {id:'utility', i:'lightbulb', e:'💡', c:'#EAB308'}, {id:'phone', i:'smartphone', e:'📱', c:'#06B6D4'},
+    {id:'clothes', i:'shirt', e:'👕', c:'#EC4899'}, {id:'health', i:'pill', e:'💊', c:'#EF4444'}, {id:'edu', i:'book-open', e:'📚', c:'#0EA5E9'},
+    {id:'fun', i:'clapperboard', e:'🎬', c:'#A855F7'}, {id:'gift', i:'gift', e:'🎁', c:'#F97316'}, {id:'other', i:'package', e:'📦', c:'#94A3B8'},
+    {id:'debt', i:'handshake', e:'🤝', c:'#64748B', hidden:true},
   ],
   in: [
-    {id:'salary', e:'💼', c:'#22C55E'}, {id:'business', e:'📈', c:'#10B981'}, {id:'freelance', e:'💻', c:'#3B82F6'},
-    {id:'gift_in', e:'🎁', c:'#F97316'}, {id:'other_in', e:'✨', c:'#94A3B8'}, {id:'debt_in', e:'🤝', c:'#64748B', hidden:true},
+    {id:'salary', i:'briefcase', e:'💼', c:'#22C55E'}, {id:'business', i:'trending-up', e:'📈', c:'#10B981'}, {id:'freelance', i:'laptop', e:'💻', c:'#3B82F6'},
+    {id:'gift_in', i:'gift', e:'🎁', c:'#F97316'}, {id:'other_in', i:'sparkles', e:'✨', c:'#94A3B8'}, {id:'debt_in', i:'handshake', e:'🤝', c:'#64748B', hidden:true},
   ],
 };
 const DEBT_CATS = new Set(['debt', 'debt_in']);
@@ -640,8 +657,15 @@ const ICONS = {
   search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
   moon: '<path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/>',
+  trash: '<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/>',
   lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
 };
+/* Kategoriya belgilari: Lucide (ISC litsenziyasi). iOS uslubida: rangli yumaloq kvadrat ichida oq belgi */
+const GLYPHS = {"shopping-cart":"<path d=\"m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18\"/><path d=\"M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25\"/><circle cx=\"18\" cy=\"20\" r=\"2\"/><circle cx=\"8\" cy=\"20\" r=\"2\"/>","coffee":"<path d=\"M10 2v2\"/><path d=\"M14 2v2\"/><path d=\"M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1\"/><path d=\"M6 2v2\"/>","car-taxi-front":"<path d=\"M10 2h4\"/><path d=\"m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8\"/><path d=\"M7 14h.01\"/><path d=\"M17 14h.01\"/><rect width=\"18\" height=\"8\" x=\"3\" y=\"10\" rx=\"2\"/><path d=\"M5 18v2\"/><path d=\"M19 18v2\"/>","house":"<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"/><path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/>","lightbulb":"<path d=\"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5\"/><path d=\"M9 18h6\"/><path d=\"M10 22h4\"/>","smartphone":"<rect width=\"14\" height=\"20\" x=\"5\" y=\"2\" rx=\"2\" ry=\"2\"/><path d=\"M12 18h.01\"/>","shirt":"<path d=\"M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z\"/>","pill":"<path d=\"m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z\"/><path d=\"m8.5 8.5 7 7\"/>","book-open":"<path d=\"M12 5v16\"/><path d=\"M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z\"/>","clapperboard":"<path d=\"m12.296 3.464 3.02 3.956\"/><path d=\"M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3z\"/><path d=\"M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><path d=\"m6.18 5.276 3.1 3.899\"/>","gift":"<path d=\"M12 7v14\"/><path d=\"M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8\"/><path d=\"M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5\"/><rect x=\"3\" y=\"7\" width=\"18\" height=\"4\" rx=\"1\"/>","package":"<path d=\"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z\"/><path d=\"M12 22V12\"/><polyline points=\"3.29 7 12 12 20.71 7\"/><path d=\"m7.5 4.27 9 5.15\"/>","handshake":"<path d=\"m11 17 2 2a1 1 0 1 0 3-3\"/><path d=\"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4\"/><path d=\"m21 3 1 11h-2\"/><path d=\"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3\"/><path d=\"M3 4h8\"/>","briefcase":"<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"/><rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\"/>","trending-up":"<path d=\"M16 7h6v6\"/><path d=\"m22 7-8.5 8.5-5-5L2 17\"/>","laptop":"<path d=\"M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z\"/><path d=\"M20.054 15.987H3.946\"/>","sparkles":"<path d=\"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z\"/><path d=\"M20 2v4\"/><path d=\"M22 4h-4\"/><circle cx=\"4\" cy=\"20\" r=\"2\"/>","utensils":"<path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7\"/>","pizza":"<path d=\"m12 14-1 1\"/><path d=\"m13.75 18.25-1.25 1.42\"/><path d=\"M17.775 5.654a15.68 15.68 0 0 0-12.121 12.12\"/><path d=\"M18.8 9.3a1 1 0 0 0 2.1 7.7\"/><path d=\"M21.964 20.732a1 1 0 0 1-1.232 1.232l-18-5a1 1 0 0 1-.695-1.232A19.68 19.68 0 0 1 15.732 2.037a1 1 0 0 1 1.232.695z\"/>","cake-slice":"<path d=\"M16 13H3\"/><path d=\"M16 17H3\"/><path d=\"m7.2 7.9-3.388 2.5A2 2 0 0 0 3 12.01V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-8.654c0-2-2.44-6.026-6.44-8.026a1 1 0 0 0-1.082.057L10.4 5.6\"/><circle cx=\"9\" cy=\"7\" r=\"2\"/>","apple":"<path d=\"M12 6.528V3a1 1 0 0 1 1-1h0\"/><path d=\"M18.237 21A15 15 0 0 0 22 11a6 6 0 0 0-10-4.472A6 6 0 0 0 2 11a15.1 15.1 0 0 0 3.763 10 3 3 0 0 0 3.648.648 5.5 5.5 0 0 1 5.178 0A3 3 0 0 0 18.237 21\"/>","bus":"<path d=\"M8 6v6\"/><path d=\"M15 6v6\"/><path d=\"M2 12h19.6\"/><path d=\"M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3\"/><circle cx=\"7\" cy=\"18\" r=\"2\"/><path d=\"M9 18h5\"/><circle cx=\"16\" cy=\"18\" r=\"2\"/>","train-front":"<path d=\"M8 3.1V7a4 4 0 0 0 8 0V3.1\"/><path d=\"m9 15-1-1\"/><path d=\"m15 15 1-1\"/><path d=\"M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z\"/><path d=\"m8 19-2 3\"/><path d=\"m16 19 2 3\"/>","plane":"<path d=\"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z\"/>","fuel":"<path d=\"M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-6.998a2 2 0 0 0-.59-1.42L18 5\"/><path d=\"M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16\"/><path d=\"M2 21h13\"/><path d=\"M3 9h11\"/>","car":"<path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\"/><circle cx=\"7\" cy=\"17\" r=\"2\"/><path d=\"M9 17h6\"/><circle cx=\"17\" cy=\"17\" r=\"2\"/>","bike":"<circle cx=\"18.5\" cy=\"17.5\" r=\"3.5\"/><circle cx=\"5.5\" cy=\"17.5\" r=\"3.5\"/><circle cx=\"15\" cy=\"5\" r=\"1\"/><path d=\"M12 17.5V14l-3-3 4-3 2 3h2\"/>","dumbbell":"<path d=\"M17.596 12.768a2 2 0 1 0 2.829-2.829l-1.768-1.767a2 2 0 0 0 2.828-2.829l-2.828-2.828a2 2 0 0 0-2.829 2.828l-1.767-1.768a2 2 0 1 0-2.829 2.829z\"/><path d=\"m2.5 21.5 1.4-1.4\"/><path d=\"m20.1 3.9 1.4-1.4\"/><path d=\"M5.343 21.485a2 2 0 1 0 2.829-2.828l1.767 1.768a2 2 0 1 0 2.829-2.829l-6.364-6.364a2 2 0 1 0-2.829 2.829l1.768 1.767a2 2 0 0 0-2.828 2.829z\"/><path d=\"m9.6 14.4 4.8-4.8\"/>","heart-pulse":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\"/><path d=\"M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27\"/>","stethoscope":"<path d=\"M11 2v2\"/><path d=\"M5 2v2\"/><path d=\"M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1\"/><path d=\"M8 15a6 6 0 0 0 12 0v-3\"/><circle cx=\"20\" cy=\"10\" r=\"2\"/>","baby":"<path d=\"M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5\"/><path d=\"M15 12h.01\"/><path d=\"M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1\"/><path d=\"M9 12h.01\"/>","dog":"<path d=\"M11.25 16.25h1.5L12 17z\"/><path d=\"M16 14v.5\"/><path d=\"M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309\"/><path d=\"M8 14v.5\"/><path d=\"M8.5 8.5c-.384 1.05-1.083 2.028-2.344 2.5-1.931.722-3.576-.297-3.656-1-.113-.994 1.177-6.53 4-7 1.923-.321 3.651.845 3.651 2.235A7.497 7.497 0 0 1 14 5.277c0-1.39 1.844-2.598 3.767-2.277 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5\"/>","cat":"<path d=\"M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z\"/><path d=\"M8 14v.5\"/><path d=\"M16 14v.5\"/><path d=\"M11.25 16.25h1.5L12 17l-.75-.75Z\"/>","paw-print":"<circle cx=\"11\" cy=\"4\" r=\"2\"/><circle cx=\"18\" cy=\"8\" r=\"2\"/><circle cx=\"20\" cy=\"16\" r=\"2\"/><path d=\"M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z\"/>","scissors":"<circle cx=\"6\" cy=\"6\" r=\"3\"/><path d=\"M8.12 8.12 12 12\"/><path d=\"M20 4 8.12 15.88\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M14.8 14.8 20 20\"/>","gamepad-2":"<line x1=\"6\" x2=\"10\" y1=\"11\" y2=\"11\"/><line x1=\"8\" x2=\"8\" y1=\"9\" y2=\"13\"/><line x1=\"15\" x2=\"15.01\" y1=\"12\" y2=\"12\"/><line x1=\"18\" x2=\"18.01\" y1=\"10\" y2=\"10\"/><path d=\"M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z\"/>","headphones":"<path d=\"M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3\"/>","tv":"<path d=\"m17 2-5 5-5-5\"/><rect width=\"20\" height=\"15\" x=\"2\" y=\"7\" rx=\"2\"/>","wifi":"<path d=\"M12 20h.01\"/><path d=\"M2 8.82a15 15 0 0 1 20 0\"/><path d=\"M5 12.859a10 10 0 0 1 14 0\"/><path d=\"M8.5 16.429a5 5 0 0 1 7 0\"/>","receipt":"<path d=\"M12 17V7\"/><path d=\"M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8\"/><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"/>","credit-card":"<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\"/><line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\"/><path d=\"M6 14h2\"/>","landmark":"<path d=\"M10 18v-7\"/><path d=\"M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z\"/><path d=\"M14 18v-7\"/><path d=\"M18 18v-7\"/><path d=\"M3 22h18\"/><path d=\"M6 18v-7\"/>","piggy-bank":"<path d=\"M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z\"/><path d=\"M16 10h.01\"/><path d=\"M2 8v1a2 2 0 0 0 2 2h1\"/>","wallet":"<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\"/><path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\"/>","coins":"<path d=\"M13.744 17.736a6 6 0 1 1-7.48-7.48\"/><path d=\"M15 6h1v4\"/><path d=\"m6.134 14.768.866-.5 2 3.464\"/><circle cx=\"16\" cy=\"8\" r=\"6\"/>","banknote":"<rect width=\"20\" height=\"12\" x=\"2\" y=\"6\" rx=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M6 12h.01M18 12h.01\"/>","hand-coins":"<path d=\"M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17\"/><path d=\"m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9\"/><path d=\"m2 16 6 6\"/><circle cx=\"16\" cy=\"9\" r=\"2.9\"/><circle cx=\"6\" cy=\"5\" r=\"3\"/>","graduation-cap":"<path d=\"M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z\"/><path d=\"M22 10v6\"/><path d=\"M6 12.5V16a6 3 0 0 0 12 0v-3.5\"/>","shopping-bag":"<path d=\"M16 10a4 4 0 0 1-8 0\"/><path d=\"M3.103 6.034h17.794\"/><path d=\"M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z\"/>","store":"<path d=\"M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5\"/><path d=\"M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244\"/><path d=\"M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05\"/>","tag":"<path d=\"M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z\"/><circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/>","ticket":"<path d=\"M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\"/><path d=\"M13 5v2\"/><path d=\"M13 17v2\"/><path d=\"M13 11v2\"/>","popcorn":"<path d=\"M18 8a2 2 0 0 0 0-4 2 2 0 0 0-4 0 2 2 0 0 0-4 0 2 2 0 0 0-4 0 2 2 0 0 0 0 4\"/><path d=\"M10 22 9 8\"/><path d=\"m14 22 1-14\"/><path d=\"M20 8c.5 0 .9.4.8 1l-2.6 12c-.1.5-.7 1-1.2 1H7c-.6 0-1.1-.4-1.2-1L3.2 9c-.1-.6.3-1 .8-1Z\"/>","wrench":"<path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\"/>","hammer":"<path d=\"m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9\"/><path d=\"m18 15 4-4\"/><path d=\"m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5\"/>","sofa":"<path d=\"M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3\"/><path d=\"M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z\"/><path d=\"M4 18v2\"/><path d=\"M20 18v2\"/><path d=\"M12 4v9\"/>","trees":"<path d=\"M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z\"/><path d=\"M7 16v6\"/><path d=\"M13 19v3\"/><path d=\"M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5\"/>","flower-2":"<path d=\"M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1\"/><circle cx=\"12\" cy=\"8\" r=\"2\"/><path d=\"M12 10v12\"/><path d=\"M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z\"/><path d=\"M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z\"/>","heart":"<path d=\"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5\"/>","glasses":"<circle cx=\"6\" cy=\"15\" r=\"4\"/><circle cx=\"18\" cy=\"15\" r=\"4\"/><path d=\"M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2\"/><path d=\"M2.5 13 5 7c.7-1.3 1.4-2 3-2\"/><path d=\"M21.5 13 19 7c-.7-1.3-1.5-2-3-2\"/>","watch":"<path d=\"M12 10v2.2l1.6 1\"/><path d=\"m16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05\"/><path d=\"m7.88 16.36.8 4a2 2 0 0 0 2 1.61h2.72a2 2 0 0 0 2-1.61l.81-4.05\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/>","building":"<path d=\"M12 10h.01\"/><path d=\"M12 14h.01\"/><path d=\"M12 6h.01\"/><path d=\"M16 10h.01\"/><path d=\"M16 14h.01\"/><path d=\"M16 6h.01\"/><path d=\"M8 10h.01\"/><path d=\"M8 14h.01\"/><path d=\"M8 6h.01\"/><path d=\"M9 22v-3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3\"/><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/>","umbrella":"<path d=\"M12 13v7a2 2 0 0 0 4 0\"/><path d=\"M12 2v2\"/><path d=\"M20.992 13a1 1 0 0 0 .97-1.274 10.284 10.284 0 0 0-19.923 0A1 1 0 0 0 3 13z\"/>","droplets":"<path d=\"M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z\"/><path d=\"M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97\"/>","zap":"<path d=\"M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z\"/>","flame":"<path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\"/>","shield-check":"<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"/><path d=\"m9 12 2 2 4-4\"/>","calendar":"<path d=\"M8 2v3\"/><path d=\"M16 2v3\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M3 9h18\"/>"};
+const GLYPH_KEYS = Object.keys(GLYPHS);
+const catIc = (c, cls = '') => c.i && GLYPHS[c.i]
+  ? `<span class="${cls} g" style="background:${c.c}"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${GLYPHS[c.i]}</svg></span>`
+  : `<span class="${cls}" style="background:${c.c}26">${c.e || '🏷️'}</span>`;
 const ic = (n, s = 22) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
 const LOGO = `<svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="11" width="30" height="20" rx="5" fill="#3F7A4A"/><rect x="7" y="14" width="34" height="21" rx="5" fill="#2E4E33"/><rect x="5" y="17" width="38" height="24" rx="5" fill="#141414"/><rect x="10" y="22" width="12" height="2" rx="1" fill="#8A8A8A"/><rect x="10" y="27" width="19" height="3" rx="1.5" fill="#fff"/><rect x="10" y="34" width="9" height="2" rx="1" fill="#6E6E6E"/><circle cx="33" cy="35" r="3.4" fill="#EF4B3F"/><circle cx="36.5" cy="35" r="3.4" fill="#F29C1F"/></svg>`;
 
@@ -649,7 +673,7 @@ const LOGO = `<svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"
 const fresh = () => ({
   v:2, name:'', limit:0, catLimits:{}, tx:[], debts:[], cats:[],
   accounts:[{id:'main', k:'main', type:'cash', cur:'UZS', initial:0, color:'#22C55E'}],
-  rate:0, lang:'uz', theme:'light', pin:'', lastBackup:0, hide:false, onboarded:false, installSeen:false,
+  rate:0, lang:'uz', theme:'light', catOff:[], savHome:true, pin:'', lastBackup:0, hide:false, onboarded:false, installSeen:false,
 });
 /* v1 (asl Hamyon) ma'lumotlarini v2 ga ko'chirish: start → asosiy hisob qoldig'i, har bir amalga hisob */
 function migrate(r) {
@@ -661,6 +685,8 @@ function migrate(r) {
   s.debts = (s.debts || []).map(d => ({...d, acc: d.acc && s.accounts.some(a => a.id === d.acc) ? d.acc : first, payments: d.payments || []}));
   s.cats = Array.isArray(s.cats) ? s.cats : [];
   s.catLimits = s.catLimits || {};
+  s.catOff = Array.isArray(s.catOff) ? s.catOff : [];
+  if (s.savHome === undefined) s.savHome = true;
   if (!L[s.lang]) s.lang = 'uz';
   s.v = 2;
   return s;
@@ -737,11 +763,12 @@ function short(n) {
 const initials = name => (name || '').trim().split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('') || '?';
 
 /* =================== Ma'lumot modeli =================== */
+/* O'chirilgan kategoriyalar ro'yxatdan chiqadi, lekin eski amallarda nomi va belgisi saqlanadi */
 const allCats = () => [
-  ...BASE_CATS.out.map(c => ({...c, type:'out'})), ...BASE_CATS.in.map(c => ({...c, type:'in'})),
-  ...S.cats.map(c => ({...c, custom:true})),
+  ...BASE_CATS.out.map(c => ({...c, type:'out', off: S.catOff.includes(c.id)})), ...BASE_CATS.in.map(c => ({...c, type:'in', off: S.catOff.includes(c.id)})),
+  ...S.cats.map(c => ({...c, custom:true, off: !!c.removed})),
 ];
-const catList = type => allCats().filter(c => c.type === type && !c.hidden);
+const catList = type => allCats().filter(c => c.type === type && !c.hidden && !c.off);
 const cat = id => allCats().find(c => c.id === id) || {...BASE_CATS.out.find(c => c.id === 'other'), type:'out'};
 const catName = c => c.custom ? c.name : (CAT_NAMES[c.id] || CAT_NAMES.other)[LI()];
 const acc = id => S.accounts.find(a => a.id === id) || S.accounts[0];
@@ -829,7 +856,7 @@ function txRow(t) {
   }
   const c = cat(t.cat), inc = t.type === 'in';
   return `<button class="tx" data-act="editTx" data-id="${t.id}">
-    <span class="tx-ic" style="background:${c.c}22">${c.e}</span>
+    ${catIc(c, 'tx-ic')}
     <span class="tx-main"><span class="tx-t">${esc(t.note || catName(c))}</span><span class="tx-s">${dayLabel(t.date)}, ${t.time}${multiAcc() ? ' · ' + esc(accName(a)) : ''}</span></span>
     <span class="tx-r"><span class="tx-a ${inc ? 'pos' : 'neg'}">${inc ? '+' : '−'}${amtBare(t.amount, cur)}</span><span class="tx-s">${esc(catName(c))}</span></span>
   </button>`;
@@ -897,7 +924,7 @@ function spentCard(spent, inc) {
 
 function savBlock() {
   const list = savAccs();
-  if (!list.length) return `<button class="card nag sav-nag" data-act="newSaving"><span class="sav-ic">🏦</span><span>${T('savNag')}</span>${ic('chevR', 16)}</button>`;
+  if (!list.length || !S.savHome) return '';
   const tot = savTotal();
   return `<div class="sec"><span>${T('savings')}</span><button class="link" data-act="newSaving">${T('addSaving')}</button></div>
   <div class="card sav">
@@ -986,7 +1013,7 @@ function vStats() {
   <div class="sec"><span>${T('structure')}</span></div>
   <div class="card">${rows.length ? donut(rows, out) + rows.map(([id, v]) => {
     const c = cat(id);
-    return `<div class="lg"><span class="sw" style="background:${c.c}"></span><span>${c.e} ${esc(catName(c))}</span><b>${fmt(v)}</b><small>${Math.round(v / out * 100)}%</small></div>`;
+    return `<div class="lg"><span class="sw" style="background:${c.c}"></span><span>${esc(catName(c))}</span><b>${fmt(v)}</b><small>${Math.round(v / out * 100)}%</small></div>`;
   }).join('') : empty('📊', T('noExpM'))}</div>
   ${budgetProgress(byCat, out)}
 
@@ -1076,9 +1103,21 @@ function vSettings() {
 
   <div class="group-t">${T('accounts')}</div>
   <div class="group">
-    ${S.accounts.map(a => `<button class="srow" data-act="editAcc" data-id="${a.id}"><span class="lead"><span class="acc-ic" style="background:${a.color}26">${ACC_E[a.type] || '💵'}</span>${esc(accName(a))}</span><span class="muted">${amtCur(accBal(a), a.cur)} ${ic('chevR', 16)}</span></button>`).join('')}
+    ${spendAccs().map(a => `<button class="srow" data-act="editAcc" data-id="${a.id}"><span class="lead"><span class="acc-ic" style="background:${a.color}26">${ACC_E[a.type] || '💵'}</span>${esc(accName(a))}</span><span class="muted">${amtCur(accBal(a), a.cur)} ${ic('chevR', 16)}</span></button>`).join('')}
     <button class="srow" data-act="newAcc"><span class="lead">${ic('plus', 18)} ${T('addAcc')}</span></button>
   </div>
+
+  <div class="group-t">${T('savings')}</div>
+  <div class="group">
+    ${savAccs().map(a => { const g = Number(a.goal) || 0, p = g ? Math.min(100, Math.round(accBal(a) / g * 100)) : 0;
+      return `<button class="srow" data-act="editAcc" data-id="${a.id}"><span class="lead"><span class="acc-ic" style="background:${a.color}26">${ACC_E.savings}</span>${esc(accName(a))}</span><span class="muted">${amtCur(accBal(a), a.cur)}${g ? ' · ' + p + '%' : ''} ${ic('chevR', 16)}</span></button>`; }).join('')}
+    <button class="srow" data-act="newSaving"><span class="lead">${ic('plus', 18)} ${T('addSav')}</span></button>
+    ${savAccs().length ? `<button class="srow" data-act="savHome"><span>${T('showOnHome')}</span><span class="switch ${S.savHome ? 'on' : ''}" role="switch" aria-checked="${!!S.savHome}"></span></button>` : ''}
+  </div>
+  <p class="note">${T('savSetNote')}</p>
+
+  <div class="group-t">${T('catsT')}</div>
+  <div class="group"><button class="srow" data-act="cats"><span>${T('catsT')}</span><span class="muted">${T('catsN', {n: catList('out').length + catList('in').length})} ${ic('chevR', 16)}</span></button></div>
 
   <div class="group-t">${T('currency')}</div>
   <div class="group"><button class="srow" data-act="rate"><span>${T('usdRate')}</span><span class="muted">${S.rate ? money(S.rate) : T('notSet')} ${ic('chevR', 16)}</span></button></div>
@@ -1087,7 +1126,6 @@ function vSettings() {
   <div class="group-t">${T('budget')}</div>
   <div class="group">
     <button class="srow" data-act="budget"><span>${T('limitsRow')}</span><span class="muted">${S.limit ? short(S.limit) : T('none')} ${ic('chevR', 16)}</span></button>
-    <button class="srow" data-act="cats"><span>${T('myCats')}</span><span class="muted">${T('catsSub', {n: S.cats.length})} ${ic('chevR', 16)}</span></button>
   </div>
 
   <div class="group-t">${T('security')}</div>
@@ -1230,8 +1268,8 @@ function openTx(type = 'out', pre = {}) {
       ${multiAcc() || isTr ? `<span class="plabel">${isTr ? T('from') : T('account')}</span>${accPills('tAcc', d.acc)}` : ''}
       ${isTr ? `<span class="plabel">${T('to')}</span>${accPills('tTo', d.to, d.acc)}
         ${cur !== toCur ? `<label class="field"><small>${T('receives', {c: toCur})}</small><input id="tToAmt" class="dec" inputmode="decimal" placeholder="${est}" value="${d.toAmount}" autocomplete="off"></label>` : ''}` : ''}
-      ${isTr ? '' : `<div class="cats" id="tCats">${cats.map(c => `<button data-c="${c.id}" class="${d.cat === c.id ? 'on' : ''}"><span style="background:${c.c}26">${c.e}</span><small>${esc(catName(c))}</small></button>`).join('')}
-        <button class="addc" data-addcat="1"><span>+</span><small>${T('addCat')}</small></button></div>`}
+      ${isTr ? '' : `<div class="cats" id="tCats">${cats.map(c => `<button data-c="${c.id}" class="${d.cat === c.id ? 'on' : ''}">${catIc(c)}<small>${esc(catName(c))}</small></button>`).join('')}
+        ${cats.length ? '' : `<button class="addc" data-addcat="1"><span>+</span><small>${T('addCat')}</small></button>`}</div>`}
       <div class="frow">
         <label class="field"><small>${T('date')}</small><input type="date" id="tDate" value="${d.date}"></label>
         <label class="field"><small>${T('time')}</small><input type="time" id="tTime" value="${d.time}"></label>
@@ -1310,7 +1348,7 @@ function openBudget() {
     <label class="field"><small>${T('monthlyLimit')}</small><span class="inrow suf"><input id="bAll" class="num" inputmode="numeric" value="${S.limit ? fmt(S.limit) : ''}" placeholder="${T('limitPh')}"><span>${T('sum')}</span></span></label>
     <div class="sec" style="margin-top:18px"><span>${T('byCats')}</span></div>
     <div class="group">${catList('out').map(c =>
-      `<label class="srow"><span>${c.e} ${esc(catName(c))}</span><input class="num" data-cl="${c.id}" inputmode="numeric" placeholder="—" value="${S.catLimits[c.id] ? fmt(S.catLimits[c.id]) : ''}"></label>`).join('')}</div>
+      `<label class="srow"><span class="lead">${catIc(c, 'si')}${esc(catName(c))}</span><input class="num" data-cl="${c.id}" inputmode="numeric" placeholder="—" value="${S.catLimits[c.id] ? fmt(S.catLimits[c.id]) : ''}"></label>`).join('')}</div>
     <p class="note">${T('budgetNote')}</p>
     <button class="btn" id="bSave">${T('save')}</button>`, el => {
     $('#bSave', el).onclick = () => {
@@ -1389,39 +1427,55 @@ function openRate() {
 }
 
 /* Kategoriyalar */
+let catTab = 'out';
 function openCats() {
-  const list = S.cats;
+  const list = allCats().filter(c => c.type === catTab && !c.hidden && !c.off);
+  const offBase = S.catOff.length;
   sheet(`
-    <div class="sh-h"><h2>${T('myCats')}</h2>${closeBtn()}</div>
+    <div class="sh-h"><h2>${T('catsT')}</h2>${closeBtn()}</div>
+    <div class="seg" id="cTab" style="margin-bottom:12px"><button data-v="out" class="${catTab === 'out' ? 'on' : ''}">${T('catsOut')}</button><button data-v="in" class="${catTab === 'in' ? 'on' : ''}">${T('catsIn')}</button></div>
     ${list.length ? `<div class="group">${list.map(c => {
       const n = S.tx.filter(t => t.cat === c.id).length;
-      return `<div class="srow"><span class="lead"><span class="acc-ic" style="background:${c.c}26">${c.e}</span>${esc(c.name)}</span>
-        <span class="muted">${c.type === 'in' ? T('in') : T('out')}${n ? ' · ' + T('catUsed', {n}) : ''}${n ? '' : ` <button class="btn sm ghost danger" data-rm="${c.id}">${T('del')}</button>`}</span></div>`;
-    }).join('')}</div>` : empty('🏷️', T('noCustom'))}
-    <button class="btn" id="cNew">${T('newCatT')}</button>`, el => {
+      return `<div class="srow"><span class="lead">${catIc(c, 'si')}${esc(catName(c))}</span>
+        <span class="muted">${n ? T('catUsed', {n}) : ''} <button class="round sm danger" data-rm="${c.id}" aria-label="${T('del')}">${ic('trash', 16)}</button></span></div>`;
+    }).join('')}</div>` : empty('🏷️', T('noCats'))}
+    <button class="btn" id="cNew">${T('newCatT')}</button>
+    ${offBase ? `<button class="btn ghost" id="cRestore">${T('restoreCats')}</button>` : ''}`, el => {
+    $('#cTab', el).onclick = e => { const b = e.target.closest('button'); if (!b || b.dataset.v === catTab) return; catTab = b.dataset.v; openCats(); };
     el.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => {
-      S.cats = S.cats.filter(c => c.id !== b.dataset.rm); delete S.catLimits[b.dataset.rm];
-      save(); render(); openCats(); toast(T('catDeleted'));
+      const c = cat(b.dataset.rm), n = S.tx.filter(t => t.cat === c.id).length;
+      ask(T('delCatQ', {n: esc(catName(c))}), n ? T('delCatUsed', {n}) : '', T('del'), () => {
+        if (c.custom) {
+          if (n) S.cats = S.cats.map(x => x.id === c.id ? {...x, removed: true} : x);
+          else S.cats = S.cats.filter(x => x.id !== c.id);
+        } else if (!S.catOff.includes(c.id)) S.catOff.push(c.id);
+        delete S.catLimits[c.id];
+        save(); render(); openCats(); toast(T('catDeleted'));
+      }, openCats);
     });
-    $('#cNew', el).onclick = () => openCatNew('out', () => openCats(), openCats);
+    $('#cNew', el).onclick = () => openCatNew(catTab, () => openCats(), openCats);
+    const r = $('#cRestore', el);
+    if (r) r.onclick = () => { S.catOff = []; save(); render(); openCats(); toast(T('catsRestored')); };
   });
 }
 function openCatNew(type, done, back) {
-  const c = {type, e: EMOJIS[0], c: PALETTE[(S.cats.length + 3) % PALETTE.length], name: ''};
+  const c = {type, i: GLYPH_KEYS[(S.cats.length * 7 + 17) % GLYPH_KEYS.length], c: PALETTE[(S.cats.length + 3) % PALETTE.length], name: ''};
   const draw = () => sheet(`
     <div class="sh-h"><h2>${T('newCatT')}</h2>${closeBtn()}</div>
     <div class="seg" id="ncType" style="margin-bottom:14px"><button data-v="out" class="${c.type === 'out' ? 'on' : ''}">${T('out')}</button><button data-v="in" class="${c.type === 'in' ? 'on' : ''}">${T('in')}</button></div>
     <label class="field"><small>${T('catName')}</small><input id="ncName" value="${esc(c.name)}" placeholder="${T('catNamePh')}" maxlength="24" autocomplete="off"></label>
-    <span class="plabel">${T('emoji')}</span>
-    <div class="swatches emojis" id="ncE">${EMOJIS.map(e => `<button data-e="${e}" class="${c.e === e ? 'on' : ''}">${e}</button>`).join('')}</div>
+    <span class="plabel">${T('icon')}</span>
+    <div class="glyphs" id="ncE">${GLYPH_KEYS.map(k => `<button data-e="${k}" class="${c.i === k ? 'on' : ''}" aria-label="${k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${GLYPHS[k]}</svg></button>`).join('')}</div>
     <span class="plabel">${T('color')}</span>
     <div class="swatches" id="ncC">${PALETTE.map(x => `<button data-c="${x}" class="${c.c === x ? 'on' : ''}" style="background:${x}" aria-label="${T('color')}"></button>`).join('')}</div>
     <button class="btn" id="ncSave">${T('add')}</button>
     <button class="btn ghost" id="ncBack">${T('cancel')}</button>`, el => {
     const keep = () => { c.name = $('#ncName', el).value; };
     $('#ncType', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; keep(); c.type = b.dataset.v; draw(); };
-    $('#ncE', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; c.e = b.dataset.e; el.querySelectorAll('#ncE button').forEach(x => x.classList.toggle('on', x === b)); };
-    $('#ncC', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; c.c = b.dataset.c; el.querySelectorAll('#ncC button').forEach(x => x.classList.toggle('on', x === b)); };
+    const paint = () => el.querySelectorAll('#ncE button').forEach(x => { const on = x.dataset.e === c.i; x.classList.toggle('on', on); x.style.background = on ? c.c : ''; });
+    paint();
+    $('#ncE', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; c.i = b.dataset.e; paint(); };
+    $('#ncC', el).onclick = e => { const b = e.target.closest('button'); if (!b) return; c.c = b.dataset.c; el.querySelectorAll('#ncC button').forEach(x => x.classList.toggle('on', x === b)); paint(); };
     $('#ncBack', el).onclick = () => back ? back() : closeSheet();
     setTimeout(() => $('#ncName', el)?.focus(), 320);
     $('#ncSave', el).onclick = () => {
@@ -1429,7 +1483,7 @@ function openCatNew(type, done, back) {
       const name = c.name.trim();
       if (!name) { toast(T('needName')); return; }
       if (catList(c.type).some(x => catName(x).toLowerCase() === name.toLowerCase())) { toast(T('catExists')); return; }
-      const rec = {id: 'u_' + uid(), name, e: c.e, c: c.c, type: c.type};
+      const rec = {id: 'u_' + uid(), name, i: c.i, c: c.c, type: c.type};
       S.cats.push(rec); save(); render(); toast(T('catAdded'));
       done ? done(rec.id) : closeSheet();
     };
@@ -1770,6 +1824,7 @@ const ACT = {
   },
   newAcc: () => openAcc(),
   newSaving: () => openAcc(null, {type: 'savings'}),
+  savHome: () => { S.savHome = !S.savHome; save(); render(); },
   toSaving: () => openTx('transfer', {acc: spendAccs()[0]?.id, to: savAccs()[0]?.id}),
   editAcc: b => openAcc(b.dataset.id),
   rate: () => openRate(),
@@ -1850,7 +1905,7 @@ function handleParams(p) {
     const t = {id: uid(), type, amount, cat: c.id, acc: a.id, date: today(), time: nowTime(), note, created: Date.now()};
     S.tx.push(t); save(); render();
     const w = type === 'out' ? budgetWarn(c.id, t.date) : '';
-    toast(w || `✓ ${c.e} ${amtCur(amount, a.cur)}`, {label: T('undo'), fn: () => { S.tx = S.tx.filter(x => x.id !== t.id); save(); render(); }});
+    toast(w || `✓ ${c.e || ''} ${amtCur(amount, a.cur)}`, {label: T('undo'), fn: () => { S.tx = S.tx.filter(x => x.id !== t.id); save(); render(); }});
   } else {
     if (view !== 'home') go('home');
     openTx(type, {amount, note, cat: c?.id, acc: a.id, quick: amount > 0});
