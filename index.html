@@ -273,7 +273,8 @@ p{text-wrap:pretty}
 .t-off,.t-bak{grid-column:span 3}
 .t-hide{grid-column:span 6;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .blur{display:flex;align-items:center;gap:16px;font-size:var(--stat-size);font-weight:500;letter-spacing:-.022em}
-.blur span{transition:filter .45s ease}
+.blur span{transition:filter .45s ease;white-space:nowrap}
+@media (max-width:833px){.blur{width:100%;justify-content:space-between;font-size:min(var(--stat-size),9vw)}}
 .blur.on span{filter:blur(14px)}
 .eye{width:52px;height:52px;border-radius:50%;background:var(--bg-alt);display:grid;place-items:center}
 @media (max-width:833px){.grid6{grid-template-columns:1fr}.t-lock,.t-off,.t-bak,.t-hide{grid-column:auto;grid-row:auto}.t-lock .iphone{margin:24px auto -30%}}
