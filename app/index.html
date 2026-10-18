@@ -1755,9 +1755,20 @@ const bioName = () => IOS ? 'Face ID / Touch ID' : T('bioGeneric');
 const b64u = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const unb64u = str => Uint8Array.from(atob(str.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((str.length + 3) % 4)), c => c.charCodeAt(0));
 const rnd = n => crypto.getRandomValues(new Uint8Array(n));
+/* Android: barmoq izi ilovaning native qismi orqali (HamyonAndroid.bioAvailable / bioAuth → window.hamyonBio) */
+const ABIO = ANDROID && typeof HamyonAndroid.bioAvailable === 'function';
+if (ABIO) { try { bioAvail = !!HamyonAndroid.bioAvailable(); } catch (e) {} }
+let bioWait = null;
+window.hamyonBio = ok => { const f = bioWait; bioWait = null; if (f) f(!!ok); };
+const androidBio = () => new Promise(res => { bioWait = res; try { HamyonAndroid.bioAuth(); } catch (e) { bioWait = null; res(false); } });
 if (!ANDROID && window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable && window.isSecureContext)
   PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable().then(ok => { bioAvail = ok; if (ok && view === 'settings') render(); }).catch(() => {});
 async function bioEnable() {
+  if (ABIO) {
+    if (await androidBio()) { S.bio = {android: true}; save(); render(); toast(T('bioOn', {b: bioName()})); }
+    else toast(T('bioFail', {b: bioName()}));
+    return;
+  }
   try {
     const cred = await navigator.credentials.create({publicKey: {
       challenge: rnd(32), rp: {name: 'Hamyon', id: location.hostname},
@@ -1770,6 +1781,7 @@ async function bioEnable() {
   } catch (e) { toast(T('bioFail', {b: bioName()})); }
 }
 async function bioCheck() {
+  if (ABIO) return S.bio && S.bio.android ? androidBio() : false;
   if (!S.bio || S.bio.host !== location.hostname) return false;
   try {
     const a = await navigator.credentials.get({publicKey: {
@@ -1778,7 +1790,8 @@ async function bioCheck() {
     return !!a && a.response && a.response.authenticatorData && (new Uint8Array(a.response.authenticatorData)[32] & 4) === 4;
   } catch (e) { return false; }
 }
-const bioReady = () => !ANDROID && !!window.PublicKeyCredential && window.isSecureContext && !!S.bio && S.bio.host === location.hostname;
+const bioReady = () => ABIO ? bioAvail && !!(S.bio && S.bio.android)
+  : !ANDROID && !!window.PublicKeyCredential && window.isSecureContext && !!S.bio && S.bio.host === location.hostname;
 function pinScreen({title, sub, onDone, cancellable, forgot, bio}) {
   const old = $('#lock'); if (old) old.remove();
   const el = document.createElement('div'); el.id = 'lock'; el.setAttribute('role', 'dialog'); el.tabIndex = -1;
