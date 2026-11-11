@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<script>(function(){var r=document.documentElement,t=null;try{t=localStorage.getItem('hamyon_site_theme')}catch(e){}r.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');})();</script>
+<title>Hamyon — учёт доходов, расходов и бюджета (бесплатно, без интернета)</title>
+<meta name="description" content="Hamyon — бесплатное приложение для учёта доходов, расходов, бюджета, счетов и долгов. Работает без интернета и без регистрации. Для Android и iPhone.">
+<link rel="canonical" href="https://hamyonapp.uz/ru/">
+<link rel="alternate" hreflang="uz" href="https://hamyonapp.uz/">
+<link rel="alternate" hreflang="ru" href="https://hamyonapp.uz/ru/">
+<link rel="alternate" hreflang="en" href="https://hamyonapp.uz/en/">
+<link rel="alternate" hreflang="x-default" href="https://hamyonapp.uz/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../app/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../app/icons/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hamyon">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://hamyonapp.uz/ru/">
+<meta property="og:title" content="Hamyon — приложение для личных финансов">
+<meta property="og:description" content="Доходы, расходы, бюджет и долги в одном месте. Бесплатно, работает без интернета. Для Android и iPhone.">
+<meta property="og:image" content="https://hamyonapp.uz/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Hamyon", "description": "Hamyon — бесплатное приложение для учёта доходов, расходов, бюджета, счетов и долгов. Работает без интернета и без регистрации. Для Android и iPhone.", "url": "https://hamyonapp.uz/ru/", "applicationCategory": "FinanceApplication", "operatingSystem": "Android 8.0+, iOS (Safari)", "softwareVersion": "2.4", "downloadUrl": "https://hamyonapp.uz/Hamyon-2.4.apk", "fileSize": "2.6 MB", "inLanguage": ["uz", "ru", "en"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "UZS"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Нужен ли интернет?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Приложение работает полностью офлайн и вообще не подключается к интернету."}}, {"@type": "Question", "name": "Где хранятся мои данные?", "acceptedAnswer": {"@type": "Answer", "text": "Только в памяти вашего телефона. Приложение никуда их не отправляет, поэтому время от времени делайте резервную копию."}}, {"@type": "Question", "name": "Что будет, если я сменю телефон?", "acceptedAnswer": {"@type": "Answer", "text": "Настройки → Создать резервную копию. Перенесите файл на новый телефон и откройте его через «Восстановить из копии»."}}, {"@type": "Question", "name": "Откуда берётся курс доллара?", "acceptedAnswer": {"@type": "Answer", "text": "Курс вы вводите сами, например курс вашего банка. Приложение не подключается к интернету и не обновляет курс автоматически."}}, {"@type": "Question", "name": "А если я забуду PIN-код?", "acceptedAnswer": {"@type": "Answer", "text": "Сбросить PIN можно только удалив все данные. Поэтому храните файл резервной копии, из него можно восстановиться."}}, {"@type": "Question", "name": "Можно ли открывать по Face ID или отпечатку?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Настройки → Безопасность: включите PIN, затем «Вход по Face ID / Touch ID» (iPhone) или «Вход по отпечатку пальца» (Android). Данные лица и отпечатка приложению не передаются — проверку выполняет сам телефон."}}, {"@type": "Question", "name": "Входят ли накопления в общий баланс?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. Счета типа «Накопления» хранятся отдельно. Деньги в них переводятся через «Перевод», и это не считается расходом."}}, {"@type": "Question", "name": "Есть ли версия для iPhone?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Откройте на iPhone в Safari адрес hamyonapp.uz/app и нажмите «Поделиться» → «На экран «Домой»». Приложение работает на весь экран и без интернета."}}]}</script>
+<style>
+@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url(../fonts/inter-400.woff) format("woff")}
+@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url(../fonts/inter-500.woff) format("woff")}
+@font-face{font-family:"Inter";font-weight:600;font-style:normal;font-display:swap;src:url(../fonts/inter-600.woff) format("woff")}
+/* Layout: Apple product page — 44px glass nav, centered hero over a fanned trio of true-to-scale phones,
+   sticky scroll-story phone, black compare band, alternating #fff/#f5f5f7 sections, 980px text column. */
+:root{
+  /* Color */
+  --bg:#FFFFFF; --bg-alt:#F5F5F7; --card:#FFFFFF; --ink:#1D1D1F; --ink-2:#6E6E73; --ink-3:#86868B;
+  --line:#D2D2D7; --hair:rgba(0,0,0,.08); --brand:#0E8A3E; --link:#0066CC;
+  --btn:#1D1D1F; --btn-ink:#FFFFFF; --nav:rgba(255,255,255,.8); --chip:#F0F0F2; --shadow:rgba(0,0,0,.12);
+  --band:#121214; --band-ink:#F5F5F7; --band-ink-2:#A1A1A6; --band-brand:#30D158;
+  /* Type — SF Pro on Apple devices (system), Inter as the closest open fallback elsewhere */
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","SF Pro","Inter","Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* Apple marketing type scale: size / line-height / tracking */
+  /* Type scale (reference hierarchy, fluid 390 → 1440px): H1 36→72 · H2 30→48 · H3 24→36 · lead 16→18 · body 16 · label 12→14 */
+  --hero-size:clamp(36px,calc(22.63px + 3.429vw),72px);
+  --h2-size:clamp(30px,calc(23.31px + 1.714vw),48px);
+  --h3-size:clamp(24px,calc(19.54px + 1.143vw),36px);
+  --lead-size:clamp(16px,calc(15.26px + .19vw),18px);
+  --label-size:clamp(12px,calc(11.26px + .19vw),14px);
+  --btn-size:clamp(16px,calc(15.26px + .19vw),18px);
+  --stat-size:clamp(36px,calc(31.54px + 1.143vw),48px);
+  --dim:rgba(0,0,0,.46);
+  /* Phone: iPhone 17 Pro body 71.9 × 150.0 mm */
+  --phone-ratio:2.0862;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E0E10; --bg-alt:#161618; --card:#1E1E21; --ink:#F2F2F4; --ink-2:#A1A1A6; --ink-3:#86868B;
+  --line:#3A3A3D; --hair:rgba(255,255,255,.09); --brand:#30D158; --link:#3A9BFF;
+  --btn:#F2F2F4; --btn-ink:#141416; --nav:rgba(18,18,20,.78); --chip:#1E1E21; --band:#18181B; --dim:rgba(255,255,255,.5);
+  --shadow:rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E0E10; --bg-alt:#161618; --card:#1E1E21; --ink:#F2F2F4; --ink-2:#A1A1A6; --ink-3:#86868B;
+  --line:#3A3A3D; --hair:rgba(255,255,255,.09); --brand:#30D158; --link:#3A9BFF;
+  --btn:#F2F2F4; --btn-ink:#141416; --nav:rgba(18,18,20,.78); --chip:#1E1E21; --band:#18181B; --dim:rgba(255,255,255,.5);
+  --shadow:rgba(0,0,0,.45); color-scheme:dark}
+/* Theme switch: colours ease together, not one by one */
+html.theming,html.theming *,html.theming *::before,html.theming *::after{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease!important}
+.theme-btn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--chip);color:var(--ink);flex:none}
+.theme-btn:hover{background:var(--line)}
+.theme-btn svg{width:18px;height:18px;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.theme-btn .i-sun,.theme-btn .i-moon{grid-area:1/1}
+:root[data-theme="dark"] .theme-btn .i-moon,:root:not([data-theme="dark"]) .theme-btn .i-sun{opacity:0;transform:rotate(-90deg) scale(.6)}
+
+html{scroll-behavior:smooth;scroll-padding-top:56px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sf);font-size:16px;line-height:1.6;font-weight:400;letter-spacing:0;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-optical-sizing:auto;font-feature-settings:"kern";overflow-x:hidden}
+*{box-sizing:border-box}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;letter-spacing:inherit}
+:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--btn);color:var(--btn-ink);padding:10px 16px;border-radius:10px;font-size:14px}
+.skip:focus{top:12px}
+.wrap{max-width:1024px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+.wrap.wide{max-width:1240px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;font-weight:600}
+p{text-wrap:pretty}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- Type roles ---------- */
+.t-hero{font-size:var(--hero-size);line-height:1.05;letter-spacing:-.022em;font-weight:500}
+.t-h2{font-size:var(--h2-size);line-height:1.05;letter-spacing:-.022em;font-weight:500}
+.t-h3{font-size:var(--h3-size);line-height:1.1;letter-spacing:-.022em;font-weight:500}
+.t-h4{font-size:20px;line-height:1.25;letter-spacing:-.018em;font-weight:600}
+.t-eyebrow{font-size:var(--label-size);line-height:1.5;letter-spacing:.07em;font-weight:600;text-transform:uppercase;color:var(--brand)}
+.t-lead{font-size:var(--lead-size);line-height:1.6;letter-spacing:0;font-weight:400;color:var(--ink-2)}
+.t-body{font-size:16px;line-height:1.7;letter-spacing:0}
+.t-small{font-size:14px;line-height:1.5;letter-spacing:0}
+.t-micro{font-size:13px;line-height:1.5;letter-spacing:0}
+.dim{color:var(--dim)}
+.muted{color:var(--ink-2)}
+.ink-strong{color:var(--ink)}
+
+/* ---------- Buttons & links ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:52px;padding:0 28px;border-radius:980px;background:var(--btn);color:var(--btn-ink);
+  font-size:var(--btn-size);font-weight:600;letter-spacing:-.01em;white-space:nowrap;transition:transform .2s ease,opacity .2s ease}
+.btn:hover{opacity:.86}
+.btn:active{transform:scale(.97)}
+.btn.sm{min-height:36px;padding:0 16px;font-size:14px;font-weight:600;letter-spacing:-.01em}
+.btn.brand{background:var(--brand);color:#fff}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.alt:hover{opacity:1;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.lnk{color:var(--link);font-size:var(--btn-size);font-weight:500;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:2px;min-height:44px}
+.lnk:hover{text-decoration:underline}
+.lnk svg{width:9px;height:14px;margin-top:2px}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+.nav-in{display:flex;align-items:center;gap:24px;height:52px}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;letter-spacing:-.018em;min-height:44px}
+.brand img{width:28px;height:28px;border-radius:6.5px}
+.links{display:flex;gap:28px;margin-left:auto}
+.links a{font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink-2);opacity:1;min-height:44px;display:flex;align-items:center}
+.links a:hover{color:var(--ink)}
+.lang{display:flex;background:var(--chip);border-radius:980px;padding:2px}
+.lang a{display:grid;place-items:center;font-size:12px;font-weight:600;letter-spacing:0;padding:4px 9px;border-radius:980px;color:var(--ink-2);min-width:34px}
+.lang a[aria-current="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.menu-btn{display:none;width:44px;height:44px;margin-right:-12px;place-items:center}
+.menu-btn span{display:block;width:17px;height:1px;background:var(--ink);transition:transform .3s,opacity .3s;box-shadow:0 0 0 .3px var(--ink)}
+.menu-btn span+span{margin-top:6px}
+.nav.open .menu-btn span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.nav.open .menu-btn span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+@media (max-width:833px){
+  .nav-in{gap:12px}
+  .links{display:none;position:absolute;left:0;right:0;top:52px;flex-direction:column;gap:0;background:var(--bg);
+    padding:8px max(22px,env(safe-area-inset-right,0px)) 20px max(22px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--hair);box-shadow:0 20px 40px rgba(0,0,0,.08)}
+  .nav.open .links{display:flex}
+  .links a{font-size:24px;font-weight:500;letter-spacing:-.022em;color:var(--ink);opacity:1;min-height:52px;border-bottom:1px solid var(--hair)}
+  .theme-btn{margin-left:auto}
+  .nav-cta{display:none}
+  .menu-btn{display:grid;align-content:center}
+}
+
+/* ---------- iPhone 17 Pro (true proportions, scales from --w) ----------
+   Body 71.9 × 150 mm. Display 6.27" rect (2622 × 1206 px) → 66.55 × 144.70 mm,
+   so the black border around the glass is 2.675 mm = 3.72% of body width on every side.
+   All inner sizes use cqw (1% of body width), so the whole device scales as one piece. */
+.iphone{--pw:var(--w,300px);width:var(--pw);aspect-ratio:71.9/150;container-type:inline-size;position:relative;flex:none;
+  /* the body's own sizes are computed from its width (cqw would resolve against an ancestor here) */
+  border-radius:calc(var(--pw) * .164);
+  background:linear-gradient(90deg,#A7AAAF 0%,#E4E6E9 2.2%,#F6F7F8 4%,#D9DBDE 9%,#DCDEE1 50%,#D9DBDE 91%,#F6F7F8 96%,#E4E6E9 97.8%,#A7AAAF 100%);
+  box-shadow:inset 0 0 0 calc(var(--pw) * .0025) rgba(255,255,255,.85),inset 0 0 0 calc(var(--pw) * .005) rgba(120,124,130,.35),
+    0 calc(var(--pw) * .012) calc(var(--pw) * .03) rgba(0,0,0,.12),0 calc(var(--pw) * .18) calc(var(--pw) * .34) calc(var(--pw) * -.12) rgba(0,0,0,.38)}
+.iphone::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--pw) * -.009);right:calc(var(--pw) * -.009);border-radius:calc(var(--pw) * .02);z-index:-1;
+  background:
+    linear-gradient(90deg,#9A9DA3,#D9DBDE) left 0 top 17.6%/calc(var(--pw) * .011) 4.6% no-repeat,
+    linear-gradient(90deg,#9A9DA3,#D9DBDE) left 0 top 24.8%/calc(var(--pw) * .011) 7.4% no-repeat,
+    linear-gradient(90deg,#9A9DA3,#D9DBDE) left 0 top 33.6%/calc(var(--pw) * .011) 7.4% no-repeat,
+    linear-gradient(270deg,#9A9DA3,#D9DBDE) right 0 top 26.4%/calc(var(--pw) * .011) 11.2% no-repeat,
+    linear-gradient(270deg,#6F7277,#9A9DA3) right 0 top 56%/calc(var(--pw) * .008) 6.4% no-repeat}
+.ip-glass{position:absolute;inset:1.15cqw;border-radius:15.25cqw;background:#030304;box-shadow:inset 0 0 0 .2cqw rgba(255,255,255,.07)}
+.ip-scr{position:absolute;inset:3.72cqw;border-radius:12.7cqw;overflow:hidden;clip-path:inset(0 round 12.7cqw);background:#EBEBEB;isolation:isolate;transform:translateZ(0)}
+.ip-island{position:absolute;z-index:6;left:50%;top:calc(3.72cqw + 2.6cqw);width:28.8cqw;height:8.5cqw;transform:translateX(-50%);border-radius:5cqw;background:#000;
+  background-image:radial-gradient(circle at 82% 50%,#1A2130 0 1.1cqw,#090C12 1.2cqw 2cqw,transparent 2.1cqw)}
+.lyr{position:absolute;inset:0;display:flex;flex-direction:column;background:#EBEBEB;color:#121212;transition:opacity .6s ease}
+.lyr.dark,:root[data-theme="dark"] .lyr.th{background:#0D0D0E;color:#F2F2F2}
+.ip-sb{height:14.33cqw;flex:none;display:flex;align-items:center;justify-content:space-between;padding:1.2cqw 7.6cqw 0 11.4cqw}
+.ip-time{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",sans-serif;font-size:3.95cqw;font-weight:600;letter-spacing:-.01em;line-height:1}
+.ip-icons{width:16.8cqw;height:3cqw}
+.shot{display:block;flex:1;min-height:0;background-size:100% auto;background-position:top center;background-repeat:no-repeat}
+.ip-home{position:absolute;left:50%;bottom:1.9cqw;width:32cqw;height:1.18cqw;transform:translateX(-50%);border-radius:1cqw;background:currentColor;opacity:.92;z-index:5}
+
+/* ---------- Hero ---------- */
+.hero{text-align:center;padding-top:clamp(56px,9vw,112px);overflow:hidden;background:var(--bg)}
+.hero-copy{display:flex;flex-direction:column;align-items:center}
+.appicon{width:clamp(72px,8vw,96px);height:auto;aspect-ratio:1;border-radius:22.37%;box-shadow:0 12px 32px -10px rgba(0,0,0,.35),0 0 0 .5px var(--hair)}
+.hero .t-eyebrow{margin-top:24px}
+.hero h1{margin-top:14px;max-width:14ch}
+.hero .t-lead{margin-top:20px;max-width:38ch}
+.cta-row{display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.hero .t-micro{margin-top:16px;color:var(--ink-3)}
+.fan{--w:clamp(212px,26vw,320px);position:relative;height:calc(var(--w) * var(--phone-ratio) * .74);margin-top:clamp(44px,6vw,72px);display:flex;justify-content:center}
+.fan .iphone{position:absolute;top:0;transform-origin:50% 100%}
+.fan .f-l{transform:translateX(-66%) translateY(9%) rotate(-6deg) scale(.86)}
+.fan .f-r{transform:translateX(66%) translateY(9%) rotate(6deg) scale(.86)}
+.fan .f-c{z-index:2}
+@media (max-width:600px){.fan{--w:min(68vw,280px)}.fan .f-l{transform:translateX(-52%) translateY(12%) rotate(-6deg) scale(.8)}.fan .f-r{transform:translateX(52%) translateY(12%) rotate(6deg) scale(.8)}}
+
+/* ---------- Facts ---------- */
+.facts{background:var(--bg);border-top:1px solid var(--hair);position:relative;z-index:3}
+.facts-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-block:44px}
+.fact{padding-inline:22px;border-left:1px solid var(--hair);display:flex;flex-direction:column;gap:8px}
+.fact:first-child{border-left:0;padding-left:0}
+.fact b{font-size:var(--stat-size);font-weight:500;line-height:1.05;letter-spacing:-.022em}
+.fact span{color:var(--ink-2)}
+@media (max-width:760px){.facts-in{grid-template-columns:1fr 1fr;row-gap:32px}.fact:nth-child(3){border-left:0;padding-left:0}}
+
+/* ---------- Sections ---------- */
+.sec{padding-block:clamp(88px,11vw,152px)}
+.sec.alt{background:var(--bg-alt)}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(44px,6vw,80px);max-width:820px}
+.head.center{text-align:center;align-items:center;margin-inline:auto}
+.head .t-lead{max-width:40ch}
+
+/* ---------- Story (sticky phone) ---------- */
+.story{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(40px,7vw,112px)}
+.chapter{min-height:82vh;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-block:40px;
+  /* opacity & blur follow scroll: sharp when the chapter is centred on the phone, soft on the way in and out */
+  opacity:var(--o,.2);filter:blur(var(--b,0px));will-change:opacity,filter}
+.chapter h3{max-width:16ch}
+.chapter p{max-width:40ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chips span{font-size:14px;font-weight:500;letter-spacing:0;line-height:1;background:var(--bg-alt);border-radius:980px;padding:10px 14px}
+.stick{position:sticky;top:calc(52px + (100vh - 52px - var(--w) * var(--phone-ratio)) / 2);height:fit-content;
+  --w:min(320px,26vw,calc((100vh - 52px - 64px) / var(--phone-ratio)))}
+.stick .lyr{opacity:0}
+.stick .lyr.on{opacity:1}
+.chapter .iphone{display:none}
+@media (max-width:900px){
+  .story{grid-template-columns:1fr}
+  .stick{display:none}
+  /* Mobil: imkoniyatlar gorizontal karusel (o'ngga surib o'tiladi) */
+  .chapters{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    margin:0 calc(-1 * max(22px,env(safe-area-inset-left,0px)));padding:4px max(22px,env(safe-area-inset-left,0px)) 6px;
+    scroll-padding-inline:max(22px,env(safe-area-inset-left,0px));scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chapters::-webkit-scrollbar{display:none}
+  .chapter{flex:0 0 min(84vw,380px);scroll-snap-align:start;min-height:0;opacity:1;filter:none;justify-content:flex-start;gap:10px;
+    background:var(--bg-alt);border-radius:28px;padding:28px 22px 0;overflow:hidden;position:relative}
+  .chapter .t-h3{font-size:clamp(24px,6.6vw,28px)}
+  .chapter .t-lead{font-size:15px;line-height:1.55}
+  .chapter .chips span{background:var(--card);font-size:13px;padding:8px 12px}
+  .chapter .iphone{display:block;--w:min(56vw,230px);margin:auto auto -38%;flex:none}
+  .chapter .chips{margin-bottom:24px}
+  .cdots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+  .cdots i{width:7px;height:7px;border-radius:4px;background:var(--line);transition:width .3s ease,background .3s ease}
+  .cdots i.on{width:22px;background:var(--ink)}
+}
+.cdots{display:none}
+@media (max-width:900px){.cdots{display:flex}}
+
+/* ---------- Minimalism manifesto ---------- */
+.manifesto .t-lead{margin-top:20px;max-width:40ch;margin-inline:auto}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48px);max-width:980px;margin:clamp(48px,6vw,72px) auto 0;padding-top:clamp(32px,4vw,44px);border-top:1px solid var(--line)}
+.principles b{display:block;font-size:clamp(18px,1.6vw,21px);font-weight:600;letter-spacing:-.018em;line-height:1.25}
+.principles p{color:var(--ink-2);margin-top:8px;font-size:16px;line-height:1.55}
+@media (max-width:833px){.principles{grid-template-columns:1fr}}
+
+/* ---------- Dark band / compare ---------- */
+.band{background:var(--band);color:var(--band-ink)}
+.band .t-eyebrow{color:var(--band-brand)}
+.band .t-lead{color:var(--band-ink-2)}
+.band .dim{color:rgba(255,255,255,.5)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(48px,8vw,120px);align-items:center}
+.split.rev{grid-template-columns:auto minmax(0,1fr)}
+.split .iphone{--w:clamp(240px,27vw,330px)}
+.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:36px}
+.modes div{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.modes b{font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.modes span{font-size:14px;letter-spacing:0;line-height:1.5;color:var(--band-ink-2)}
+.cmp .lyr.dark{clip-path:inset(0 0 0 var(--cut,50%) round 0 12.7cqw 12.7cqw 0)}
+.cmp .bar{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:.6cqw;margin-left:-.3cqw;background:#fff;z-index:7;pointer-events:none;box-shadow:0 0 4cqw rgba(0,0,0,.4)}
+.cmp .knob{position:absolute;top:50%;left:var(--cut,50%);width:13cqw;height:13cqw;transform:translate(-50%,-50%);border-radius:50%;background:#fff;z-index:8;pointer-events:none;
+  display:grid;place-items:center;box-shadow:0 1cqw 4cqw rgba(0,0,0,.35)}
+.cmp .knob svg{width:6.5cqw;height:6.5cqw}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:9;margin:0;touch-action:pan-y}
+.cmp-hint{margin-top:18px;text-align:center;color:var(--band-ink-2)}
+@media (max-width:900px){.split,.split.rev{grid-template-columns:1fr}.split .iphone{--w:min(72vw,300px);margin:0 auto}.split.rev .iphone{order:2}.modes{grid-template-columns:1fr}}
+
+/* ---------- Language preview ---------- */
+.seg{display:inline-flex;background:var(--bg-alt);border-radius:980px;padding:3px;margin-top:32px}
+.seg button{min-height:40px;padding:0 18px;border-radius:980px;font-size:15px;font-weight:500;color:var(--ink-2);letter-spacing:-.01em}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.langshot .lyr{opacity:0}
+.langshot .lyr.on{opacity:1}
+
+/* ---------- Privacy ---------- */
+.grid6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.tile{background:var(--card);border-radius:28px;padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.tile p{color:var(--ink-2);max-width:38ch;font-size:16px;line-height:1.6}
+.tile .big{font-size:clamp(56px,calc(44px + 3vw),88px);font-weight:500;line-height:1;letter-spacing:-.03em;color:var(--brand);margin-bottom:8px}
+.t-lock{grid-column:span 3;grid-row:span 2;align-items:flex-start}
+.t-lock .iphone{--w:clamp(170px,17vw,210px);margin:auto auto -22%;}
+.t-off,.t-bak{grid-column:span 3}
+.t-hide{grid-column:span 6;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.blur{display:flex;align-items:center;gap:16px;font-size:var(--stat-size);font-weight:500;letter-spacing:-.022em}
+.blur span{transition:filter .45s ease;white-space:nowrap}
+@media (max-width:833px){.blur{width:100%;justify-content:space-between;font-size:min(var(--stat-size),9vw)}}
+.blur.on span{filter:blur(14px)}
+.eye{width:52px;height:52px;border-radius:50%;background:var(--bg-alt);display:grid;place-items:center}
+@media (max-width:833px){.grid6{grid-template-columns:1fr}.t-lock,.t-off,.t-bak,.t-hide{grid-column:auto;grid-row:auto}.t-lock .iphone{margin:24px auto -30%}}
+
+/* ---------- Bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.mini{background:var(--bg-alt);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:8px}
+.mini .ic{width:44px;height:44px;border-radius:12px;background:var(--card);display:grid;place-items:center;margin-bottom:14px;color:var(--brand)}
+.mini h3{font-size:18px;line-height:1.3;letter-spacing:-.015em;font-weight:600}
+.mini p{font-size:16px;line-height:1.6;letter-spacing:0;color:var(--ink-2)}
+@media (max-width:900px){.bento{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.bento{grid-template-columns:1fr}}
+
+/* ---------- Install ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;counter-reset:s;list-style:none;margin:0;padding:0}
+.step{background:var(--card);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:8px}
+.step::before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:600;font-size:15px;margin-bottom:14px;letter-spacing:0}
+.step h3{font-size:18px;line-height:1.3;letter-spacing:-.015em;font-weight:600}
+.step p{font-size:16px;line-height:1.6;letter-spacing:0;color:var(--ink-2)}
+.step .btn{align-self:flex-start;margin-top:auto}
+.reqs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.reqs span{font-size:14px;font-weight:500;letter-spacing:0;color:var(--ink-2);background:var(--card);border-radius:980px;padding:8px 15px}
+@media (max-width:980px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+.inst-h{font-size:14px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);margin:0 0 16px}
+.inst-h~.inst-h{margin-top:48px}
+.steps.s3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){.steps.s3{grid-template-columns:1fr}}
+.step .btn.alt{background:transparent}
+.fileinfo{margin-top:16px;font-size:13px;line-height:1.6;color:var(--ink-2)}
+.fileinfo code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;overflow-wrap:anywhere;color:var(--ink)}
+.note{margin-top:20px;background:var(--card);border-radius:24px;padding:24px 30px;display:flex;flex-direction:column;gap:6px}
+.note h3{font-size:18px;line-height:1.3;letter-spacing:-.015em;font-weight:600}
+.note p,.note li{font-size:16px;line-height:1.6;color:var(--ink-2)}
+.note ul{margin:6px 0 0;padding-left:20px}
+.note summary{cursor:pointer;font-size:18px;font-weight:600;letter-spacing:-.015em}
+.note b{color:var(--ink);font-weight:600}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:820px;margin:0 auto;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 0;font-size:18px;line-height:1.35;letter-spacing:-.015em;font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--bg-alt);position:relative;transition:transform .3s ease}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%)}
+.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] summary i{transform:rotate(45deg)}
+.faq details p{padding:0 52px 24px 0;color:var(--ink-2);max-width:62ch;font-size:16px;line-height:1.7}
+
+/* ---------- Final + footer ---------- */
+.final{text-align:center}
+.final .hero-copy h2{margin-top:28px;max-width:16ch}
+.final .t-lead{margin-top:18px;max-width:34ch}
+footer{background:var(--bg-alt);color:var(--ink-2)}
+.foot a{color:var(--link)}.foot a:hover{text-decoration:underline}.foot nav{display:flex;gap:18px;flex-wrap:wrap}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px calc(22px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+
+/* Reveal: content is visible at rest; JS only adds a soft lift on first view */
+.rv{transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity 1s ease}
+.js .rv:not(.in){transform:translateY(24px);opacity:.5}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.js .rv:not(.in){transform:none;opacity:1}}
+.s-add{background-image:url(../img/add.webp)}.s-budget{background-image:url(../img/budget.webp)}.s-debts{background-image:url(../img/debts.webp)}.s-home{background-image:url(../img/home.webp)}.s-home_dark{background-image:url(../img/home-dark.webp)}.s-home_en{background-image:url(../img/home-en.webp)}.s-home_ru{background-image:url(../img/home-ru.webp)}.s-lock{background-image:url(../img/lock.webp)}.s-saving{background-image:url(../img/saving.webp)}.s-stats{background-image:url(../img/stats.webp)}.s-transfer{background-image:url(../img/transfer.webp)}:root[data-theme="dark"] .th .s-add{background-image:url(../img/add-dark.webp)}:root[data-theme="dark"] .th .s-budget{background-image:url(../img/budget-dark.webp)}:root[data-theme="dark"] .th .s-debts{background-image:url(../img/debts-dark.webp)}:root[data-theme="dark"] .th .s-home{background-image:url(../img/home-dark.webp)}:root[data-theme="dark"] .th .s-home_en{background-image:url(../img/home-en-dark.webp)}:root[data-theme="dark"] .th .s-home_ru{background-image:url(../img/home-ru-dark.webp)}:root[data-theme="dark"] .th .s-lock{background-image:url(../img/lock-dark.webp)}:root[data-theme="dark"] .th .s-saving{background-image:url(../img/saving-dark.webp)}:root[data-theme="dark"] .th .s-stats{background-image:url(../img/stats-dark.webp)}:root[data-theme="dark"] .th .s-transfer{background-image:url(../img/transfer-dark.webp)}</style>
+</head>
+<body>
+
+
+<a class="skip" href="#main">Перейти к содержимому</a>
+<header class="nav" id="nav">
+  <div class="wrap wide nav-in">
+    <a class="brand" href="#top" aria-label="Hamyon"><img src="../img/icon.webp" width="192" height="192" alt=""><span>Hamyon</span></a>
+    <nav class="links" id="links" aria-label="Меню">
+      <a href="#features">Возможности</a><a href="#privacy">Приватность</a><a href="#install">Установка</a><a href="#faq">Вопросы</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Rejimni almashtirish"><svg class="i-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 14.6A8.6 8.6 0 0 1 9.4 3.6a.6.6 0 0 0-.8-.7A9.6 9.6 0 1 0 21.1 15.4a.6.6 0 0 0-.7-.8z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg></button>
+    <div class="lang" role="group" aria-label="Язык"><a href="../" hreflang="uz" lang="uz">UZ</a><a href="../ru/" hreflang="ru" lang="ru" aria-current="true">RU</a><a href="../en/" hreflang="en" lang="en">EN</a></div>
+    <a class="btn sm nav-cta" href="../Hamyon-2.4.apk" download>Скачать</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-copy">
+    <img class="appicon rv" src="../img/icon.webp" width="192" height="192" alt="Значок приложения Hamyon">
+    <p class="t-eyebrow rv">Hamyon 2.4 · для Android и iPhone</p>
+    <h1 class="t-hero rv"><span class="dim">Знайте, куда</span> уходят ваши деньги.</h1>
+    <p class="t-lead rv">Доходы, расходы, бюджет, счета и долги в одном простом приложении. Работает без интернета, данные остаются только на вашем телефоне.</p>
+    <div class="cta-row rv">
+      <a class="btn" href="../Hamyon-2.4.apk" download>Скачать для Android</a>
+      <a class="btn alt" href="#iphone">Открыть на iPhone</a>
+      <a class="lnk" href="#features"><span>Как это работает</span><svg viewBox="0 0 9 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 1l6 6-6 6"/></svg></a>
+    </div>
+    <p class="t-micro rv">Android 8.0+ · iPhone (Safari) · 2,6 МБ</p>
+  </div>
+  <div class="fan" aria-hidden="true"><div class="iphone f-l"><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-debts"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div><div class="iphone f-c"><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-home"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div><div class="iphone f-r"><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-stats"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></div>
+</section>
+
+<section class="facts" aria-label="Hamyon">
+  <div class="wrap facts-in">
+    <div class="fact rv"><b class="num">2.6 MB</b><span class="t-small">размер приложения. Легче одной фотографии</span></div>
+    <div class="fact rv"><b class="num">3</b><span class="t-small">языка: узбекский, русский и английский</span></div>
+    <div class="fact rv"><b class="num">0</b><span class="t-small">рекламы, регистрации и слежки</span></div>
+    <div class="fact rv"><b class="num">100%</b><span class="t-small">данных хранится на вашем телефоне</span></div>
+  </div>
+</section>
+
+<section class="sec manifesto" id="why">
+  <div class="wrap">
+    <div class="head center rv"><p class="t-eyebrow">Философия</p><h2 class="t-h2"><span class="dim">Только нужное.</span> Ничего лишнего.</h2><p class="t-lead">Hamyon создан по принципу минимализма: без рекламы, регистрации и лишних кнопок. Меньше лишнего — точнее учёт и спокойнее решения.</p></div>
+    <div class="principles rv">
+      <div><b>Один экран — одна задача</b><p>Каждый экран делает только одно дело и делает его быстро.</p></div>
+      <div><b>Ничто не отвлекает</b><p>Ни рекламы, ни лишних украшений. Внимание только на ваших деньгах.</p></div>
+      <div><b>Только ваши данные</b><p>Аккаунт не нужен, данные не покидают телефон.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="head rv"><p class="t-eyebrow">Возможности</p><h2 class="t-h2"><span class="dim">Всё, что нужно</span> для учёта каждый день.</h2></div>
+    <div class="story">
+      <div class="chapters" id="chapters">
+        <article class="chapter" data-s="0"><p class="t-eyebrow">Быстрый ввод</p><h3 class="t-h3">Запишите трату за пару секунд.</h3><p class="t-lead">Введите сумму и нажмите на категорию. Виджет на главном экране и меню иконки позволяют начать, не открывая приложение вручную.</p><div class="chips"><span>12 готовых категорий</span><span>Свои категории</span><span>Дата, время и заметка</span></div><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-add"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></article>
+        <article class="chapter" data-s="1"><p class="t-eyebrow">Счета и валюта</p><h3 class="t-h3">Наличные, карта и доллары в одном балансе.</h3><p class="t-lead">Заведите отдельный счёт для каждого кошелька и карты, переводите деньги между ними. Долларовые счета пересчитываются в сумы по указанному вами курсу.</p><div class="chips"><span>UZS и USD</span><span>Переводы между счетами</span><span>Общий баланс</span></div><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-transfer"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></article>
+        <article class="chapter" data-s="2"><p class="t-eyebrow">Бюджет</p><h3 class="t-h3">Узнаете до того, как превысите лимит.</h3><p class="t-lead">Задайте общий месячный лимит и лимит для каждой категории. При 80% полоса становится жёлтой, при превышении красной, и приложение предупреждает.</p><div class="chips"><span>Лимиты категорий</span><span>Сколько можно в день</span><span>Предупреждения</span></div><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-budget"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></article>
+        <article class="chapter" data-s="3"><p class="t-eyebrow">Статистика</p><h3 class="t-h3">Итоги месяца с одного взгляда.</h3><p class="t-lead">Структура расходов, динамика за 6 месяцев, средний расход в день и доля сбережений. Видно, потратили вы больше или меньше, чем в прошлом месяце.</p><div class="chips"><span>Круговая диаграмма</span><span>График за 6 месяцев</span><span>Доля сбережений</span></div><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-stats"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></article>
+        <article class="chapter" data-s="4"><p class="t-eyebrow">Долги</p><h3 class="t-h3">Кто кому должен, не забудется.</h3><p class="t-lead">Записывайте, кому дали и у кого взяли, добавляйте частичные платежи. Когда срок возврата близко, напомнит значок колокольчика.</p><div class="chips"><span>Частичные платежи</span><span>Срок возврата</span><span>Влияние на баланс</span></div><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-debts"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></article>
+        <article class="chapter" data-s="5"><p class="t-eyebrow">Накопления</p><h3 class="t-h3">Накопления отдельно, цель видна.</h3><p class="t-lead">Счета накоплений не входят в общий баланс: деньги на расходы и откладываемые деньги не смешиваются. Поставьте цель и следите, сколько до неё осталось.</p><div class="chips"><span>Цель и прогресс</span><span>Отдельно от общего баланса</span><span>На главной или только в настройках</span></div><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-saving"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></article>
+      </div>
+      <div class="stick" aria-hidden="true"><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-add"></i><span class="ip-home"></span></div><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-transfer"></i><span class="ip-home"></span></div><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-budget"></i><span class="ip-home"></span></div><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-stats"></i><span class="ip-home"></span></div><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-debts"></i><span class="ip-home"></span></div><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-saving"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></div>
+      <div class="cdots" id="cdots" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band sec">
+  <div class="wrap split">
+    <div class="rv">
+      <p class="t-eyebrow">Оформление</p>
+      <h2 class="t-h2" style="margin-top:14px;max-width:13ch"><span class="dim">Днём светло.</span> Ночью не утомляет глаза.</h2>
+      <p class="t-lead" style="margin-top:20px;max-width:34ch">Приложение подстраивается под вас. Режим «Авто» сам включает тёмную тему вечером.</p>
+      <div class="modes">
+        <div><b>Светлая</b><span>Чистый светлый интерфейс</span></div>
+        <div><b>Тёмная</b><span>Удобно в темноте</span></div>
+        <div><b>Авто</b><span>Тёмная с 19:00 до 07:00</span></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="iphone cmp" id="cmp"><div class="ip-glass"></div><div class="ip-scr"><div class="lyr"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-home"></i><span class="ip-home"></span></div><div class="lyr dark"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-home_dark"></i><span class="ip-home"></span></div><span class="bar"></span><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1D1F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span><input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="Light / Dark"></div><span class="ip-island"></span></div>
+      <p class="t-small cmp-hint">Потяните, чтобы сравнить</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap split rev">
+    <div class="rv"><div class="iphone langshot"><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th" data-k="uz"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-home"></i><span class="ip-home"></span></div><div class="lyr th" data-k="ru"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-home_ru"></i><span class="ip-home"></span></div><div class="lyr th" data-k="en"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-home_en"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></div>
+    <div class="rv">
+      <p class="t-eyebrow">Языки</p>
+      <h2 class="t-h2" style="margin-top:14px;max-width:13ch"><span class="dim">На удобном</span> вам языке.</h2>
+      <p class="t-lead" style="margin-top:20px;max-width:34ch">Приложение работает на узбекском, русском и английском. Язык меняется одним нажатием, данные остаются на месте.</p>
+      <div class="seg" role="group" aria-label="Язык приложения"><button data-show="uz">O'zbek</button><button data-show="ru">Русский</button><button data-show="en">English</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="privacy">
+  <div class="wrap">
+    <div class="head center rv"><p class="t-eyebrow">Приватность</p><h2 class="t-h2"><span class="dim">Ваши данные</span> принадлежат только вам.</h2><p class="t-lead">Hamyon не просит регистрацию и не подключается ни к каким серверам.</p></div>
+    <div class="grid6">
+      <div class="tile t-lock rv"><h3 class="t-h4">PIN-код, Face ID и отпечаток</h3><p>Приложение защищено PIN-кодом. На iPhone оно открывается по Face ID или Touch ID, на Android — по отпечатку пальца.</p><div class="iphone "><div class="ip-glass"></div><div class="ip-scr"><div class="lyr th"><div class="ip-sb"><span class="ip-time">9:41</span><svg class="ip-icons" viewBox="0 0 68 12" fill="currentColor" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx=".7"/><rect x="4.5" y="6" width="3" height="6" rx=".7"/><rect x="9" y="3.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="1" width="3" height="11" rx=".7"/><path d="M30 3.2a10 10 0 0 1 7 2.9l1.2-1.2A11.7 11.7 0 0 0 30 1.5a11.7 11.7 0 0 0-8.2 3.4L23 6.1a10 10 0 0 1 7-2.9zm0 3.3a6.6 6.6 0 0 1 4.6 1.9l1.2-1.2A8.3 8.3 0 0 0 30 4.8a8.3 8.3 0 0 0-5.8 2.4l1.2 1.2A6.6 6.6 0 0 1 30 6.5zm0 3.3a3.2 3.2 0 0 1 2.2.9L30 12.9l-2.2-2.2a3.2 3.2 0 0 1 2.2-.9z"/><rect x="43.5" y=".7" width="21" height="10.6" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="45.3" y="2.5" width="15.5" height="7" rx="1.8"/><path d="M65.8 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill-opacity=".45"/></svg></div><i class="shot s-lock"></i><span class="ip-home"></span></div></div><span class="ip-island"></span></div></div>
+      <div class="tile t-off rv"><span class="big num">0</span><h3 class="t-h4">Интернет не нужен</h3><p>Приложение работает полностью офлайн. Нет серверов, рекламы и сбора данных.</p></div>
+      <div class="tile t-bak rv"><span class="big">JSON</span><h3 class="t-h4">Резервная копия</h3><p>Сохраните файл копии одним нажатием и восстановите на новом телефоне. Приложение напомнит, если копию давно не делали.</p></div>
+      <div class="tile t-hide rv">
+        <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 300px;min-width:0"><h3 class="t-h4">Скрыть баланс</h3><p>Скройте сумму одним нажатием, когда рядом люди. Нажмите на значок глаза.</p></div>
+        <div class="blur num" id="blur"><span>42 460 500</span><button class="eye" id="eye" aria-pressed="false" aria-label="Скрыть баланс"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head rv"><p class="t-eyebrow">Ещё</p><h2 class="t-h2"><span class="dim">Маленькие детали,</span> большое удобство.</h2></div>
+    <div class="bento">
+      <div class="mini rv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="18" height="8" rx="2"/></svg></span><h3>Виджет на главном экране</h3><p>Баланс и расходы за месяц всегда перед глазами. Кнопки дохода и расхода открывают нужное окно.</p></div>
+      <div class="mini rv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></span><h3>Экспорт в Excel и CSV</h3><p>Выгрузите все операции в файл для Excel, Power BI или Google Таблиц.</p></div>
+      <div class="mini rv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><h3>Категории под вас</h3><p>Добавляйте с любым из 81 значка и цветом, ненужные удаляйте полностью.</p></div>
+      <div class="mini rv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/></svg></span><h3>Отмена</h3><p>Случайно удалённую операцию можно вернуть одним нажатием.</p></div>
+      <div class="mini rv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span><h3>Быстрый поиск</h3><p>Найдите любую операцию по заметке, категории, счёту или сумме.</p></div>
+      <div class="mini rv"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><h3>Напоминание о сроке</h3><p>За 3 дня до срока возврата долга на главной появляется метка.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="install">
+  <div class="wrap wide">
+    <div class="head center rv"><p class="t-eyebrow">Установка</p><h2 class="t-h2"><span class="dim">Готово</span> за три шага.</h2></div>
+    <h3 class="inst-h" id="android">Android</h3>
+    <ol class="steps s3">
+      <li class="step rv"><h3>Скачайте APK-файл</h3><p>Hamyon-2.4.apk, размер 2,6 МБ.</p><a class="btn sm brand" href="../Hamyon-2.4.apk" download>Скачать</a></li>
+      <li class="step rv"><h3>Разрешите установку</h3><p>Если телефон спросит, включите «Установку неизвестных приложений» для браузера или файлового менеджера.</p></li>
+      <li class="step rv"><h3>Установите и откройте</h3><p>Введите имя и сколько у вас сейчас денег. Готово.</p></li>
+    </ol>
+    <p class="fileinfo">Версия 2.4 · дата файла 2026-10-18 · 2,6 МБ<br>Контрольная сумма SHA-256: <code>791d867bb62b8fc818789428d30b8c35445240c36c7e9e63140b861eab823840</code></p>
+    <div class="note rv"><h3>Переходите со старой версии?</h3><p>Сначала сделайте резервную копию в старом приложении. Удалите его, установите новое и восстановите копию.</p></div>
+    <h3 class="inst-h" id="iphone">iPhone</h3>
+    <ol class="steps s3">
+      <li class="step rv"><h3>Откройте в Safari</h3><p>На iPhone откройте в Safari адрес hamyonapp.uz/app.</p><a class="btn sm alt" href="../app/">Открыть приложение</a></li>
+      <li class="step rv"><h3>Нажмите «Поделиться»</h3><p>Нажмите кнопку «Поделиться» в Safari.</p></li>
+      <li class="step rv"><h3>Выберите «На экран «Домой»»</h3><p>Hamyon появится на главном экране, будет работать на весь экран и без интернета.</p></li>
+    </ol>
+    <div class="reqs"><span>Android 8.0+</span><span>2,6 МБ</span><span>Интернет не требуется</span></div>
+    <details class="note"><summary>Что нового</summary><ul><li><b>2.4</b> — Вход по отпечатку пальца на Android; кнопка скрытия баланса закреплена справа.</li><li><b>2.3</b> — Новые значки в стиле «стекло».</li><li><b>2.2</b> — Управление категориями, новые значки, накопления в настройках.</li><li><b>2.1</b> — Отдельные счета накоплений и окна, закрывающиеся свайпом вниз.</li></ul></details>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="head center rv"><h2 class="t-h2"><span class="dim">Частые</span> вопросы</h2></div>
+    <div class="faq" id="faqList"><details open><summary>Нужен ли интернет?<i></i></summary><p class="t-body">Нет. Приложение работает полностью офлайн и вообще не подключается к интернету.</p></details><details><summary>Где хранятся мои данные?<i></i></summary><p class="t-body">Только в памяти вашего телефона. Приложение никуда их не отправляет, поэтому время от времени делайте резервную копию.</p></details><details><summary>Что будет, если я сменю телефон?<i></i></summary><p class="t-body">Настройки → Создать резервную копию. Перенесите файл на новый телефон и откройте его через «Восстановить из копии».</p></details><details><summary>Откуда берётся курс доллара?<i></i></summary><p class="t-body">Курс вы вводите сами, например курс вашего банка. Приложение не подключается к интернету и не обновляет курс автоматически.</p></details><details><summary>А если я забуду PIN-код?<i></i></summary><p class="t-body">Сбросить PIN можно только удалив все данные. Поэтому храните файл резервной копии, из него можно восстановиться.</p></details><details><summary>Можно ли открывать по Face ID или отпечатку?<i></i></summary><p class="t-body">Да. Настройки → Безопасность: включите PIN, затем «Вход по Face ID / Touch ID» (iPhone) или «Вход по отпечатку пальца» (Android). Данные лица и отпечатка приложению не передаются — проверку выполняет сам телефон.</p></details><details><summary>Входят ли накопления в общий баланс?<i></i></summary><p class="t-body">Нет. Счета типа «Накопления» хранятся отдельно. Деньги в них переводятся через «Перевод», и это не считается расходом.</p></details><details><summary>Есть ли версия для iPhone?<i></i></summary><p class="t-body">Да. Откройте на iPhone в Safari адрес hamyonapp.uz/app и нажмите «Поделиться» → «На экран «Домой»». Приложение работает на весь экран и без интернета.</p></details></div>
+  </div>
+</section>
+
+<section class="sec alt final">
+  <div class="wrap hero-copy">
+    <img class="appicon rv" src="../img/icon.webp" width="192" height="192" alt="Значок приложения Hamyon">
+    <h2 class="t-h2 rv"><span class="dim">Возьмите финансы под контроль</span> уже сегодня.</h2>
+    <p class="t-lead rv">Скачайте, запишите первый расход и в конце месяца точно знайте, куда ушли деньги.</p>
+    <div class="cta-row rv"><a class="btn" href="../Hamyon-2.4.apk" download>Скачать для Android</a><a class="btn alt" href="#iphone">Открыть на iPhone</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap wide"><div class="foot t-micro"><span>Hamyon · Контроль личных финансов</span><nav aria-label="Дополнительные ссылки"><a href="../ru/privacy.html">Политика конфиденциальности</a><a href="https://github.com/asliddinsoliddinovwork-cloud/hamyon" rel="noopener">GitHub</a></nav><span>© 2026 Hamyon</span></div></div></footer>
+
+<script>
+(() => {
+document.documentElement.classList.add('js');
+const lang = document.documentElement.lang;
+
+/* Mobile menu */
+const nav = document.getElementById('nav'), mb = document.getElementById('menuBtn');
+mb.onclick = () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', o); };
+document.querySelectorAll('#links a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); }));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); mb.setAttribute('aria-expanded', false); mb.focus(); } });
+
+/* Language preview */
+function showLang(l) {
+  document.querySelectorAll('.langshot .lyr').forEach(x => x.classList.toggle('on', x.dataset.k === l));
+  document.querySelectorAll('[data-show]').forEach(b => b.setAttribute('aria-pressed', b.dataset.show === l));
+}
+document.querySelectorAll('[data-show]').forEach(b => b.onclick = () => showLang(b.dataset.show));
+
+/* Scroll story */
+const chapters = [...document.querySelectorAll('.chapter')];
+const layers = [...document.querySelectorAll('.stick .lyr')];
+let cur = -1;
+const setStory = i => { if (i === cur) return; cur = i; layers.forEach((x, k) => x.classList.toggle('on', k === i)); };
+setStory(0);
+const stick = document.querySelector('.stick');
+const calm = matchMedia('(prefers-reduced-motion: reduce)');
+let ticking = false;
+function storyFrame() {
+  ticking = false;
+  if (getComputedStyle(stick).display === 'none') { chapters.forEach(c => { c.style.removeProperty('--o'); c.style.removeProperty('--b'); }); return; }
+  const sr = stick.getBoundingClientRect();
+  const focus = sr.height ? sr.top + sr.height / 2 : innerHeight / 2;   // centre of the phone
+  const range = innerHeight * .5;                                       // distance over which text fades out
+  let best = 0, bestD = Infinity;
+  chapters.forEach((c, k) => {
+    const r = c.getBoundingClientRect();
+    const d = Math.abs(r.top + r.height / 2 - focus);
+    if (d < bestD) { bestD = d; best = k; }
+    const t = Math.min(1, d / range);                // 0 at centre → 1 far away
+    const e = t * t * (3 - 2 * t);                   // smoothstep easing
+    c.style.setProperty('--o', (1 - .82 * e).toFixed(3));
+    c.style.setProperty('--b', calm.matches ? '0px' : (e * 3).toFixed(2) + 'px');
+  });
+  setStory(best);
+}
+const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(storyFrame); } };
+addEventListener('scroll', onScroll, {passive: true});
+addEventListener('resize', onScroll);
+storyFrame();
+if ('IntersectionObserver' in window) {
+  const rv = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } }), {rootMargin: '0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); else rv.observe(el); });
+} else document.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+
+/* Light / dark compare */
+const cmp = document.getElementById('cmp'), range = document.getElementById('cmpRange');
+const setCut = v => cmp.style.setProperty('--cut', v + '%');
+range.addEventListener('input', () => setCut(range.value)); setCut(50);
+
+/* Hide balance demo */
+const blur = document.getElementById('blur'), eye = document.getElementById('eye');
+eye.onclick = () => { const on = blur.classList.toggle('on'); eye.setAttribute('aria-pressed', on); };
+
+showLang(lang);
+})();
+
+/* Theme: light / dark only. First visit follows the device, a tap is remembered. */
+(() => {
+  const root = document.documentElement, btn = document.getElementById('themeBtn');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const label = { uz: ['Tungi rejim', 'Kunduzgi rejim'], ru: ['Тёмная тема', 'Светлая тема'], en: ['Dark mode', 'Light mode'] };
+  const sync = () => {
+    const dark = root.dataset.theme === 'dark';
+    if (meta) meta.content = dark ? '#0E0E10' : '#FFFFFF';
+    const l = label[root.lang] || label.uz;
+    btn.setAttribute('aria-label', dark ? l[1] : l[0]); btn.title = dark ? l[1] : l[0];
+  };
+  if (!root.dataset.theme) root.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  sync();
+  btn.addEventListener('click', () => {
+    root.classList.add('theming');
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('hamyon_site_theme', root.dataset.theme); } catch (e) {}
+    sync(); setTimeout(() => root.classList.remove('theming'), 400);
+  });
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['lang'] });
+})();
+
+/* Mobil karusel: nuqtalar joriy kartani ko'rsatadi, bosilsa o'sha kartaga o'tadi */
+(() => {
+  const track = document.getElementById('chapters'), dots = document.getElementById('cdots');
+  if (!track || !dots) return;
+  const cards = [...track.querySelectorAll('.chapter')];
+  dots.innerHTML = cards.map(() => '<i></i>').join('');
+  const ds = [...dots.children];
+  const sync = () => {
+    const x = track.scrollLeft, w = cards[0].offsetWidth + 14;
+    const k = Math.max(0, Math.min(cards.length - 1, Math.round(x / w)));
+    ds.forEach((d, j) => d.classList.toggle('on', j === k));
+  };
+  track.addEventListener('scroll', () => requestAnimationFrame(sync), {passive: true});
+  ds.forEach((d, j) => d.addEventListener('click', () => track.scrollTo({left: cards[j].offsetLeft - cards[0].offsetLeft, behavior: 'smooth'})));
+  sync();
+})();
+</script>
+
+</body>
+</html>
