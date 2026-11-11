@@ -1,0 +1,743 @@
+{
+ "uz": {
+  "skip": "Asosiy qismga o'tish",
+  "navFeatures": "Imkoniyatlar",
+  "navPrivacy": "Maxfiylik",
+  "navInstall": "O'rnatish",
+  "navFaq": "Savollar",
+  "download": "Yuklab olish",
+  "heroEyebrow": "Hamyon 2.4 · Android va iPhone uchun",
+  "heroTitle": "Pulingiz qayerga| ketayotganini biling.",
+  "heroLead": "Kirim, chiqim, budjet, hisoblar va qarzlar bitta sodda ilovada. Internetsiz ishlaydi, ma'lumotlaringiz faqat telefoningizda qoladi.",
+  "howItWorks": "Qanday ishlaydi",
+  "heroMeta": "Android 8.0+ · iPhone (Safari) · 2.6 MB",
+  "dlAndroid": "Android uchun yuklab olish",
+  "openIphone": "iPhone'da ochish",
+  "f1": "ilova hajmi. Bitta suratdan ham yengil",
+  "f2": "til: o'zbek, rus va ingliz",
+  "f3": "reklama, ro'yxatdan o'tish va kuzatuv",
+  "f4": "ma'lumot telefoningizda saqlanadi",
+  "featEyebrow": "Imkoniyatlar",
+  "featTitle": "Har kungi hisob-kitob uchun| kerak bo'lgan hammasi.",
+  "c1e": "Tez kiritish",
+  "c1h": "Xarajatni bir necha soniyada yozing.",
+  "c1p": "Summani kiriting va kategoriyani bosing. Bosh ekrandagi widget yoki ikonka menyusi orqali ilovani qidirib o'tirmasdan boshlaysiz.",
+  "c1c": [
+   "12 ta tayyor kategoriya",
+   "O'z kategoriyalaringiz",
+   "Sana, vaqt va izoh"
+  ],
+  "c2e": "Hisoblar va valyuta",
+  "c2h": "Naqd, karta va dollar bitta balansda.",
+  "c2p": "Har bir hamyon va karta uchun alohida hisob oching, ular orasida pul o'tkazing. Dollar hisoblar siz kiritgan kurs bo'yicha so'mga aylantiriladi.",
+  "c2c": [
+   "UZS va USD",
+   "Hisoblararo o'tkazma",
+   "Umumiy balans"
+  ],
+  "c3e": "Budjet",
+  "c3h": "Limitdan oshishdan oldin bilasiz.",
+  "c3p": "Oylik umumiy limit va har bir kategoriya uchun alohida limit qo'ying. 80% da chiziq sariq, limitdan oshganda qizil bo'ladi va ilova ogohlantiradi.",
+  "c3c": [
+   "Kategoriya limitlari",
+   "Kuniga qancha qoldi",
+   "Ogohlantirishlar"
+  ],
+  "c4e": "Statistika",
+  "c4h": "Oy yakunini bir qarashda ko'ring.",
+  "c4p": "Xarajatlar tarkibi, so'nggi 6 oy dinamikasi, o'rtacha kunlik xarajat va jamg'arma ulushi. O'tgan oyga nisbatan ko'p yoki kam sarflaganingiz ham ko'rinadi.",
+  "c4c": [
+   "Doira diagramma",
+   "6 oylik grafik",
+   "Jamg'arma ulushi"
+  ],
+  "c5e": "Qarzlar",
+  "c5h": "Kim kimga qarzdor, unutilmaydi.",
+  "c5p": "Bergan va olgan qarzlaringizni yozing, qisman to'lovlarni qo'shing. Qaytarish muddati yaqinlashganda qo'ng'iroqcha belgisi eslatadi.",
+  "c5c": [
+   "Qisman to'lovlar",
+   "Qaytarish muddati",
+   "Balansga ta'siri"
+  ],
+  "minEyebrow": "Falsafa",
+  "minTitle": "Faqat kerakli narsa.| Ortiqchasi yo'q.",
+  "minLead": "Hamyon minimalizm tamoyili asosida yaratilgan: reklama, ro'yxatdan o'tish va keraksiz tugmalar yo'q. Kamroq narsa — aniqroq hisob va xotirjam qaror.",
+  "p1h": "Bitta ekran — bitta vazifa",
+  "p1p": "Har bir ekran faqat bitta ishni qiladi va uni tez qiladi.",
+  "p2h": "Hech narsa chalg'itmaydi",
+  "p2p": "Reklama ham, keraksiz bezaklar ham yo'q. Diqqat faqat pulingizda.",
+  "p3h": "Faqat sizning ma'lumotingiz",
+  "p3p": "Hisob ochish shart emas, ma'lumot telefoningizdan chiqmaydi.",
+  "c6e": "Jamg'arma",
+  "c6h": "Jamg'arma alohida, maqsad aniq.",
+  "c6p": "Jamg'arma hisoblari umumiy balansga qo'shilmaydi: sarflanadigan pul va yig'ilayotgan pul aralashmaydi. Maqsad qo'ying va unga qancha qolganini ko'rib boring.",
+  "c6c": [
+   "Maqsad va foiz",
+   "Umumiy balansdan alohida",
+   "Bosh ekranda yoki faqat sozlamalarda"
+  ],
+  "darkEyebrow": "Ko'rinish",
+  "darkTitle": "Kunduzi yorug'.| Kechasi ko'zni charchatmaydi.",
+  "darkLead": "Ilova ekraningizga moslashadi. Avto rejim kechqurun tungi ko'rinishni o'zi yoqadi.",
+  "mLight": "Kunduzgi",
+  "mLightS": "Toza, yorug' interfeys",
+  "mDark": "Tungi",
+  "mDarkS": "Qorong'ida qulay",
+  "mAuto": "Avto",
+  "mAutoS": "19:00 dan 07:00 gacha tungi",
+  "dragHint": "Solishtirish uchun suring",
+  "langEyebrow": "Tillar",
+  "langTitle": "O'zingizga| qulay tilda.",
+  "langLead": "Ilova o'zbek, rus va ingliz tillarida ishlaydi. Til bir bosishda almashadi, ma'lumotlaringiz joyida qoladi.",
+  "privEyebrow": "Maxfiylik",
+  "privTitle": "Ma'lumotlaringiz| faqat sizniki.",
+  "privLead": "Hamyon hisob ochishni so'ramaydi va hech qanday serverga ulanmaydi.",
+  "pinH": "PIN-kod, Face ID va barmoq izi",
+  "pinP": "Ilova PIN-kod bilan qulflanadi. iPhone'da Face ID yoki Touch ID, Android'da barmoq izi bilan bir teginishda ochiladi.",
+  "offH": "Internet kerak emas",
+  "offP": "Ilova to'liq oflayn ishlaydi. Server ham, reklama ham, ma'lumot yig'ish ham yo'q.",
+  "bakH": "Zaxira nusxa",
+  "bakP": "Bir bosishda zaxira fayl saqlang va yangi telefonda tiklang. Ilova uzoq vaqt zaxira olinmasa eslatadi.",
+  "hideH": "Balansni yashirish",
+  "hideP": "Odamlar orasida summani bir bosishda yashiring. Ko'z belgisini bosib ko'ring.",
+  "moreEyebrow": "Yana",
+  "moreTitle": "Kichik detallar,| katta qulaylik.",
+  "b1h": "Bosh ekran widgeti",
+  "b1p": "Balans va oylik xarajat doim ko'z oldingizda. Kirim yoki chiqim tugmasi ilovani kerakli oyna bilan ochadi.",
+  "b2h": "Excel va CSV eksport",
+  "b2p": "Barcha amallarni Excel, Power BI yoki Google Sheets uchun bitta faylga chiqaring.",
+  "b3h": "Kategoriyalar sizning qo'lingizda",
+  "b3p": "81 ta belgi va rang bilan qo'shing, keraksizini butunlay o'chiring.",
+  "b4h": "Bekor qilish",
+  "b4p": "Adashib o'chirilgan amalni bir bosishda qaytarasiz.",
+  "b5h": "Tezkor qidiruv",
+  "b5p": "Izoh, kategoriya, hisob yoki summa bo'yicha istalgan amalni toping.",
+  "b6h": "Muddat eslatmasi",
+  "b6p": "Qarz qaytarish muddatiga 3 kun qolganda bosh sahifada belgi chiqadi.",
+  "instEyebrow": "O'rnatish",
+  "instTitle": "Uch qadamda| tayyor.",
+  "s1h": "APK faylni yuklab oling",
+  "s1p": "Hamyon-2.4.apk, hajmi 2.6 MB.",
+  "s2h": "O'rnatishga ruxsat bering",
+  "s2p": "Telefon so'rasa, brauzer yoki fayl menejeri uchun «Noma'lum ilovalarni o'rnatish»ni yoqing.",
+  "s3h": "O'rnating va oching",
+  "s3p": "Ismingizni va hozir qancha pulingiz borligini kiriting. Shu bilan tayyor.",
+  "s4h": "Eski versiyadan o'tyapsizmi?",
+  "s4p": "Avval eski ilovada zaxira nusxa oling. Uni o'chirib, yangisini o'rnating va zaxiradan tiklang.",
+  "r1": "Android 8.0+",
+  "r2": "2.6 MB",
+  "r3": "Internet talab qilinmaydi",
+  "faqTitle": "Ko'p so'raladigan| savollar",
+  "faq": [
+   [
+    "Internet kerakmi?",
+    "Yo'q. Ilova to'liq oflayn ishlaydi va internetga umuman ulanmaydi."
+   ],
+   [
+    "Ma'lumotlarim qayerda saqlanadi?",
+    "Faqat telefoningiz xotirasida. Ilova ularni hech qayerga yubormaydi, shuning uchun vaqti-vaqti bilan zaxira nusxa olib qo'ying."
+   ],
+   [
+    "Telefonimni almashtirsam nima bo'ladi?",
+    "Sozlamalar → Zaxira nusxa olish. Faylni yangi telefonga o'tkazing va «Zaxiradan tiklash» orqali oching."
+   ],
+   [
+    "Dollar kursi qayerdan olinadi?",
+    "Kursni o'zingiz kiritasiz, masalan bankingiz kursini. Ilova internetga ulanmagani uchun kursni o'zi yangilamaydi."
+   ],
+   [
+    "PIN-kodni unutsam-chi?",
+    "PIN-kodni tiklashning yagona yo'li barcha ma'lumotlarni o'chirish. Shuning uchun zaxira faylni saqlab qo'ying, keyin undan tiklaysiz."
+   ],
+   [
+    "Face ID yoki barmoq izi bilan ochsa bo'ladimi?",
+    "Ha. Sozlamalar → Xavfsizlik: PIN-kodni yoqing, keyin «Face ID / Touch ID bilan ochish» (iPhone) yoki «Barmoq izi bilan ochish» (Android). Yuz va barmoq izi ma'lumoti ilovaga berilmaydi, tekshiruvni telefonning o'zi qiladi."
+   ],
+   [
+    "Jamg'arma umumiy balansga qo'shiladimi?",
+    "Yo'q. Turi «Jamg'arma» bo'lgan hisoblar alohida turadi. Pulni ularga «O'tkazma» orqali o'tkazasiz, bu xarajat sifatida hisoblanmaydi."
+   ],
+   [
+    "iPhone uchun bormi?",
+    "Ha. iPhone'da Safari orqali hamyonapp.uz/app manzilini oching va «Ulashish» → «Bosh ekranga qo'shish» ni bosing. Ilova to'liq ekranda va internetsiz ishlaydi."
+   ]
+  ],
+  "finalTitle": "Bugundan| hisobni qo'lga oling.",
+  "finalLead": "Yuklab oling, birinchi xarajatni yozing va oy oxirida pulingiz qayerga ketganini aniq biling.",
+  "footL": "Hamyon · Shaxsiy moliya nazorati",
+  "title": "Hamyon — kirim-chiqim va budjet ilovasi (bepul, internetsiz)",
+  "desc": "Hamyon — kirim, chiqim, budjet, hisoblar va qarzlarni yuritish uchun bepul ilova. Internetsiz ishlaydi, ro'yxatdan o'tish shart emas. Android va iPhone uchun.",
+  "ogTitle": "Hamyon — shaxsiy moliya ilovasi",
+  "ogDesc": "Kirim, chiqim, budjet va qarzlar bir joyda. Bepul, internetsiz ishlaydi. Android va iPhone uchun.",
+  "aMenu": "Menyu",
+  "aLang": "Til",
+  "aLangPreview": "Ilova tilini ko'rish",
+  "aHide": "Balansni yashirish",
+  "aIcon": "Hamyon ilovasi belgisi",
+  "aFoot": "Qo'shimcha havolalar",
+  "i1h": "Safari'da oching",
+  "i1p": "iPhone'da hamyonapp.uz/app manzilini Safari brauzerida oching.",
+  "openApp": "Ilovani ochish",
+  "i2h": "«Ulashish»ni bosing",
+  "i2p": "Safari'dagi «Ulashish» tugmasini bosing.",
+  "i3h": "«Bosh ekranga qo'shish»ni tanlang",
+  "i3p": "Hamyon bosh ekranda paydo bo'ladi, to'liq ekranda va internetsiz ishlaydi.",
+  "fileVersion": "Versiya",
+  "fileDate": "fayl sanasi",
+  "fileSha": "SHA-256 nazorat summasi",
+  "newsTitle": "Nima yangi",
+  "news": [
+   [
+    "2.4",
+    "Android'da barmoq izi bilan ochish; balansni yashirish tugmasi o'ngda qotirildi."
+   ],
+   [
+    "2.3",
+    "Shisha (glass) uslubidagi yangi belgilar."
+   ],
+   [
+    "2.2",
+    "Kategoriyalarni boshqarish, yangi belgilar, jamg'arma sozlamalarda."
+   ],
+   [
+    "2.1",
+    "Alohida jamg'arma hisoblari va pastga tortib yopiladigan oynalar."
+   ]
+  ],
+  "footPrivacy": "Maxfiylik siyosati",
+  "footSource": "GitHub",
+  "footTelegram": "Telegram",
+  "footEmail": "Email",
+  "backHome": "Bosh sahifa",
+  "nfTitle": "Sahifa topilmadi",
+  "nfLead": "Bu manzilda sahifa yo'q. Bosh sahifaga qayting.",
+  "ppTitle": "Maxfiylik siyosati",
+  "ppUpdated": "Oxirgi yangilanish",
+  "pp": [
+   [
+    "Qisqacha",
+    "Hamyon hisob ochishni so'ramaydi, reklama va analitika ishlatmaydi. Ilovaga kiritgan moliyaviy ma'lumotlaringiz faqat o'z qurilmangizda saqlanadi."
+   ],
+   [
+    "Ilova qanday ma'lumot saqlaydi",
+    "Ismingiz, hisoblar, kirim-chiqim amallari, budjet, qarzlar va sozlamalar. Bularning barchasi faqat telefoningiz xotirasida turadi va ishlab chiquvchiga yoki uchinchi tomonga yuborilmaydi."
+   ],
+   [
+    "Internet",
+    "Android ilovasi internetsiz ishlaydi. iPhone veb-ilovasining fayllari hamyonapp.uz saytidan yuklanadi va yangi versiya bor-yo'qligi shu saytdan tekshiriladi; bunda ilovaga kiritgan ma'lumotlaringiz yuborilmaydi."
+   ],
+   [
+    "Zaxira nusxa",
+    "Zaxira fayl siz tanlagan joyga saqlanadi. Uni qayerda saqlash va kimga yuborishni faqat o'zingiz hal qilasiz."
+   ],
+   [
+    "PIN-kod va biometrika",
+    "Face ID, Touch ID yoki barmoq izi tekshiruvini telefonning o'zi bajaradi. Yuz va barmoq izi ma'lumoti ilovaga berilmaydi."
+   ],
+   [
+    "Sayt",
+    "hamyonapp.uz sayti GitHub Pages xizmatida joylashgan. Sayt cookie, analitika va reklama ishlatmaydi; brauzeringizda faqat tanlagan rejimingiz (kunduzgi yoki tungi) saqlanadi. GitHub xosting provayderi sifatida texnik jurnallarda tashrif buyuruvchining IP manzilini qayd etishi mumkin."
+   ],
+   [
+    "Ma'lumotni o'chirish",
+    "Ilovani o'chirsangiz yoki iPhone'da sayt ma'lumotlarini tozalasangiz, barcha yozuvlar o'chadi. Shuning uchun avval zaxira nusxa oling."
+   ]
+  ],
+  "ppContactH": "Aloqa",
+  "ppContactP": "Savol, xato yoki taklif bo'lsa, yozing:"
+ },
+ "ru": {
+  "skip": "Перейти к содержимому",
+  "navFeatures": "Возможности",
+  "navPrivacy": "Приватность",
+  "navInstall": "Установка",
+  "navFaq": "Вопросы",
+  "download": "Скачать",
+  "heroEyebrow": "Hamyon 2.4 · для Android и iPhone",
+  "heroTitle": "Знайте, куда| уходят ваши деньги.",
+  "heroLead": "Доходы, расходы, бюджет, счета и долги в одном простом приложении. Работает без интернета, данные остаются только на вашем телефоне.",
+  "howItWorks": "Как это работает",
+  "heroMeta": "Android 8.0+ · iPhone (Safari) · 2,6 МБ",
+  "dlAndroid": "Скачать для Android",
+  "openIphone": "Открыть на iPhone",
+  "f1": "размер приложения. Легче одной фотографии",
+  "f2": "языка: узбекский, русский и английский",
+  "f3": "рекламы, регистрации и слежки",
+  "f4": "данных хранится на вашем телефоне",
+  "featEyebrow": "Возможности",
+  "featTitle": "Всё, что нужно| для учёта каждый день.",
+  "c1e": "Быстрый ввод",
+  "c1h": "Запишите трату за пару секунд.",
+  "c1p": "Введите сумму и нажмите на категорию. Виджет на главном экране и меню иконки позволяют начать, не открывая приложение вручную.",
+  "c1c": [
+   "12 готовых категорий",
+   "Свои категории",
+   "Дата, время и заметка"
+  ],
+  "c2e": "Счета и валюта",
+  "c2h": "Наличные, карта и доллары в одном балансе.",
+  "c2p": "Заведите отдельный счёт для каждого кошелька и карты, переводите деньги между ними. Долларовые счета пересчитываются в сумы по указанному вами курсу.",
+  "c2c": [
+   "UZS и USD",
+   "Переводы между счетами",
+   "Общий баланс"
+  ],
+  "c3e": "Бюджет",
+  "c3h": "Узнаете до того, как превысите лимит.",
+  "c3p": "Задайте общий месячный лимит и лимит для каждой категории. При 80% полоса становится жёлтой, при превышении красной, и приложение предупреждает.",
+  "c3c": [
+   "Лимиты категорий",
+   "Сколько можно в день",
+   "Предупреждения"
+  ],
+  "c4e": "Статистика",
+  "c4h": "Итоги месяца с одного взгляда.",
+  "c4p": "Структура расходов, динамика за 6 месяцев, средний расход в день и доля сбережений. Видно, потратили вы больше или меньше, чем в прошлом месяце.",
+  "c4c": [
+   "Круговая диаграмма",
+   "График за 6 месяцев",
+   "Доля сбережений"
+  ],
+  "c5e": "Долги",
+  "c5h": "Кто кому должен, не забудется.",
+  "c5p": "Записывайте, кому дали и у кого взяли, добавляйте частичные платежи. Когда срок возврата близко, напомнит значок колокольчика.",
+  "c5c": [
+   "Частичные платежи",
+   "Срок возврата",
+   "Влияние на баланс"
+  ],
+  "minEyebrow": "Философия",
+  "minTitle": "Только нужное.| Ничего лишнего.",
+  "minLead": "Hamyon создан по принципу минимализма: без рекламы, регистрации и лишних кнопок. Меньше лишнего — точнее учёт и спокойнее решения.",
+  "p1h": "Один экран — одна задача",
+  "p1p": "Каждый экран делает только одно дело и делает его быстро.",
+  "p2h": "Ничто не отвлекает",
+  "p2p": "Ни рекламы, ни лишних украшений. Внимание только на ваших деньгах.",
+  "p3h": "Только ваши данные",
+  "p3p": "Аккаунт не нужен, данные не покидают телефон.",
+  "c6e": "Накопления",
+  "c6h": "Накопления отдельно, цель видна.",
+  "c6p": "Счета накоплений не входят в общий баланс: деньги на расходы и откладываемые деньги не смешиваются. Поставьте цель и следите, сколько до неё осталось.",
+  "c6c": [
+   "Цель и прогресс",
+   "Отдельно от общего баланса",
+   "На главной или только в настройках"
+  ],
+  "darkEyebrow": "Оформление",
+  "darkTitle": "Днём светло.| Ночью не утомляет глаза.",
+  "darkLead": "Приложение подстраивается под вас. Режим «Авто» сам включает тёмную тему вечером.",
+  "mLight": "Светлая",
+  "mLightS": "Чистый светлый интерфейс",
+  "mDark": "Тёмная",
+  "mDarkS": "Удобно в темноте",
+  "mAuto": "Авто",
+  "mAutoS": "Тёмная с 19:00 до 07:00",
+  "dragHint": "Потяните, чтобы сравнить",
+  "langEyebrow": "Языки",
+  "langTitle": "На удобном| вам языке.",
+  "langLead": "Приложение работает на узбекском, русском и английском. Язык меняется одним нажатием, данные остаются на месте.",
+  "privEyebrow": "Приватность",
+  "privTitle": "Ваши данные| принадлежат только вам.",
+  "privLead": "Hamyon не просит регистрацию и не подключается ни к каким серверам.",
+  "pinH": "PIN-код, Face ID и отпечаток",
+  "pinP": "Приложение защищено PIN-кодом. На iPhone оно открывается по Face ID или Touch ID, на Android — по отпечатку пальца.",
+  "offH": "Интернет не нужен",
+  "offP": "Приложение работает полностью офлайн. Нет серверов, рекламы и сбора данных.",
+  "bakH": "Резервная копия",
+  "bakP": "Сохраните файл копии одним нажатием и восстановите на новом телефоне. Приложение напомнит, если копию давно не делали.",
+  "hideH": "Скрыть баланс",
+  "hideP": "Скройте сумму одним нажатием, когда рядом люди. Нажмите на значок глаза.",
+  "moreEyebrow": "Ещё",
+  "moreTitle": "Маленькие детали,| большое удобство.",
+  "b1h": "Виджет на главном экране",
+  "b1p": "Баланс и расходы за месяц всегда перед глазами. Кнопки дохода и расхода открывают нужное окно.",
+  "b2h": "Экспорт в Excel и CSV",
+  "b2p": "Выгрузите все операции в файл для Excel, Power BI или Google Таблиц.",
+  "b3h": "Категории под вас",
+  "b3p": "Добавляйте с любым из 81 значка и цветом, ненужные удаляйте полностью.",
+  "b4h": "Отмена",
+  "b4p": "Случайно удалённую операцию можно вернуть одним нажатием.",
+  "b5h": "Быстрый поиск",
+  "b5p": "Найдите любую операцию по заметке, категории, счёту или сумме.",
+  "b6h": "Напоминание о сроке",
+  "b6p": "За 3 дня до срока возврата долга на главной появляется метка.",
+  "instEyebrow": "Установка",
+  "instTitle": "Готово| за три шага.",
+  "s1h": "Скачайте APK-файл",
+  "s1p": "Hamyon-2.4.apk, размер 2,6 МБ.",
+  "s2h": "Разрешите установку",
+  "s2p": "Если телефон спросит, включите «Установку неизвестных приложений» для браузера или файлового менеджера.",
+  "s3h": "Установите и откройте",
+  "s3p": "Введите имя и сколько у вас сейчас денег. Готово.",
+  "s4h": "Переходите со старой версии?",
+  "s4p": "Сначала сделайте резервную копию в старом приложении. Удалите его, установите новое и восстановите копию.",
+  "r1": "Android 8.0+",
+  "r2": "2,6 МБ",
+  "r3": "Интернет не требуется",
+  "faqTitle": "Частые| вопросы",
+  "faq": [
+   [
+    "Нужен ли интернет?",
+    "Нет. Приложение работает полностью офлайн и вообще не подключается к интернету."
+   ],
+   [
+    "Где хранятся мои данные?",
+    "Только в памяти вашего телефона. Приложение никуда их не отправляет, поэтому время от времени делайте резервную копию."
+   ],
+   [
+    "Что будет, если я сменю телефон?",
+    "Настройки → Создать резервную копию. Перенесите файл на новый телефон и откройте его через «Восстановить из копии»."
+   ],
+   [
+    "Откуда берётся курс доллара?",
+    "Курс вы вводите сами, например курс вашего банка. Приложение не подключается к интернету и не обновляет курс автоматически."
+   ],
+   [
+    "А если я забуду PIN-код?",
+    "Сбросить PIN можно только удалив все данные. Поэтому храните файл резервной копии, из него можно восстановиться."
+   ],
+   [
+    "Можно ли открывать по Face ID или отпечатку?",
+    "Да. Настройки → Безопасность: включите PIN, затем «Вход по Face ID / Touch ID» (iPhone) или «Вход по отпечатку пальца» (Android). Данные лица и отпечатка приложению не передаются — проверку выполняет сам телефон."
+   ],
+   [
+    "Входят ли накопления в общий баланс?",
+    "Нет. Счета типа «Накопления» хранятся отдельно. Деньги в них переводятся через «Перевод», и это не считается расходом."
+   ],
+   [
+    "Есть ли версия для iPhone?",
+    "Да. Откройте на iPhone в Safari адрес hamyonapp.uz/app и нажмите «Поделиться» → «На экран «Домой»». Приложение работает на весь экран и без интернета."
+   ]
+  ],
+  "finalTitle": "Возьмите финансы под контроль| уже сегодня.",
+  "finalLead": "Скачайте, запишите первый расход и в конце месяца точно знайте, куда ушли деньги.",
+  "footL": "Hamyon · Контроль личных финансов",
+  "title": "Hamyon — учёт доходов, расходов и бюджета (бесплатно, без интернета)",
+  "desc": "Hamyon — бесплатное приложение для учёта доходов, расходов, бюджета, счетов и долгов. Работает без интернета и без регистрации. Для Android и iPhone.",
+  "ogTitle": "Hamyon — приложение для личных финансов",
+  "ogDesc": "Доходы, расходы, бюджет и долги в одном месте. Бесплатно, работает без интернета. Для Android и iPhone.",
+  "aMenu": "Меню",
+  "aLang": "Язык",
+  "aLangPreview": "Язык приложения",
+  "aHide": "Скрыть баланс",
+  "aIcon": "Значок приложения Hamyon",
+  "aFoot": "Дополнительные ссылки",
+  "i1h": "Откройте в Safari",
+  "i1p": "На iPhone откройте в Safari адрес hamyonapp.uz/app.",
+  "openApp": "Открыть приложение",
+  "i2h": "Нажмите «Поделиться»",
+  "i2p": "Нажмите кнопку «Поделиться» в Safari.",
+  "i3h": "Выберите «На экран «Домой»»",
+  "i3p": "Hamyon появится на главном экране, будет работать на весь экран и без интернета.",
+  "fileVersion": "Версия",
+  "fileDate": "дата файла",
+  "fileSha": "Контрольная сумма SHA-256",
+  "newsTitle": "Что нового",
+  "news": [
+   [
+    "2.4",
+    "Вход по отпечатку пальца на Android; кнопка скрытия баланса закреплена справа."
+   ],
+   [
+    "2.3",
+    "Новые значки в стиле «стекло»."
+   ],
+   [
+    "2.2",
+    "Управление категориями, новые значки, накопления в настройках."
+   ],
+   [
+    "2.1",
+    "Отдельные счета накоплений и окна, закрывающиеся свайпом вниз."
+   ]
+  ],
+  "footPrivacy": "Политика конфиденциальности",
+  "footSource": "GitHub",
+  "footTelegram": "Telegram",
+  "footEmail": "Email",
+  "backHome": "На главную",
+  "nfTitle": "Страница не найдена",
+  "nfLead": "По этому адресу страницы нет. Вернитесь на главную.",
+  "ppTitle": "Политика конфиденциальности",
+  "ppUpdated": "Последнее обновление",
+  "pp": [
+   [
+    "Коротко",
+    "Hamyon не просит регистрацию, не использует рекламу и аналитику. Финансовые данные, которые вы вводите в приложение, хранятся только на вашем устройстве."
+   ],
+   [
+    "Какие данные хранит приложение",
+    "Ваше имя, счета, операции доходов и расходов, бюджет, долги и настройки. Всё это находится только в памяти телефона и не передаётся разработчику или третьим лицам."
+   ],
+   [
+    "Интернет",
+    "Приложение для Android работает без интернета. Файлы веб-приложения для iPhone загружаются с сайта hamyonapp.uz, и наличие новой версии проверяется на этом же сайте; введённые вами данные при этом не отправляются."
+   ],
+   [
+    "Резервная копия",
+    "Файл копии сохраняется туда, куда вы укажете. Где его хранить и кому передавать, решаете только вы."
+   ],
+   [
+    "PIN-код и биометрия",
+    "Проверку Face ID, Touch ID или отпечатка пальца выполняет сам телефон. Данные лица и отпечатка приложению не передаются."
+   ],
+   [
+    "Сайт",
+    "Сайт hamyonapp.uz размещён на GitHub Pages. Сайт не использует cookie, аналитику и рекламу; в браузере сохраняется только выбранная тема (светлая или тёмная). GitHub как хостинг-провайдер может фиксировать IP-адрес посетителя в технических журналах."
+   ],
+   [
+    "Удаление данных",
+    "Если удалить приложение или очистить данные сайта на iPhone, все записи будут удалены. Поэтому сначала сделайте резервную копию."
+   ]
+  ],
+  "ppContactH": "Связь",
+  "ppContactP": "Вопросы, ошибки и предложения присылайте сюда:"
+ },
+ "en": {
+  "skip": "Skip to content",
+  "navFeatures": "Features",
+  "navPrivacy": "Privacy",
+  "navInstall": "Install",
+  "navFaq": "FAQ",
+  "download": "Download",
+  "heroEyebrow": "Hamyon 2.4 · for Android and iPhone",
+  "heroTitle": "Know where| your money goes.",
+  "heroLead": "Income, expenses, budgets, accounts and debts in one simple app. It works offline, and your data never leaves your phone.",
+  "howItWorks": "See how it works",
+  "heroMeta": "Android 8.0+ · iPhone (Safari) · 2.6 MB",
+  "dlAndroid": "Download for Android",
+  "openIphone": "Open on iPhone",
+  "f1": "app size. Lighter than a single photo",
+  "f2": "languages: Uzbek, Russian and English",
+  "f3": "ads, sign-ups or tracking",
+  "f4": "of your data stays on your phone",
+  "featEyebrow": "Features",
+  "featTitle": "Everything you need| to track money every day.",
+  "c1e": "Quick entry",
+  "c1h": "Log an expense in seconds.",
+  "c1p": "Type the amount and tap a category. The home-screen widget and icon shortcuts let you start without hunting for the app.",
+  "c1c": [
+   "12 ready categories",
+   "Your own categories",
+   "Date, time and note"
+  ],
+  "c2e": "Accounts and currency",
+  "c2h": "Cash, cards and dollars in one balance.",
+  "c2p": "Keep a separate account for each wallet and card and move money between them. Dollar accounts convert to UZS at the rate you set.",
+  "c2c": [
+   "UZS and USD",
+   "Transfers between accounts",
+   "Total balance"
+  ],
+  "c3e": "Budget",
+  "c3h": "Know before you go over.",
+  "c3p": "Set an overall monthly limit and a limit for each category. The bar turns yellow at 80% and red past the limit, and the app warns you.",
+  "c3c": [
+   "Category limits",
+   "Daily allowance",
+   "Warnings"
+  ],
+  "c4e": "Stats",
+  "c4h": "Your month at a glance.",
+  "c4p": "Spending breakdown, a 6-month trend, average daily spend and savings rate. You also see whether you spent more or less than last month.",
+  "c4c": [
+   "Donut chart",
+   "6-month chart",
+   "Savings rate"
+  ],
+  "c5e": "Debts",
+  "c5h": "Who owes whom, never forgotten.",
+  "c5p": "Record money you lent and borrowed, and add partial payments. When a due date gets close, the bell icon reminds you.",
+  "c5c": [
+   "Partial payments",
+   "Due dates",
+   "Balance impact"
+  ],
+  "minEyebrow": "Philosophy",
+  "minTitle": "Only what matters.| Nothing extra.",
+  "minLead": "Hamyon is built on minimalism: no ads, no sign-up, no needless buttons. Less clutter means clearer numbers and calmer decisions.",
+  "p1h": "One screen, one job",
+  "p1p": "Every screen does a single thing, and does it fast.",
+  "p2h": "Nothing to distract you",
+  "p2p": "No ads and no decoration for its own sake. Your attention stays on your money.",
+  "p3h": "Your data only",
+  "p3p": "No account needed. Your data never leaves your phone.",
+  "c6e": "Savings",
+  "c6h": "Savings apart. Goals in sight.",
+  "c6p": "Savings accounts are not added to your total balance, so money to spend and money you are putting aside never mix. Set a goal and watch how far you have to go.",
+  "c6c": [
+   "Goal and progress",
+   "Apart from total balance",
+   "On Home or only in Settings"
+  ],
+  "darkEyebrow": "Appearance",
+  "darkTitle": "Bright by day.| Easy on the eyes at night.",
+  "darkLead": "The app adapts to you. Auto mode switches to the dark theme in the evening by itself.",
+  "mLight": "Light",
+  "mLightS": "Clean, bright interface",
+  "mDark": "Dark",
+  "mDarkS": "Comfortable in low light",
+  "mAuto": "Auto",
+  "mAutoS": "Dark from 7 PM to 7 AM",
+  "dragHint": "Drag to compare",
+  "langEyebrow": "Languages",
+  "langTitle": "In the language| you prefer.",
+  "langLead": "The app works in Uzbek, Russian and English. Switch with one tap; your data stays the same.",
+  "privEyebrow": "Privacy",
+  "privTitle": "Your data| belongs to you.",
+  "privLead": "Hamyon doesn't ask you to sign up and never connects to a server.",
+  "pinH": "PIN, Face ID and fingerprint",
+  "pinP": "The app is locked with a PIN. On iPhone it opens with Face ID or Touch ID, on Android with your fingerprint.",
+  "offH": "No internet needed",
+  "offP": "The app works fully offline. No servers, no ads, no data collection.",
+  "bakH": "Backups",
+  "bakP": "Save a backup file with one tap and restore it on a new phone. The app reminds you when it's been a while.",
+  "hideH": "Hide your balance",
+  "hideP": "Hide the amount with one tap when people are around. Try the eye button.",
+  "moreEyebrow": "And more",
+  "moreTitle": "Small details.| Big difference.",
+  "b1h": "Home-screen widget",
+  "b1p": "Your balance and monthly spending always in view. The income and expense buttons open the right screen.",
+  "b2h": "Excel and CSV export",
+  "b2p": "Export every entry to a file for Excel, Power BI or Google Sheets.",
+  "b3h": "Categories your way",
+  "b3p": "Add them with any of 81 icons and colors, and remove the ones you never use.",
+  "b4h": "Undo",
+  "b4p": "Bring back an entry you deleted by mistake with one tap.",
+  "b5h": "Quick search",
+  "b5p": "Find any entry by note, category, account or amount.",
+  "b6h": "Due-date reminders",
+  "b6p": "A badge appears on the home screen 3 days before a debt is due.",
+  "instEyebrow": "Install",
+  "instTitle": "Ready in| three steps.",
+  "s1h": "Download the APK",
+  "s1p": "Hamyon-2.4.apk, 2.6 MB.",
+  "s2h": "Allow the install",
+  "s2p": "If your phone asks, turn on \"Install unknown apps\" for your browser or file manager.",
+  "s3h": "Install and open",
+  "s3p": "Enter your name and how much money you have now. That's it.",
+  "s4h": "Upgrading from an older version?",
+  "s4p": "Make a backup in the old app first. Uninstall it, install the new one and restore the backup.",
+  "r1": "Android 8.0+",
+  "r2": "2.6 MB",
+  "r3": "No internet required",
+  "faqTitle": "Frequently asked| questions",
+  "faq": [
+   [
+    "Do I need internet?",
+    "No. The app works fully offline and never connects to the internet."
+   ],
+   [
+    "Where is my data stored?",
+    "Only in your phone's storage. The app never sends it anywhere, so make a backup from time to time."
+   ],
+   [
+    "What if I change phones?",
+    "Settings → Back up data. Move the file to your new phone and open it with \"Restore from backup\"."
+   ],
+   [
+    "Where does the dollar rate come from?",
+    "You enter it yourself, for example your bank's rate. The app doesn't go online, so it doesn't update the rate automatically."
+   ],
+   [
+    "What if I forget my PIN?",
+    "The only way to reset the PIN is to erase all data. Keep your backup file so you can restore from it."
+   ],
+   [
+    "Can I unlock with Face ID or a fingerprint?",
+    "Yes. Settings → Security: turn on the PIN, then \"Unlock with Face ID / Touch ID\" (iPhone) or \"Unlock with fingerprint\" (Android). Your face or fingerprint data never reaches the app — the phone checks it itself."
+   ],
+   [
+    "Are savings added to my total balance?",
+    "No. Accounts of the \"Savings\" type stay apart. You move money into them with \"Transfer\", and it does not count as spending."
+   ],
+   [
+    "Is there an iPhone version?",
+    "Yes. On your iPhone, open hamyonapp.uz/app in Safari and tap Share → Add to Home Screen. The app runs full screen and works offline."
+   ]
+  ],
+  "finalTitle": "Take charge of your money| today.",
+  "finalLead": "Download it, log your first expense and know exactly where your money went by the end of the month.",
+  "footL": "Hamyon · Personal finance tracker",
+  "title": "Hamyon — free offline income, expense and budget tracker",
+  "desc": "Hamyon is a free app for tracking income, expenses, budgets, accounts and debts. Works offline, no sign-up. For Android and iPhone.",
+  "ogTitle": "Hamyon — personal finance app",
+  "ogDesc": "Income, expenses, budgets and debts in one place. Free and works offline. For Android and iPhone.",
+  "aMenu": "Menu",
+  "aLang": "Language",
+  "aLangPreview": "App language preview",
+  "aHide": "Hide balance",
+  "aIcon": "Hamyon app icon",
+  "aFoot": "More links",
+  "i1h": "Open in Safari",
+  "i1p": "On your iPhone, open hamyonapp.uz/app in Safari.",
+  "openApp": "Open the app",
+  "i2h": "Tap Share",
+  "i2p": "Tap the Share button in Safari.",
+  "i3h": "Choose Add to Home Screen",
+  "i3p": "Hamyon appears on your Home Screen and runs full screen and offline.",
+  "fileVersion": "Version",
+  "fileDate": "file date",
+  "fileSha": "SHA-256 checksum",
+  "newsTitle": "What's new",
+  "news": [
+   [
+    "2.4",
+    "Fingerprint unlock on Android; the hide-balance button is pinned to the right."
+   ],
+   [
+    "2.3",
+    "New glass-style icons."
+   ],
+   [
+    "2.2",
+    "Category management, new icons, savings moved to Settings."
+   ],
+   [
+    "2.1",
+    "Separate savings accounts and sheets that close with a swipe down."
+   ]
+  ],
+  "footPrivacy": "Privacy policy",
+  "footSource": "GitHub",
+  "footTelegram": "Telegram",
+  "footEmail": "Email",
+  "backHome": "Home",
+  "nfTitle": "Page not found",
+  "nfLead": "There is no page at this address. Go back to the home page.",
+  "ppTitle": "Privacy policy",
+  "ppUpdated": "Last updated",
+  "pp": [
+   [
+    "In short",
+    "Hamyon does not ask you to sign up and uses no ads or analytics. The financial data you enter in the app is stored only on your device."
+   ],
+   [
+    "What the app stores",
+    "Your name, accounts, income and expense records, budget, debts and settings. All of it stays in your phone's storage and is not sent to the developer or to third parties."
+   ],
+   [
+    "Internet",
+    "The Android app works offline. The iPhone web app loads its files from hamyonapp.uz and checks the same site for a new version; the data you enter is not sent."
+   ],
+   [
+    "Backups",
+    "The backup file is saved where you choose. Where to keep it and who to share it with is up to you."
+   ],
+   [
+    "PIN and biometrics",
+    "Face ID, Touch ID and fingerprint checks are done by the phone itself. Face and fingerprint data is not given to the app."
+   ],
+   [
+    "Website",
+    "hamyonapp.uz is hosted on GitHub Pages. The site uses no cookies, analytics or ads; only your chosen theme (light or dark) is saved in your browser. As the hosting provider, GitHub may record a visitor's IP address in technical logs."
+   ],
+   [
+    "Deleting data",
+    "If you uninstall the app or clear the site data on iPhone, all records are deleted. Make a backup first."
+   ]
+  ],
+  "ppContactH": "Contact",
+  "ppContactP": "Questions, bugs and suggestions:"
+ }
+}
